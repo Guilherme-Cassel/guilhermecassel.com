@@ -1,0 +1,330 @@
+<!doctype html>
+<!-- ============================================================
+     guilhermecassel.com
+     HTML, CSS e JavaScript escritos na mão. Sem framework, sem
+     build, sem dependência. Se você abriu o Ctrl+U procurando
+     bundle minificado: não tem. É tudo legível de propósito.
+
+     O TEXTO NÃO MORA AQUI. Está em content/en.json e content/pt.json.
+     Cada elemento diz de onde vem o texto dele pelo atributo data-t
+     ("data-texto"), e as listas são montadas por assets/js/site.js.
+     Pra mudar uma frase do site, edite o JSON, não este arquivo.
+     ============================================================ -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilherme Cassel · .NET Developer</title>
+<meta name="description" content="Full-stack .NET developer. I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline built from scratch.">
+<link rel="canonical" href="https://guilhermecassel.com/">
+<meta name="theme-color" content="#0a0e18">
+
+<!-- Como o link fica quando alguém compartilha no LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://guilhermecassel.com/">
+<meta property="og:title" content="Guilherme Cassel · .NET Developer">
+<meta property="og:description" content="I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline built from scratch.">
+<meta property="og:image" content="https://guilhermecassel.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/system.css">
+<link rel="stylesheet" href="assets/css/site.css">
+
+<script>
+  /* Roda antes da primeira pintura, de propósito: aplica tema e idioma
+     salvos pra página não piscar em claro antes de virar escura. */
+  (() => {
+    const t = localStorage.getItem('tema');
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    const l = localStorage.getItem('idioma');
+    if (l === 'pt' || l === 'en') document.documentElement.dataset.lang = l;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Guilherme Cassel",
+  "jobTitle": ".NET Developer",
+  "url": "https://guilhermecassel.com",
+  "sameAs": [
+    "https://linkedin.com/in/guilhermecassel",
+    "https://github.com/Guilherme-Cassel"
+  ],
+  "knowsAbout": ["C#", ".NET", "Blazor", "Entity Framework Core", "Azure DevOps", "CI/CD"],
+  "address": { "@type": "PostalAddress", "addressRegion": "RS", "addressCountry": "BR" }
+}
+</script>
+</head>
+
+<body>
+
+<!-- Fundo: três manchas de luz desfocadas + grão. Nada disso é imagem. -->
+<div class="bg-layers" aria-hidden="true">
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+  <div class="blob blob--3"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Cursor customizado (só aparece em ponteiro fino, ver site.css) -->
+<div class="cursor" data-cursor aria-hidden="true"><span class="cursor__dot"></span></div>
+
+<a class="skip" href="#main" data-t="ui.skipToContent">Skip to content</a>
+
+<header class="topbar" data-topbar>
+  <div class="topbar__inner">
+    <a class="brandmark" href="#top" aria-label="Guilherme Cassel">
+      <!-- Monograma GC: um G que é também a volta de um trombone -->
+      <svg class="monogram" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="9" fill="var(--brand)"/>
+        <path d="M21.5 11.6A6 6 0 1 0 22 20h-4.4" fill="none" stroke="#fff"
+              stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="23.2" cy="16" r="1.9" fill="#fff"/>
+      </svg>
+      <span class="brandmark__name">Guilherme<span class="brandmark__last"> Cassel</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <a href="#about"      data-t="nav.about">About</a>
+      <a href="#experience" data-t="nav.experience">Experience</a>
+      <a href="#work"       data-t="nav.work">Work</a>
+      <a href="#stack"      data-t="nav.stack">Stack</a>
+      <a href="#music"      data-t="nav.music">Trombone</a>
+      <a href="#contact"    data-t="nav.contact">Contact</a>
+    </nav>
+
+    <div class="topbar__actions">
+      <button class="chip-btn" data-lang-toggle type="button" data-label="ui.langToggle">
+        <span data-t="ui.langShort">PT</span>
+      </button>
+      <button class="theme-toggle" data-theme-toggle type="button" data-label="ui.themeToggle">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+        </svg>
+      </button>
+      <button class="chip-btn nav-toggle" data-nav-toggle type="button" data-label="ui.menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu do celular: as mesmas âncoras, geradas por JS a partir do nav -->
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden aria-label="Main"></nav>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero page">
+    <p class="eyebrow" data-t="hero.kicker"></p>
+
+    <!-- O palco sangra até a borda da janela pra máquina de pistões
+         ter de onde vir. O trilho é a régua: dentro dele, x = 0 é
+         exatamente onde o nome mora depois que tudo acaba. -->
+    <div class="hero__palco" data-palco>
+      <div class="hero__trilho" data-trilho>
+        <h1 class="hero__name" data-nome>
+          <!-- Clicar aqui faz cócegas. Sim, foi pedido. -->
+          <button class="tickle" data-tickle type="button" data-t="hero.name">Guilherme Cassel</button>
+        </h1>
+      </div>
+    </div>
+
+    <!-- O subtítulo é decorativo: quem usa leitor de tela já ouviu o nome
+         no h1 e ouve a descrição completa no parágrafo abaixo. Letra por
+         letra, a máquina de escrever só atrapalharia. -->
+    <p class="hero__role" aria-hidden="true">
+      <span class="hero__role-prefix">&gt;</span>
+      <span data-typewriter></span><span class="caret" aria-hidden="true"></span>
+    </p>
+
+    <p class="lead hero__lead" data-t="hero.lead"></p>
+
+    <div class="row hero__cta">
+      <a class="btn btn--magnetic" data-link="linkedin" href="#" target="_blank" rel="noopener">
+        <span data-t="hero.ctaPrimary"></span>
+      </a>
+      <a class="btn btn--ghost btn--magnetic" data-link="github" href="#" target="_blank" rel="noopener">
+        <span data-t="hero.ctaSecondary"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== NÚMEROS ==================== -->
+  <section class="page stats-section" aria-label="Numbers">
+    <div class="stats" data-stats></div>
+  </section>
+
+  <!-- ==================== SOBRE ==================== -->
+  <section class="page" id="about">
+    <p class="eyebrow" data-t="about.eyebrow"></p>
+    <h2 data-t="about.title"></h2>
+    <div class="about">
+      <div class="about__text" data-about-text></div>
+      <aside class="about__aside">
+        <figure class="photo photo--soft">
+          <picture>
+            <source srcset="assets/img/pantufas.webp" type="image/webp">
+            <img src="assets/img/pantufas.jpg" width="1200" height="904"
+                 loading="lazy" decoding="async" data-alt="personal.photoAlt" alt="">
+          </picture>
+          <figcaption data-t="personal.photoCaption"></figcaption>
+        </figure>
+        <blockquote class="motto">
+          <p data-t="about.motto"></p>
+          <cite data-t="about.mottoOriginal"></cite>
+        </blockquote>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==================== INTERVALO: O JOGUINHO ====================
+       A tela fica fechada até alguém apertar o botão. Aí ela desce
+       de cima, como uma persiana que estava atrás do layout. -->
+  <section class="page" id="jogo">
+    <p class="eyebrow" data-t="game.eyebrow"></p>
+    <h2 data-t="game.title"></h2>
+    <p class="lead" data-t="game.lead"></p>
+
+    <p class="jogo__acao">
+      <button class="btn btn--magnetic" type="button" data-jogo-abrir>
+        <span data-t="game.play"></span>
+      </button>
+    </p>
+
+    <div class="jogo__palco" data-jogo-palco>
+      <div class="jogo__tela">
+        <canvas data-jogo-canvas tabindex="0" role="img" data-label="game.title"></canvas>
+
+        <div class="jogo__hud">
+          <span><span data-t="game.score"></span> <b data-jogo-pontos>0</b></span>
+          <span><span data-t="game.best"></span> <b data-jogo-recorde>0</b></span>
+          <button class="jogo__som" type="button" data-jogo-som
+                  data-label="game.soundToggle" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H3v6h3l5 4z"/>
+              <path class="jogo__som-ondas" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>
+              <path class="jogo__som-corte" d="m16 9 5 6M21 9l-5 6"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="jogo__dica" data-t="game.hint"></p>
+
+        <div class="jogo__aviso" data-jogo-aviso hidden>
+          <p data-jogo-mensagem></p>
+          <button class="btn" type="button" data-jogo-reiniciar>
+            <span data-t="game.again"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="muted jogo__nota" data-t="game.footnote"></p>
+  </section>
+
+  <!-- ==================== EXPERIÊNCIA ==================== -->
+  <section class="page" id="experience">
+    <p class="eyebrow" data-t="experience.eyebrow"></p>
+    <h2 data-t="experience.title"></h2>
+    <ol class="timeline" data-timeline></ol>
+  </section>
+
+  <!-- ==================== PROJETOS ==================== -->
+  <section class="page" id="work">
+    <p class="eyebrow" data-t="projects.eyebrow"></p>
+    <h2 data-t="projects.title"></h2>
+    <p class="lead" data-t="projects.lead"></p>
+
+    <div class="work" data-work></div>
+
+    <h3 class="side__title" data-t="projects.sideTitle"></h3>
+    <p class="muted" data-t="projects.sideLead"></p>
+    <div class="side" data-side></div>
+  </section>
+
+  <!-- ==================== STACK ==================== -->
+  <section class="page" id="stack">
+    <p class="eyebrow" data-t="stack.eyebrow"></p>
+    <h2 data-t="stack.title"></h2>
+    <p class="lead" data-t="stack.lead"></p>
+    <div class="stack-groups" data-stack></div>
+  </section>
+
+  <!-- ==================== TROMBONE ==================== -->
+  <section class="page" id="music">
+    <div class="music">
+      <div class="music__text">
+        <p class="eyebrow" data-t="music.eyebrow"></p>
+        <h2 data-t="music.title"></h2>
+        <div data-music-text></div>
+      </div>
+      <figure class="photo">
+        <picture>
+          <source srcset="assets/img/trombone.webp" type="image/webp">
+          <img src="assets/img/trombone.jpg" width="1191" height="795"
+               loading="lazy" decoding="async" data-alt="music.photoAlt" alt="">
+        </picture>
+        <figcaption data-t="music.photoCaption"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ==================== CONTATO ==================== -->
+  <section class="page" id="contact">
+    <div class="contact card">
+      <p class="eyebrow" data-t="contact.eyebrow"></p>
+      <h2 data-t="contact.title"></h2>
+      <p class="lead" data-t="contact.lead"></p>
+      <div class="row contact__actions">
+        <!-- O href é montado em JS pra não deixar o e-mail escrito
+             em texto puro no HTML, onde robô de spam varre. -->
+        <a class="btn btn--magnetic" data-email href="#"><span data-t="contact.emailLabel"></span></a>
+        <span class="contact__links" data-contact-links></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="page site-footer">
+  <p data-t="footer.built"></p>
+  <p class="muted">
+    <span data-t="footer.rights"></span> ·
+    <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source"></a>
+  </p>
+</footer>
+
+<noscript>
+  <div class="page noscript">
+    <p><strong>Guilherme Cassel</strong>, full-stack .NET developer (C#, Blazor, Entity Framework, Azure DevOps).
+       This page loads its text with JavaScript. Reach me at
+       <a href="https://linkedin.com/in/guilhermecassel">LinkedIn</a> or
+       <a href="https://github.com/Guilherme-Cassel">GitHub</a>.</p>
+  </div>
+</noscript>
+
+<script src="assets/js/site.js" defer></script>
+
+<!-- Cloudflare Web Analytics: sem cookie, sem banner de consentimento.
+     Para ligar: painel da Cloudflare › Web Analytics › adicionar o site,
+     copiar o token gerado no lugar de COLE_O_TOKEN_AQUI e tirar o comentário.
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "COLE_O_TOKEN_AQUI"}'></script>
+-->
+
+</body>
+</html>

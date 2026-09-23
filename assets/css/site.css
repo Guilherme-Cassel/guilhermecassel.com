@@ -1,0 +1,489 @@
+/* =============================================================
+   Camada 3: o site em si. Só coisas que existem nesta página.
+   Componentes reutilizáveis moram em system.css; decisões de cor,
+   raio, sombra e tempo moram em tokens.css. Aqui não tem hex.
+   ============================================================= */
+
+/* ---------- Topo ---------------------------------------------
+   A barra some ao descer e volta ao subir (o JS só troca a classe). */
+.topbar {
+  position: fixed; inset-inline: 0; top: 0; z-index: 20;
+  /* altura livre (o system.css fixa a altura na .topbar genérica):
+     quem define os 68px aqui é a linha de dentro, pra que o menu do
+     celular abra empurrando a barra em vez de vazar por fora dela. */
+  height: auto;
+  display: block;
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--hairline);
+  transition: transform var(--d-normal) var(--e-out),
+              background-color var(--d-normal) var(--e-in-out);
+}
+.topbar.is-hidden { transform: translateY(-100%); }
+
+.topbar__inner {
+  width: min(100% - var(--s-8), var(--page-max));
+  margin-inline: auto; height: var(--header-h);
+  display: flex; align-items: center; gap: var(--s-4);
+}
+.topbar__actions { margin-left: auto; display: flex; align-items: center; gap: var(--s-2); }
+
+.monogram { width: 30px; height: 30px; border-radius: var(--r-sm);
+            box-shadow: var(--sh-brand);
+            transition: transform var(--d-normal) var(--e-spring); }
+.brandmark:hover .monogram { transform: rotate(-8deg) scale(1.06); }
+.brandmark__name { font-weight: 750; letter-spacing: var(--tracking-tight); }
+
+.nav { display: flex; gap: var(--s-1); margin-left: var(--s-6); }
+.nav a {
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  font-size: var(--t-sm); font-weight: 600;
+  color: var(--text-muted); text-decoration: none;
+  transition: color var(--d-fast) var(--e-out),
+              background-color var(--d-fast) var(--e-out);
+}
+.nav a:hover { color: var(--text); background: var(--bg-sunken); }
+.nav a.is-current { color: var(--brand-text); background: var(--brand-subtle); }
+
+.chip-btn {
+  height: 40px; min-width: 40px; padding-inline: var(--s-3);
+  display: inline-grid; place-items: center;
+  border: 1px solid var(--border-strong); border-radius: var(--r-full);
+  background: var(--bg-elevated); cursor: pointer;
+  font-size: var(--t-xs); font-weight: 750; letter-spacing: var(--tracking-wide);
+  transition: border-color var(--d-fast) var(--e-out),
+              color var(--d-fast) var(--e-out),
+              transform var(--d-fast) var(--e-spring);
+}
+.chip-btn:hover { border-color: var(--brand-border); color: var(--brand-text); transform: translateY(-1px); }
+.chip-btn svg { width: 18px; height: 18px; }
+
+/* O sol/lua giram na troca: a única mola do site. */
+.theme-toggle svg { transition: transform var(--d-normal) var(--e-spring); }
+.theme-toggle:hover svg { transform: rotate(-20deg); }
+.theme-toggle.is-switching svg { transform: rotate(180deg) scale(0.6); }
+
+.nav-toggle { display: none; }
+
+.mobile-nav {
+  width: min(100% - var(--s-8), var(--page-max));
+  margin-inline: auto;
+  padding-block: var(--s-3) var(--s-5);
+  display: grid; gap: var(--s-1);
+}
+/* display:grid numa classe vence o display:none que o [hidden]
+   traz do navegador, então o hidden precisa ser dito de novo aqui. */
+.mobile-nav[hidden] { display: none; }
+.mobile-nav a {
+  padding: var(--s-3);
+  border-radius: var(--r-sm);
+  font-weight: 650; color: var(--text); text-decoration: none;
+}
+.mobile-nav a:hover { background: var(--bg-sunken); }
+
+.skip {
+  position: absolute; left: var(--s-4); top: calc(var(--s-4) * -4); z-index: 30;
+  padding: var(--s-2) var(--s-4); border-radius: var(--r-sm);
+  background: var(--brand); color: var(--text-on-brand); text-decoration: none;
+  transition: top var(--d-fast) var(--e-out);
+}
+.skip:focus { top: var(--s-4); }
+
+/* ---------- Ritmo da página ---------------------------------- */
+main { padding-top: var(--header-h); }
+main > section { padding-block: var(--s-16); border-top: 0; }
+main > section + section { border-top: 1px solid var(--hairline); }
+h2 { margin-block: var(--s-2) var(--s-5); }
+.eyebrow + h2 { margin-top: 0; }
+
+/* ---------- Hero ---------------------------------------------
+   Sem espetáculo de primeira dobra: nome, o que eu faço, e os links. */
+.hero { padding-block: var(--s-20) var(--s-12) !important; }
+.hero__name { margin-block: var(--s-3) var(--s-2); }
+
+/* O nome é um botão, mas não pode parecer um. */
+.tickle {
+  font: inherit; color: inherit; letter-spacing: inherit;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  border-radius: var(--r-sm);
+  transition: color var(--d-fast) var(--e-out);
+}
+.tickle:hover { color: var(--brand-text); }
+.tickle.is-tickled { animation: tickle 420ms var(--e-in-out); }
+@keyframes tickle {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  15% { transform: translate(-3px, 1px) rotate(-1.2deg); }
+  35% { transform: translate(3px, -2px) rotate(1.4deg); }
+  55% { transform: translate(-2px, 2px) rotate(-1deg); }
+  78% { transform: translate(2px, -1px) rotate(0.7deg); }
+}
+@media (prefers-reduced-motion: reduce) { .tickle.is-tickled { animation: none; } }
+
+/* As balõezinhos de "para!" que sobem quando cutucam o nome */
+.giggle {
+  position: absolute; z-index: 25; pointer-events: none;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-full);
+  background: var(--bg-elevated); border: 1px solid var(--brand-border);
+  color: var(--brand-text); font-size: var(--t-sm); font-weight: 650;
+  box-shadow: var(--sh-2);
+  animation: giggle-up 1.5s var(--e-out) forwards;
+}
+@keyframes giggle-up {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(0.7); }
+  18%  { opacity: 1; transform: translate(-50%, -14px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -68px) scale(0.95); }
+}
+
+/* ---------- O nome chega empurrado ---------------------------
+   Um extensor duplo entra pela esquerda, empurra o título duas
+   casas até o lugar dele e vai embora, deixando só o nome. Roda
+   uma vez a cada carregamento da página.
+
+   Escala: um bloco é --cel, e o nome tem metade dessa altura.
+   As texturas são desenhadas aqui mesmo, em SVG de 16 por 16
+   "pixels", do mesmo jeito que o jogo desenha as dele. Nada foi
+   copiado dos arquivos do Minecraft, e um PNG ripado ficaria
+   borrado neste tamanho: `image-rendering: pixelated` mantém o
+   pixel quadrado mesmo ampliado pra mais de 100px.             */
+.hero__palco {
+  --cel: calc(var(--t-2xl) * 1.65);
+  position: relative;
+  /* sangra até a borda da janela: é de lá que a máquina vem */
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+  /* respiro vertical pro bloco, sem mexer no ritmo da página */
+  padding-block: calc(var(--cel) * 0.3);
+  margin-block: calc(var(--cel) * -0.3);
+  overflow: hidden;
+}
+.hero__trilho { position: relative; }
+
+/* Tudo que se move usa duas variáveis em pixels: --ent é a entrada
+   em cena (vale pra máquina e pro nome, que chegam juntos) e --px é
+   a posição dentro da cena. O JS mede o vão real em pixels porque
+   ele muda com a largura da janela. */
+.hero__name,
+.pistao {
+  transform: translateX(calc(var(--ent, 0px) + var(--px, 0px)));
+  /* A curva também é variável: chegar e empurrar pede --e-out, que
+     pousa macio. Ir embora pede o contrário, acelerando pra fora,
+     senão a máquina parece sumir num corte em vez de partir. */
+  transition: transform var(--passo, 170ms) var(--curva, var(--e-out));
+}
+
+/* A máquina é filha do palco, não do trilho: o zero dela é a borda
+   da janela, que é de onde ela entra. */
+.pistao {
+  position: absolute; top: 50%; left: 0;
+  width: var(--cel); height: var(--cel);
+  margin-top: calc(var(--cel) / -2);
+  pointer-events: none;
+}
+
+/* Corpo: madeira, o trapézio riscado que é a assinatura da textura
+   original, e a placa da cabeça encostada na direita. */
+.pistao__corpo {
+  position: absolute; inset: 0;
+  background-color: #9d7f4f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%239d7f4f'/%3E%3Crect width='12' height='1' y='3' fill='%238b7045'/%3E%3Crect width='12' height='1' y='12' fill='%238b7045'/%3E%3Cpath d='M12 0.5 L4.5 4 L4.5 12 L12 15.5' fill='none' stroke='%236f5836' stroke-width='1'/%3E%3Crect x='12' width='4' height='16' fill='%237fae56'/%3E%3Crect x='12' width='1' height='16' fill='%235d4a2e'/%3E%3Crect x='14' y='3' width='1' height='2' fill='%23689447'/%3E%3Crect x='13' y='9' width='1' height='2' fill='%2395c46a'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* Braço: a haste que só existe quando o pistão está estendido. */
+.pistao__braco {
+  position: absolute; top: 36%; bottom: 36%; left: 100%;
+  width: var(--braco, 0px);
+  background-image: linear-gradient(#c2a06a 0 20%, #a88c60 20% 72%, #7d6540 72% 100%);
+  transition: width var(--passo, 170ms) var(--curva, var(--e-out));
+}
+
+/* Cabeça: a placa de slime na ponta do braço, que é o que encosta
+   no nome e empurra. */
+.pistao__cabeca {
+  position: absolute; top: 0; bottom: 0; left: 100%;
+  width: calc(var(--cel) * 0.26);
+  background-color: #7fae56;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16' shape-rendering='crispEdges'%3E%3Crect width='8' height='16' fill='%237fae56'/%3E%3Crect width='1' height='16' fill='%235d4a2e'/%3E%3Crect x='7' width='1' height='16' fill='%23689447'/%3E%3Crect x='3' y='3' width='2' height='2' fill='%2395c46a'/%3E%3Crect x='4' y='11' width='2' height='2' fill='%23689447'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  transform: translateX(var(--braco, 0px));
+  transition: transform var(--passo, 170ms) var(--curva, var(--e-out));
+}
+
+.hero__role {
+  font-family: var(--font-mono); font-size: var(--t-lg);
+  color: var(--text-muted); min-height: 1.6em;
+  display: flex; align-items: baseline; gap: var(--s-2);
+}
+.hero__role-prefix { color: var(--brand); font-weight: 600; }
+.caret {
+  display: inline-block; width: 0.55em; height: 1.05em;
+  background: var(--brand); border-radius: 2px;
+  transform: translateY(0.15em);
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+
+.hero__lead { margin-top: var(--s-6); max-width: 60ch; }
+.hero__cta { margin-top: var(--s-8); }
+
+/* ---------- Números ------------------------------------------ */
+.stats-section { padding-block: var(--s-10) !important; }
+.stats { display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.stat__value {
+  font-size: var(--t-xl); font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-text); line-height: 1;
+}
+.stat__label { margin-top: var(--s-2); font-size: var(--t-sm); color: var(--text-muted); max-width: 26ch; }
+
+/* ---------- Sobre -------------------------------------------- */
+.about { display: grid; gap: var(--s-10); grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+.about__text p + p { margin-top: var(--s-4); }
+.about__aside { display: grid; gap: var(--s-6); position: sticky; top: calc(var(--header-h) + var(--s-6)); }
+
+.photo { margin: 0; }
+.photo img {
+  width: 100%; height: auto;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--hairline);
+}
+.photo--soft img { box-shadow: var(--sh-3); }
+.photo figcaption { margin-top: var(--s-3); font-size: var(--t-sm); color: var(--text-muted); }
+
+.motto {
+  margin: 0; padding-left: var(--s-5);
+  border-left: 3px solid var(--brand);
+}
+.motto p { font-size: var(--t-lg); font-weight: 700; letter-spacing: var(--tracking-tight); }
+.motto cite { font-style: normal; font-size: var(--t-sm); color: var(--text-subtle); }
+.motto cite:empty { display: none; }
+
+/* ---------- O joguinho ---------------------------------------
+   A tela nasce fechada (altura zero) e desce de cima quando alguém
+   aperta o botão, como se estivesse numa camada atrás do layout.
+   A altura exata vem do JS, porque depende da largura da tela.   */
+.jogo__acao {
+  margin-block: var(--s-6);
+  transition: opacity var(--d-normal) var(--e-out),
+              margin-block-end var(--d-slow) var(--e-out);
+}
+.jogo__acao.esta-fora {
+  opacity: 0; pointer-events: none;
+  margin-block-end: 0;
+}
+
+.jogo__palco {
+  height: 0;
+  overflow: hidden;
+  transition: height var(--d-slow) var(--e-out);
+}
+.jogo__tela {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-sunken);
+  overflow: hidden;
+  /* começa escondida acima da própria caixa e desce junto */
+  transform: translateY(-100%);
+  transition: transform var(--d-slow) var(--e-out);
+}
+.jogo__palco.esta-aberto .jogo__tela { transform: none; }
+
+.jogo__tela canvas {
+  width: 100%; height: 100%;
+  display: block;
+  cursor: pointer;
+  touch-action: manipulation;   /* sem zoom acidental no toque */
+}
+.jogo__tela canvas:focus-visible { outline-offset: -4px; }
+
+.jogo__hud {
+  position: absolute; top: var(--s-4); right: var(--s-4);
+  display: flex; gap: var(--s-4);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.jogo__hud b { color: var(--brand-text); font-variant-numeric: tabular-nums; }
+
+/* O botão de mudo é o único pedaço do HUD que aceita clique. */
+.jogo__som {
+  pointer-events: auto;
+  display: inline-grid; place-items: center;
+  width: 28px; height: 28px; padding: 0;
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  background: var(--bg-elevated); color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--d-fast) var(--e-out),
+              border-color var(--d-fast) var(--e-out);
+}
+.jogo__som:hover { color: var(--brand-text); border-color: var(--brand-border); }
+.jogo__som svg { width: 16px; height: 16px; }
+/* o ícone conta o estado: ondas quando liga, corte quando muda */
+.jogo__som[aria-pressed="true"] .jogo__som-corte,
+.jogo__som[aria-pressed="false"] .jogo__som-ondas { display: none; }
+
+.jogo__dica {
+  position: absolute; left: var(--s-4); bottom: var(--s-3);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+
+.jogo__aviso {
+  position: absolute; inset: 0;
+  display: grid; place-content: center; justify-items: center; gap: var(--s-4);
+  text-align: center; padding: var(--s-6);
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  backdrop-filter: blur(3px);
+}
+.jogo__aviso[hidden] { display: none; }
+.jogo__aviso p {
+  font-size: var(--t-lg); font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  max-width: 24ch;
+}
+
+.jogo__nota { font-size: var(--t-sm); margin-top: var(--s-5); }
+
+@media (max-width: 760px) {
+  .jogo__tela { aspect-ratio: 5 / 4; }
+  .jogo__dica { font-size: 10px; }
+}
+
+/* ---------- Linha do tempo ----------------------------------- */
+.timeline li h3 { font-size: var(--t-base); }
+.timeline__meta { font-size: var(--t-sm); color: var(--text-muted); margin-bottom: var(--s-3); }
+.timeline__bullets { margin: 0; padding-left: var(--s-5); display: grid; gap: var(--s-2); }
+.timeline__bullets li { color: var(--text-muted); font-size: var(--t-sm); padding-left: 0; }
+.timeline__bullets li::before, .timeline__bullets li::after { display: none; }
+/* o marcador do item atual pulsa de leve */
+.timeline li.is-current::before { box-shadow: 0 0 0 4px var(--brand-subtle); animation: pulse 2.4s var(--e-in-out) infinite; }
+
+/* ---------- Projetos ----------------------------------------- */
+.work { display: grid; gap: var(--s-5); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+/* O título pode quebrar em quantas linhas precisar; o selo não.
+   Por isso o h3 pode encolher (min-width: 0) e o selo não encolhe. */
+.work-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-3); margin-bottom: var(--s-4); }
+.work-card h3 { font-size: var(--t-lg); min-width: 0; }
+.work-card__head .badge { flex: none; margin-top: 0.2em; }
+.work-card dl { margin: 0; display: grid; gap: var(--s-4); }
+.work-card dt {
+  font-size: var(--t-xs); font-weight: 750;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-subtle); margin-bottom: var(--s-1);
+}
+.work-card dd { margin: 0; color: var(--text-muted); font-size: var(--t-sm); }
+.work-card dd strong { color: var(--text); font-weight: 650; }
+.work-card .row { margin-top: var(--s-5); gap: var(--s-2); }
+
+.side__title { margin-top: var(--s-16); }
+.side { margin-top: var(--s-5); display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.side-card { display: block; text-decoration: none; color: inherit; }
+.side-card h4 { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--brand-text); }
+.side-card p { font-size: var(--t-sm); color: var(--text-muted); margin-block: var(--s-3); }
+
+/* ---------- Stack -------------------------------------------- */
+.stack-groups { display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.stack-group h3 {
+  font-size: var(--t-xs); font-weight: 750;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-subtle); margin-bottom: var(--s-4);
+}
+.stack-group .row { gap: var(--s-2); }
+
+/* ---------- Trombone ----------------------------------------- */
+.music { display: grid; gap: var(--s-10); grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); align-items: center; }
+.music__text p + p { margin-top: var(--s-4); }
+.music__text p { color: var(--text-muted); }
+.music .photo img { box-shadow: var(--sh-3); }
+
+/* ---------- Contato ------------------------------------------ */
+.contact { padding: var(--s-10); border-color: var(--brand-border); }
+.contact__actions { margin-top: var(--s-6); gap: var(--s-5); }
+.contact__links { display: flex; gap: var(--s-4); flex-wrap: wrap; }
+
+.site-footer { padding-block: var(--s-10) var(--s-16); border-top: 1px solid var(--hairline); }
+.site-footer p { font-size: var(--t-sm); color: var(--text-muted); }
+.noscript { padding-block: var(--s-10); }
+
+/* ---------- Cursor ------------------------------------------
+   Só em quem tem ponteiro fino (mouse). Em toque nem existe, e o
+   cursor nativo continua ali embaixo pra ninguém se perder.      */
+.cursor { display: none; }
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* A seta do sistema sai de cena, senão ficam dois cursores na tela.
+     Quem manda esconder é a classe que o JS coloca no <html> só depois
+     de o cursor customizado existir: se o script falhar, a seta fica. */
+  .has-cursor, .has-cursor * { cursor: none; }
+  /* Campo de texto é exceção: ali a barrinha do sistema faz falta. */
+  .has-cursor input, .has-cursor textarea { cursor: auto; }
+
+  .cursor {
+    display: block; position: fixed; top: 0; left: 0; z-index: 40;
+    pointer-events: none;
+    width: 34px; height: 34px; margin: -17px 0 0 -17px;
+    border: 1.5px solid var(--brand);
+    border-radius: var(--r-full);
+    opacity: 0;
+    transition: opacity var(--d-fast) linear,
+                width var(--d-fast) var(--e-out),
+                height var(--d-fast) var(--e-out),
+                margin var(--d-fast) var(--e-out),
+                background-color var(--d-fast) var(--e-out);
+  }
+  .cursor.is-active { opacity: 1; }
+  .cursor__dot {
+    position: absolute; inset: 0; margin: auto;
+    width: 4px; height: 4px; border-radius: var(--r-full);
+    background: var(--brand);
+    transition: opacity var(--d-fast) linear;
+  }
+  /* Em cima de algo clicável ele abre e fica translúcido */
+  .cursor.is-over {
+    width: 52px; height: 52px; margin: -26px 0 0 -26px;
+    background: color-mix(in oklab, var(--brand) 12%, transparent);
+  }
+  .cursor.is-over .cursor__dot { opacity: 0; }
+
+  /* Em cima do nome vira uma peninha, porque ali o que se faz é
+     cócega, não clique. A pena é SVG desenhado em data URI: sem
+     imagem pra baixar e sem pedir mais um arquivo ao servidor. */
+  .cursor.is-pena {
+    width: 44px; height: 44px; margin: -6px 0 0 -8px;
+    border-color: transparent; background: none;
+  }
+  .cursor.is-pena .cursor__dot { opacity: 0; }
+  .cursor.is-pena::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.5 3.5c-7.6 0-13.6 4.2-15.1 10.2-.5 2 0 3.9 1 5.2z' fill='%232563eb' fill-opacity='0.22'/%3E%3Cpath d='M6.4 18.9 2.8 22.4'/%3E%3Cpath d='M9.6 15.7c2.7.3 5.1-.5 6.8-2.4'/%3E%3Cpath d='M12.7 11.4c2.4.4 4.6-.2 6.2-1.8'/%3E%3C/svg%3E") center / contain no-repeat;
+    transform-origin: 20% 80%;
+    animation: cocega 900ms var(--e-in-out) infinite alternate;
+  }
+  @keyframes cocega {
+    from { transform: rotate(-9deg); }
+    to   { transform: rotate(7deg); }
+  }
+}
+
+/* ---------- Telas pequenas ----------------------------------- */
+@media (max-width: 900px) {
+  .about, .music { grid-template-columns: 1fr; }
+  .about__aside { position: static; }
+}
+
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .nav-toggle { display: inline-grid; }
+  .brandmark__last { display: none; }
+  .hero { padding-block: var(--s-12) var(--s-10) !important; }
+  .contact { padding: var(--s-6); }
+}

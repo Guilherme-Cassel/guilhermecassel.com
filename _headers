@@ -1,0 +1,20 @@
+# Cabeçalhos HTTP do Cloudflare Pages. Ele lê este arquivo sozinho.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Imagem e fonte podem ser cacheadas com folga: quando mudam, mudam de nome.
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+# CSS e JS: cache curto, porque o deploy troca o arquivo no mesmo caminho.
+/assets/css/*
+  Cache-Control: public, max-age=3600
+/assets/js/*
+  Cache-Control: public, max-age=3600
+
+# O texto do site precisa aparecer assim que for editado no GitHub.
+/content/*
+  Cache-Control: public, max-age=300

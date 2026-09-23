@@ -1,0 +1,343 @@
+{
+  "_comment": "Conteúdo em português. Mesmas chaves de en.json; se criar uma chave nova lá, cria aqui também.",
+  "meta": {
+    "lang": "pt-BR",
+    "title": "Guilherme Cassel · Desenvolvedor .NET",
+    "description": "Desenvolvedor full-stack .NET. Construo os sistemas internos que uma indústria de máquinas usa todo dia: C#, Blazor, Entity Framework e um CI/CD montado do zero."
+  },
+  "ui": {
+    "skipToContent": "Pular para o conteúdo",
+    "menu": "Menu",
+    "themeToggle": "Alternar entre tema claro e escuro",
+    "langToggle": "Read in English",
+    "langShort": "EN",
+    "backToTop": "Voltar ao topo"
+  },
+  "nav": {
+    "about": "Sobre",
+    "experience": "Experiência",
+    "work": "Projetos",
+    "stack": "Stack",
+    "music": "Música",
+    "contact": "Contato"
+  },
+  "hero": {
+    "kicker": "Serafina Corrêa, RS · full time em Guaporé",
+    "name": "Guilherme Cassel",
+    "roles": [
+      "desenvolvedor full-stack .NET",
+      "backend de coração",
+      "C# · Blazor · Entity Framework",
+      "o que também monta o CI/CD"
+    ],
+    "lead": "Construo os sistemas internos que uma indústria de máquinas usa de verdade. Três anos transformando planilha sem dono em software que ninguém mais precisa pensar a respeito. Planejado antes, construído depois, e feito pra durar.",
+    "ctaPrimary": "LinkedIn",
+    "ctaSecondary": "GitHub",
+    "ctaEmail": "Me manda um e-mail",
+    "tickleMessages": [
+      "ei!",
+      "para 😄",
+      "isso faz cócegas",
+      "tá bom, tá bom",
+      "tô trabalhando aqui"
+    ]
+  },
+  "stats": [
+    {
+      "auto": "age",
+      "from": "2004-08-04",
+      "suffix": "",
+      "label": "anos. Desmontando computador desde os 10."
+    },
+    {
+      "auto": "yearsSince",
+      "from": "2023-07-01",
+      "suffix": "+",
+      "label": "anos escrevendo software que roda em produção."
+    },
+    {
+      "value": "60",
+      "suffix": "+",
+      "label": "pessoas usando o que eu construo, todo dia."
+    },
+    {
+      "value": "85",
+      "suffix": "",
+      "label": "máquinas e mais de 100 contas sob minha administração."
+    }
+  ],
+  "about": {
+    "eyebrow": "Sobre",
+    "title": "Cheguei aqui desmontando as coisas",
+    "paragraphs": [
+      "Antes de ser C#, era contraption de redstone no Minecraft. Mesmo prazer, escala menor: ver uma coisa absurdamente complexa finalmente funcionar. Em 2022 comecei fazendo add-ons e plugins pro Minecraft Java, percebi que programar era exatamente aquela sensação e fui atrás de linguagens mais pesadas. Caí no .NET em 2023 e não saí mais.",
+      "Dos 15 aos 19 trabalhei de freelance montando aviários dark e chiqueiros: comedouro, nípel, cortina, abertura de emergência, pulverização, exaustor, encanamento, caixa d'água. Seguir o manual, testar os sensores, nada de gambiarra, entregar funcionando. Posso parecer um dev magricelo, mas sei o que é estar no campo e ter que resolver ali na hora.",
+      "Na RGO comecei no suporte de TI, porque era a vaga que tinha. Um ano depois já dava pra ver quanta coisa da empresa dava pra resolver com código, então pedi a mudança de cargo, e consegui. Hoje estou no time de dev: a gente revisa o código um do outro, decide arquitetura junto e nada sobe sem aprovação de todas as partes.",
+      "Fora disso: videogame, jogo de tabuleiro, D&D, cozinhar alguma coisa que nunca fiz antes e uma quantidade de café que preocuparia um médico. Não ouço música enquanto trabalho; acabo prestando atenção na música em vez do trabalho."
+    ],
+    "motto": "Quem planeja, constrói.",
+    "mottoOriginal": ""
+  },
+  "game": {
+    "eyebrow": "Intervalo",
+    "title": "Tenta correr mais que ela",
+    "lead": "Um jogo infinito com uma regra só: a coisa atrás de você fica mais rápida a cada segundo e nunca cansa. Ninguém ganha esse aqui. É a piada, e também o ponto.",
+    "play": "Jogar",
+    "again": "De novo",
+    "hint": "Espaço, clique ou toque pra bater asa",
+    "score": "Pontos",
+    "best": "Recorde",
+    "paused": "Pausado",
+    "aiLabel": "IA",
+    "overCrash": [
+      "Sério que você perdeu no flappy bird? kkkkkk",
+      "A IA nem precisou fazer nada.",
+      "Sem algoritmo nenhum envolvido. Essa foi você sozinho.",
+      "Você não foi substituído. Você só bateu."
+    ],
+    "overCaught": "Você foi substituído pela IA :(",
+    "footnote": "Escrito na mão, em cerca de 200 linhas de JavaScript. Sem engine, sem sprite, e cada som é sintetizado na hora.",
+    "soundToggle": "Ligar ou desligar o som"
+  },
+  "experience": {
+    "eyebrow": "Experiência",
+    "title": "Por onde passei",
+    "items": [
+      {
+        "role": "Desenvolvedor de Sistemas",
+        "org": "RGO Máquinas Industriais",
+        "period": "jul 2024 até hoje",
+        "current": true,
+        "bullets": [
+          "Aplicações internas full-stack em .NET, C# e Blazor, ligadas direto no ERP da empresa, dando à gestão uma visão centralizada no lugar de seis planilhas.",
+          "Relatórios customizados e módulos de regra de negócio sobre os dados do ERP, substituindo rotinas manuais.",
+          "Montou do zero as pipelines de CI/CD no Azure DevOps; controle de versão no Azure DevOps e no GitHub.",
+          "Revisão de código, decisão de arquitetura e validação de deploy das automações feitas por cada setor."
+        ]
+      },
+      {
+        "role": "Assistente de TI",
+        "org": "RGO Máquinas Industriais",
+        "period": "jul 2023 a jun 2024",
+        "current": false,
+        "bullets": [
+          "Microsoft 365 e Active Directory: contas, licenças, permissões, caixas de e-mail.",
+          "Planejamento e suporte de infraestrutura: estações de trabalho, equipamentos e rede.",
+          "Implantação de softwares corporativos com suporte de primeiro e segundo nível."
+        ]
+      },
+      {
+        "role": "Técnico de Montagem · freelance",
+        "org": "AL Equipamentos",
+        "period": "jun 2020 a fev 2022",
+        "current": false,
+        "bullets": [
+          "Leitura de projeto técnico e montagem de equipamentos para galpões de bovinos, suínos e aves.",
+          "Comissionamento e teste dos sistemas instalados contra a especificação antes da entrega."
+        ]
+      },
+      {
+        "role": "Bacharelado em Engenharia de Software",
+        "org": "Instituto Infnet",
+        "period": "2025 a 2029",
+        "current": true,
+        "bullets": [
+          "100% de aproveitamento nos três semestres até aqui."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Projetos",
+    "title": "Coisas que construí e que as pessoas usam",
+    "lead": "Problema, decisão, resultado. Tudo aqui roda em produção numa indústria de máquinas.",
+    "labels": {
+      "problem": "O problema",
+      "decision": "A decisão",
+      "result": "O que mudou"
+    },
+    "work": [
+      {
+        "name": "RgoSystem",
+        "tag": "em produção",
+        "problem": "O ERP não cobre tudo que a empresa precisa. E o que ele não cobre vira planilha e workflow não documentado que mora na cabeça de alguém.",
+        "decision": "Blazor Server, porque o backend já é C# e eu não ia abrir mão de tipagem de ponta a ponta pra fazer web. Acesso a dados direto por EF Core em vez de levantar um microsserviço de API pra um sistema que já é centralizado; mapeado milimetricamente.",
+        "result": "Um lugar só pras automações da empresa, com os workflows documentados em vez de improvisados. Mais de 60 pessoas usam todo dia, e ele nunca me deu problema.",
+        "stack": [
+          "C#",
+          ".NET",
+          "Blazor Server",
+          "EF Core",
+          "Oracle"
+        ]
+      },
+      {
+        "name": "Etiquetas Protheus",
+        "tag": "em produção",
+        "problem": "As etiquetas de material recebido e de movimentação interna eram escritas à mão. A caneta borrava, a etiqueta apagava e o chão de fábrica perdia o controle do que era o quê.",
+        "decision": "Puxar a informação direto do ERP e falar com as impressoras Zebra e Elesys pelo .NET, pra que a etiqueta seja consequência do registro, e não uma segunda verdade escrita à mão.",
+        "result": "Etiqueta sai impressa, atualizada, adesiva e legível. Estoque e expedição interna pararam de adivinhar.",
+        "stack": [
+          "C#",
+          ".NET",
+          "Zebra",
+          "Elesys",
+          "integração com ERP"
+        ]
+      },
+      {
+        "name": "Gerador de assinaturas Microsoft 365",
+        "tag": "em produção",
+        "problem": "As assinaturas de e-mail eram feitas na mão, uma imagem por vez: pesadas, desalinhadas entre si e desatualizadas no instante em que alguém mudava de cargo.",
+        "decision": "Gerar a partir da fonte da verdade. O Microsoft Graph já sabe os dados de cada usuário, então o .NET desenha a imagem a partir dele.",
+        "result": "100% automatizado, padronizado na empresa inteira, transparente, com boa rasterização, e menos de 20 KB cada.",
+        "stack": [
+          "C#",
+          ".NET",
+          "Microsoft Graph",
+          "Microsoft 365"
+        ]
+      },
+      {
+        "name": "Esteira de entrega no Azure",
+        "tag": "infraestrutura",
+        "problem": "As aplicações eram publicadas com build em pasta e ClickOnce, presas à infraestrutura local, sem caminho repetível do commit até a produção.",
+        "decision": "Subir uma aplicação ASP.NET nova no Azure e montar o caminho inteiro direito: grupo de recursos, plano de serviço, Key Vault, rede virtual, NAT gateway com IP de saída fixo, domínio personalizado e GitHub Actions publicando por branch.",
+        "result": "Commit na branch certa é deploy. Nada mais depende de uma máquina embaixo da mesa de alguém.",
+        "stack": [
+          "Azure",
+          "Azure DevOps",
+          "GitHub Actions",
+          "ASP.NET",
+          "Key Vault"
+        ]
+      }
+    ],
+    "sideTitle": "Side projects",
+    "sideLead": "Coisas pequenas que fiz pra mim mesmo, abertas no GitHub.",
+    "side": [
+      {
+        "name": "friendly-password-generator",
+        "desc": "Senha forte que dá pra ditar no telefone. Palavras reais e símbolos no lugar de ruído ilegível, pra senha grande parar de ser algo que se anota num post-it.",
+        "url": "https://github.com/Guilherme-Cassel/friendly-password-generator",
+        "stack": [
+          "C#",
+          ".NET",
+          "Desktop"
+        ]
+      },
+      {
+        "name": "teacher-schoolar-management",
+        "desc": "Gestão escolar voltada ao professor: acompanha como o comportamento do aluno no período entra no fechamento da nota, devolvendo o fator humano e social pra dentro de um número.",
+        "url": "https://github.com/Guilherme-Cassel/teacher-schoolar-management",
+        "stack": [
+          "C#",
+          ".NET"
+        ]
+      },
+      {
+        "name": "family-home-hub",
+        "desc": "Gestão domiciliar pra família: afazeres, estoque da casa, previsão de compras e receitas, com uma boa dose de IA fazendo a parte chata.",
+        "url": "https://github.com/Guilherme-Cassel/family-home-hub",
+        "stack": [
+          "C#",
+          ".NET",
+          "IA"
+        ]
+      }
+    ]
+  },
+  "stack": {
+    "eyebrow": "Stack",
+    "title": "Com o que eu trabalho",
+    "lead": "Sem barrinha de porcentagem. Se está nessa lista, é porque eu já entreguei coisa com isso.",
+    "groups": [
+      {
+        "name": "Núcleo",
+        "items": [
+          "C#",
+          ".NET",
+          "Blazor",
+          "Entity Framework Core",
+          "Clean Architecture"
+        ]
+      },
+      {
+        "name": "Dados",
+        "items": [
+          "PostgreSQL",
+          "Oracle Database",
+          "SQL Server",
+          "Redis"
+        ]
+      },
+      {
+        "name": "Pra colocar no ar",
+        "items": [
+          "Azure",
+          "Azure DevOps",
+          "GitHub Actions",
+          "CI/CD",
+          "Docker"
+        ]
+      },
+      {
+        "name": "Também no cinto",
+        "items": [
+          "Microsoft 365",
+          "Active Directory",
+          "Microsoft Graph",
+          "PowerShell"
+        ]
+      }
+    ]
+  },
+  "music": {
+    "eyebrow": "Fora do expediente",
+    "title": "Oito anos de música",
+    "paragraphs": [
+      "Entrei na banda municipal porque meus amigos estavam lá, e fiquei pela música: teoria, repertório clássico, arranjo grande. Hoje toco na Banda Municipal de Serafina Corrêa e na orquestra da cidade, e as noites que ficaram na memória foram os festivais de música de Teutônia em 2022 e 2025, arranjos enormes tocados ao lado de centenas de outros jovens músicos.",
+      "Trombone é onde eu realmente tenho maestria. Mas bocal é bocal, então me dá qualquer instrumento de sopro metálico que sai alguma coisa; toco o básico de flauta transversal, estudo violino, e experimento qualquer instrumento que aparecer pela frente.",
+      "Nada aqui faz barulho sem você pedir. O joguinho mais abaixo é a única coisa com som, e tem botão de mudo.",
+      "Sem autoplay, sem som nenhum nesta página. De nada."
+    ],
+    "photoAlt": "Guilherme tocando trombone na Banda Municipal, fardado",
+    "photoCaption": "Banda Municipal de Serafina Corrêa"
+  },
+  "personal": {
+    "photoAlt": "Minha princesa Estela",
+    "photoCaption": "Dress code inegociável aqui em casa."
+  },
+  "contact": {
+    "eyebrow": "Contato",
+    "title": "Bora conversar",
+    "lead": "Trabalho com .NET, backend e full-stack. O jeito mais rápido de me achar é e-mail; eu leio tudo.",
+    "emailLabel": "Me manda um e-mail",
+    "emailSubject": "Olá Guilherme",
+    "links": [
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/guilhermecassel"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/Guilherme-Cassel"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/guilherme.cassel2004"
+      }
+    ]
+  },
+  "footer": {
+    "built": "HTML, CSS e JavaScript escritos na mão. Sem framework, sem build, sem dependência.",
+    "source": "Código no GitHub",
+    "rights": "© {year} Guilherme Cassel"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Essa rota não existe em produção",
+    "lead": "Olhei os logs. Não tem nada aqui. Alguém digitou uma URL na mão, o que, convenhamos, é exatamente o tipo de processo manual que eu passo os dias eliminando.",
+    "cta": "Me leva pra home"
+  }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- Página 404. O Cloudflare Pages serve este arquivo sozinho quando
+     a rota não existe, não precisa configurar nada. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · Guilherme Cassel</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/system.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>
+  (() => {
+    const t = localStorage.getItem('tema');
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<style>
+  .erro { min-height: 100svh; display: grid; align-content: center; gap: var(--s-4); padding-block: var(--s-16); }
+  .erro__code {
+    font-family: var(--font-mono); font-weight: 600;
+    font-size: clamp(5rem, 22vw, 14rem); line-height: 0.9;
+    letter-spacing: var(--tracking-tight);
+    color: transparent;
+    background: linear-gradient(140deg, var(--brand), var(--accent));
+    -webkit-background-clip: text; background-clip: text;
+  }
+  .erro p { max-width: 52ch; }
+</style>
+</head>
+<body>
+
+<div class="bg-layers" aria-hidden="true">
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<main class="page erro">
+  <p class="erro__code" data-t="notFound.code">404</p>
+  <h1 data-t="notFound.title">This route doesn't exist in production</h1>
+  <p class="lead" data-t="notFound.lead"></p>
+  <p>
+    <a class="btn btn--magnetic" href="/" data-t="notFound.cta">Take me home</a>
+  </p>
+</main>
+
+<script>
+  /* Versão mínima do carregador de conteúdo: a 404 só precisa de
+     quatro frases, então não vale trazer o site.js inteiro. */
+  (async () => {
+    const idioma = localStorage.getItem('idioma') === 'pt' ? 'pt' : 'en';
+    try {
+      const dados = await (await fetch(`/content/${idioma}.json`, { cache: 'no-cache' })).json();
+      document.documentElement.lang = dados.meta.lang;
+      document.querySelectorAll('[data-t]').forEach((el) => {
+        const v = el.dataset.t.split('.').reduce((o, k) => o?.[k], dados);
+        if (typeof v === 'string') el.textContent = v;
+      });
+    } catch (e) {
+      console.error(e);   // se falhar, o texto em inglês do HTML já serve
+    }
+  })();
+</script>
+</body>
+</html>

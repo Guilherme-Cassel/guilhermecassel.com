@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadência · Design System</title>
+<meta name="description" content="Design system pessoal de Guilherme Cassel: tokens, componentes e movimento para guilhermecassel.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/system.css">
+<script>
+  /* Inline e antes da primeira pintura, de propósito: aplica o tema salvo
+     (senão o site pisca em claro antes de virar escuro) e marca que há JS
+     (sem JS, nada de .reveal esconde conteúdo). */
+  (() => {
+    const t = localStorage.getItem('tema');
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<style>
+  /* Estilos só desta página de guia (não fazem parte do sistema). */
+  .hero { padding-block: var(--s-24) var(--s-16); border-top: 0; }
+  .sec-head { margin-bottom: var(--s-8); }
+  .sec-head h2 { margin-bottom: var(--s-2); }
+  .ramp { display: grid; grid-template-columns: repeat(auto-fit, minmax(74px, 1fr)); gap: var(--s-3); }
+  .type-row { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap;
+              padding-block: var(--s-3); border-bottom: 1px solid var(--hairline); }
+  .type-row .mono { color: var(--text-subtle); font-size: var(--t-xs); white-space: nowrap; }
+  .radius-box { height: 84px; background: var(--brand-subtle);
+                border: 1px solid var(--brand-border); display: grid; place-items: center;
+                font-family: var(--font-mono); font-size: var(--t-xs); color: var(--brand-text); }
+  .sh-box { height: 84px; background: var(--bg-elevated); border-radius: var(--r-lg);
+            display: grid; place-items: center; font-family: var(--font-mono);
+            font-size: var(--t-xs); color: var(--text-muted); }
+  .rule { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
+  .rule li { display: flex; gap: var(--s-3); align-items: flex-start; }
+  .rule .mark { flex: none; width: 22px; height: 22px; border-radius: var(--r-full);
+                display: grid; place-items: center; font-size: 12px; font-weight: 800; margin-top: 2px; }
+  .rule .yes { background: color-mix(in oklab, var(--success) 18%, transparent);
+               color: color-mix(in oklab, var(--success) 80%, var(--text)); }
+  .rule .no  { background: color-mix(in oklab, var(--accent-warm) 18%, transparent);
+               color: color-mix(in oklab, var(--accent-warm) 85%, var(--text)); }
+  footer { padding-block: var(--s-12); color: var(--text-muted); font-size: var(--t-sm); }
+</style>
+</head>
+<body>
+
+<div class="bg-layers" aria-hidden="true">
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+  <div class="blob blob--3"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="page row" style="justify-content: space-between; width: min(100% - var(--s-8), var(--page-max));">
+    <a class="brandmark" href="#topo">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="9" fill="var(--brand)"/>
+        <path d="M21.5 11.6A6 6 0 1 0 22 20h-4.4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="23.2" cy="16" r="1.9" fill="#fff"/>
+      </svg>
+      <span>Cadência</span>
+      <span class="badge" style="margin-left:var(--s-2)">v0.1 · proposta</span>
+    </a>
+    <button class="theme-toggle" data-theme-toggle type="button" aria-label="Alternar tema claro e escuro">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main class="page" id="topo">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <p class="eyebrow reveal">Design system pessoal · proposta</p>
+    <h1 class="reveal" style="margin-block: var(--s-4)">Cadência</h1>
+    <p class="lead reveal" style="max-width: 62ch">
+      A linguagem visual de <strong>guilhermecassel.com</strong>: azul, cantos redondos,
+      sombra macia e movimento com peso. Minimalista, mas alegre. Tudo em HTML, CSS e
+      JavaScript puros. Zero framework, zero build, zero dependência.
+    </p>
+    <div class="row reveal" style="margin-top: var(--s-8)">
+      <a class="btn btn--magnetic" href="#componentes">Ver os componentes</a>
+      <a class="btn btn--ghost" href="#principios">Começar pelos princípios</a>
+    </div>
+
+    <div class="grid grid-3 reveal" style="margin-top: var(--s-16)">
+      <div class="tile metric"><span class="metric__value"><span data-count="3">0</span> camadas</span>
+        <span class="metric__label">tokens.css · system.css · site.css</span></div>
+      <div class="tile metric"><span class="metric__value"><span data-count="0">0</span> dependências</span>
+        <span class="metric__label">nada de npm install</span></div>
+      <div class="tile metric"><span class="metric__value">&lt; <span data-count="2">0</span> s</span>
+        <span class="metric__label">meta de carregamento</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== PRINCÍPIOS ===================== -->
+  <section id="principios">
+    <div class="sec-head">
+      <p class="eyebrow">01</p>
+      <h2>Cinco princípios</h2>
+      <p class="muted">Tirados de como Stripe, Linear, Vercel e Apple constroem a sensação de "caro", e do que, na prática, sobreviveu aos trends de 2026.</p>
+    </div>
+    <div class="grid grid-2">
+      <article class="card card--interactive card--spotlight">
+        <h3>1. O azul é pontuação, não parágrafo</h3>
+        <p class="muted">A tela é quase toda neutra. O azul aparece onde há ação, estado ou ênfase. Azul em tudo vira ruído e o olho perde a hierarquia.</p>
+      </article>
+      <article class="card card--interactive card--spotlight">
+        <h3>2. Todo elemento tem seis estados</h3>
+        <p class="muted">Normal, hover, foco de teclado, pressionado, desabilitado e carregando. É o detalhe que separa um portfólio bonito de um que parece produto.</p>
+      </article>
+      <article class="card card--interactive card--spotlight">
+        <h3>3. Movimento obedece à física</h3>
+        <p class="muted">A luz vem de cima, então a sombra desce. O menu cresce de onde foi clicado. O card sobe 3px no hover e volta. Nada aparece do nada.</p>
+      </article>
+      <article class="card card--interactive card--spotlight">
+        <h3>4. Uma escala só, reusada sempre</h3>
+        <p class="muted">Seis tamanhos de texto, seis raios, quatro sombras, quatro durações. Se um valor novo for necessário, ele vira token, não exceção.</p>
+      </article>
+      <article class="card card--interactive card--spotlight">
+        <h3>5. Rápido é uma decisão de design</h3>
+        <p class="muted">Sem WebGL, sem fonte pesada, sem biblioteca de animação. O efeito só entra se couber em CSS ou em poucas linhas de JS.</p>
+      </article>
+      <article class="card card--interactive card--spotlight" style="border-color: var(--brand-border)">
+        <h3>+ O sistema toca junto</h3>
+        <p class="muted">O nome vem da música: uma cadência é como uma frase se resolve. Aqui, é o conjunto de decisões que faz páginas diferentes soarem como a mesma pessoa.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== COR ===================== -->
+  <section id="cor">
+    <div class="sec-head">
+      <p class="eyebrow">02</p>
+      <h2>Cor</h2>
+      <p class="muted">Uma escala de azul, uma de neutros levemente azulados e três acentos de uso raro. Os componentes nunca chamam a escala direto: chamam nomes semânticos como <code>--brand</code> e <code>--text-muted</code>, que mudam sozinhos no tema escuro.</p>
+    </div>
+
+    <h3 style="margin-bottom: var(--s-3)">Azul</h3>
+    <div class="ramp" style="margin-bottom: var(--s-8)">
+      <div><div class="swatch" style="background: var(--blue-50)"></div><div class="swatch-name">50</div></div>
+      <div><div class="swatch" style="background: var(--blue-100)"></div><div class="swatch-name">100</div></div>
+      <div><div class="swatch" style="background: var(--blue-200)"></div><div class="swatch-name">200</div></div>
+      <div><div class="swatch" style="background: var(--blue-300)"></div><div class="swatch-name">300</div></div>
+      <div><div class="swatch" style="background: var(--blue-400)"></div><div class="swatch-name">400</div></div>
+      <div><div class="swatch" style="background: var(--blue-500)"></div><div class="swatch-name">500</div></div>
+      <div><div class="swatch" style="background: var(--blue-600)"></div><div class="swatch-name">600 ★</div></div>
+      <div><div class="swatch" style="background: var(--blue-700)"></div><div class="swatch-name">700</div></div>
+      <div><div class="swatch" style="background: var(--blue-800)"></div><div class="swatch-name">800</div></div>
+      <div><div class="swatch" style="background: var(--blue-900)"></div><div class="swatch-name">900</div></div>
+      <div><div class="swatch" style="background: var(--blue-950)"></div><div class="swatch-name">950</div></div>
+    </div>
+
+    <h3 style="margin-bottom: var(--s-3)">Neutros</h3>
+    <div class="ramp" style="margin-bottom: var(--s-8)">
+      <div><div class="swatch" style="background: var(--ink-50)"></div><div class="swatch-name">50</div></div>
+      <div><div class="swatch" style="background: var(--ink-100)"></div><div class="swatch-name">100</div></div>
+      <div><div class="swatch" style="background: var(--ink-200)"></div><div class="swatch-name">200</div></div>
+      <div><div class="swatch" style="background: var(--ink-300)"></div><div class="swatch-name">300</div></div>
+      <div><div class="swatch" style="background: var(--ink-400)"></div><div class="swatch-name">400</div></div>
+      <div><div class="swatch" style="background: var(--ink-500)"></div><div class="swatch-name">500</div></div>
+      <div><div class="swatch" style="background: var(--ink-600)"></div><div class="swatch-name">600</div></div>
+      <div><div class="swatch" style="background: var(--ink-700)"></div><div class="swatch-name">700</div></div>
+      <div><div class="swatch" style="background: var(--ink-800)"></div><div class="swatch-name">800</div></div>
+      <div><div class="swatch" style="background: var(--ink-900)"></div><div class="swatch-name">900</div></div>
+      <div><div class="swatch" style="background: var(--ink-950)"></div><div class="swatch-name">950</div></div>
+    </div>
+
+    <h3 style="margin-bottom: var(--s-3)">Acentos: no máximo um por tela</h3>
+    <div class="grid grid-3">
+      <div><div class="swatch" style="background: var(--accent-warm)"></div><div class="swatch-name">--accent-warm · destaque</div></div>
+      <div><div class="swatch" style="background: var(--accent-mint)"></div><div class="swatch-name">--accent-mint · em produção</div></div>
+      <div><div class="swatch" style="background: var(--accent-gold)"></div><div class="swatch-name">--accent-gold · música</div></div>
+    </div>
+
+    <div class="card" style="margin-top: var(--s-8)">
+      <ul class="rule">
+        <li><span class="mark yes">✓</span><span>Texto corrido sempre em <code>--text</code>; apoio em <code>--text-muted</code>. Contraste mínimo 4.5:1.</span></li>
+        <li><span class="mark yes">✓</span><span>Azul 600 é o piso para texto azul em fundo claro; os tons mais claros só servem de fundo.</span></li>
+        <li><span class="mark no">✕</span><span>Nunca usar cor como único sinal: estado sempre vem com ícone, texto ou forma junto.</span></li>
+        <li><span class="mark no">✕</span><span>Nunca escrever um hex direto num componente. Se o token não existe, o token é que está faltando.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== TIPOGRAFIA ===================== -->
+  <section id="tipografia">
+    <div class="sec-head">
+      <p class="eyebrow">03</p>
+      <h2>Tipografia</h2>
+      <p class="muted">Uma família só, <strong>Plus Jakarta Sans</strong>, geométrica e de cantos macios, que combina com o "redondinho", mais uma monoespaçada para código, IDs e números. Seis tamanhos fluidos: cada um cresce sozinho entre o celular e o desktop, sem media query.</p>
+    </div>
+
+    <div class="type-row"><span class="mono">--t-2xl</span><span style="font-size: var(--t-2xl); font-weight: 800; letter-spacing: var(--tracking-tight)">Sistemas que rodam sozinhos</span></div>
+    <div class="type-row"><span class="mono">--t-xl</span><span style="font-size: var(--t-xl); font-weight: 700">Título de seção</span></div>
+    <div class="type-row"><span class="mono">--t-lg</span><span style="font-size: var(--t-lg)">Subtítulo e texto de abertura</span></div>
+    <div class="type-row"><span class="mono">--t-base</span><span style="font-size: var(--t-base)">Texto corrido. A medida ideal é de 65 a 70 caracteres por linha, que é o que <code>--prose-max</code> garante.</span></div>
+    <div class="type-row"><span class="mono">--t-sm</span><span style="font-size: var(--t-sm)">Legenda, rótulo de botão, metadado</span></div>
+    <div class="type-row"><span class="mono">--t-xs</span><span class="eyebrow">RÓTULO EM CAIXA ALTA</span></div>
+    <div class="type-row"><span class="mono">--font-mono</span><span class="mono">const cadencia = { blue: 600, radius: 20 };</span></div>
+    <div class="type-row"><span class="mono">.tnum</span><span class="tnum" style="font-size: var(--t-lg)">1.284 · 0.977 · 3.109 · números tabulares alinham em coluna</span></div>
+  </section>
+
+  <!-- ===================== FORMA ===================== -->
+  <section id="forma">
+    <div class="sec-head">
+      <p class="eyebrow">04</p>
+      <h2>Forma e profundidade</h2>
+      <p class="muted">O raio cresce junto com o elemento: quanto maior a superfície, mais redondo o canto. A sombra segue a mesma lógica: quanto mais alto o objeto, mais difusa e mais afastada ela fica.</p>
+    </div>
+
+    <div class="grid grid-3" style="margin-bottom: var(--s-10)">
+      <div class="radius-box" style="border-radius: var(--r-xs)">--r-xs · 4px</div>
+      <div class="radius-box" style="border-radius: var(--r-sm)">--r-sm · 8px</div>
+      <div class="radius-box" style="border-radius: var(--r-md)">--r-md · 10px</div>
+      <div class="radius-box" style="border-radius: var(--r-lg)">--r-lg · 14px</div>
+      <div class="radius-box" style="border-radius: var(--r-xl)">--r-xl · 20px</div>
+      <div class="radius-box" style="border-radius: var(--r-full)">--r-full</div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="sh-box" style="box-shadow: var(--sh-1)">--sh-1 · pousado</div>
+      <div class="sh-box" style="box-shadow: var(--sh-2)">--sh-2 · card</div>
+      <div class="sh-box" style="box-shadow: var(--sh-3)">--sh-3 · hover</div>
+      <div class="sh-box" style="box-shadow: var(--sh-4)">--sh-4 · modal</div>
+      <div class="sh-box" style="box-shadow: var(--sh-brand); background: var(--brand); color: var(--text-on-brand)">--sh-brand</div>
+      <div class="sh-box" style="box-shadow: none; border: 1px solid var(--border)">sem sombra</div>
+    </div>
+    <p class="muted" style="margin-top: var(--s-4); font-size: var(--t-sm)">
+      Cada sombra tem duas camadas: uma curta de contato e uma longa de altura. Uma camada só sempre parece adesivo.
+      A sombra azulada (<code>--sh-brand</code>) é exclusiva de elementos que já são azuis; em cima de cinza, ela suja.
+    </p>
+  </section>
+
+  <!-- ===================== COMPONENTES ===================== -->
+  <section id="componentes">
+    <div class="sec-head">
+      <p class="eyebrow">05</p>
+      <h2>Componentes</h2>
+      <p class="muted">O conjunto mínimo que o site inteiro vai precisar. Passe o mouse, use o <kbd>Tab</kbd>, clique e segure: todos os estados estão desenhados.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-4)">Botões · os seis estados</h3>
+        <div class="row">
+          <button class="btn" type="button">Principal</button>
+          <button class="btn btn--ghost" type="button">Secundário</button>
+          <button class="btn btn--pill btn--magnetic" type="button">Magnético</button>
+        </div>
+        <div class="row" style="margin-top: var(--s-4)">
+          <button class="btn" type="button" data-demo-loading>Clique: carregando</button>
+          <button class="btn" type="button" disabled>Desabilitado</button>
+        </div>
+        <p class="muted" style="margin-top: var(--s-4); font-size: var(--t-sm)">
+          O botão sobe 1px no hover e afunda 1px ao ser pressionado, o mesmo gesto de um botão físico.
+        </p>
+      </div>
+
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-4)">Campos e sinais</h3>
+        <input class="field" type="email" placeholder="voce@empresa.com" aria-label="E-mail de exemplo">
+        <div class="row" style="margin-top: var(--s-4)">
+          <span class="badge">C#</span>
+          <span class="badge">Blazor</span>
+          <span class="badge">Azure DevOps</span>
+          <span class="badge badge--live"><span class="dot"></span>em produção</span>
+        </div>
+      </div>
+
+      <article class="card card--interactive card--spotlight">
+        <div class="row" style="justify-content: space-between; margin-bottom: var(--s-3)">
+          <span class="eyebrow">Projeto</span>
+          <span class="badge badge--live"><span class="dot"></span>rodando há 14 meses</span>
+        </div>
+        <h3>Painel de produção integrado ao ERP</h3>
+        <p class="muted" style="margin-block: var(--s-3)">
+          Este é o formato de card de projeto: problema, decisão e resultado, nessa ordem, em três linhas.
+          É o que recrutador técnico procura e o que lista de tecnologia não entrega.
+        </p>
+        <div class="row"><span class="badge">.NET</span><span class="badge">SQL Server</span><span class="badge">Blazor</span></div>
+      </article>
+
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-5)">Linha do tempo</h3>
+        <ul class="timeline">
+          <li><strong>Desenvolvedor de Sistemas</strong><br><span class="muted">RGO Máquinas · jul 2024 até hoje</span></li>
+          <li><strong>Assistente de TI</strong><br><span class="muted">RGO Máquinas · jul 2023 a jun 2024</span></li>
+          <li><strong>Técnico de montagem</strong><br><span class="muted">AL Equipamentos · 2020 a 2022</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOVIMENTO ===================== -->
+  <section id="movimento">
+    <div class="sec-head">
+      <p class="eyebrow">06</p>
+      <h2>Movimento</h2>
+      <p class="muted">Quatro durações e três curvas, com nome. Nenhum <code>transition: all</code>, nenhum número solto no meio do CSS.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-4)">Durações</h3>
+        <p class="mono" style="font-size: var(--t-sm); line-height: 2">
+          --d-instant · 90ms · resposta ao toque<br>
+          --d-fast&nbsp;&nbsp;&nbsp; · 160ms · hover, cor, foco<br>
+          --d-normal&nbsp; · 260ms · abrir, fechar, mover<br>
+          --d-slow&nbsp;&nbsp;&nbsp; · 480ms · entrada de seção
+        </p>
+      </div>
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-4)">Curvas</h3>
+        <p class="mono" style="font-size: var(--t-sm); line-height: 2">
+          --e-out&nbsp;&nbsp;&nbsp; sai rápido e pousa macio<br>
+          --e-in-out simétrica, para trocas<br>
+          --e-spring passa do ponto e volta
+        </p>
+        <p class="muted" style="margin-top: var(--s-3); font-size: var(--t-sm)">
+          A mola só entra em elementos pequenos e lúdicos, como o botão de tema aqui em cima.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top: var(--s-6)">
+      <div class="demo">
+        <div class="wave" aria-hidden="true">
+          <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span>
+          <span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span>
+          <span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span>
+          <span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span>
+        </div>
+        <p class="muted" style="margin-top: var(--s-4); font-size: var(--t-sm); text-align: center">
+          O aceno ao trombone: 12 barras em CSS, sem áudio e sem canvas.
+        </p>
+      </div>
+      <div class="demo">
+        <p class="muted" style="text-align: center; font-size: var(--t-sm)">
+          Cada seção desta página entrou com <code>.reveal</code>:<br>
+          um IntersectionObserver adiciona uma classe, o CSS faz a animação e o observador se desliga.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--s-6)">
+      <ul class="rule">
+        <li><span class="mark yes">✓</span><span>Anima só <code>transform</code> e <code>opacity</code>, que são as duas propriedades que a GPU resolve sem recalcular layout.</span></li>
+        <li><span class="mark yes">✓</span><span><code>prefers-reduced-motion</code> zera as durações num bloco só, no fim do tokens.css. Nenhum componente precisa saber disso.</span></li>
+        <li><span class="mark no">✕</span><span>Nada de parallax na página inteira, rolagem sequestrada ou texto que se remonta letra por letra: atrapalha leitor de tela e derruba o Core Web Vitals.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== FUNDO ===================== -->
+  <section id="fundo">
+    <div class="sec-head">
+      <p class="eyebrow">07</p>
+      <h2>O fundo desta página</h2>
+      <p class="muted">Duas camadas fixas atrás de tudo, que é o que dá profundidade sem pesar um byte de imagem, e sem o grid técnico que todo site de tecnologia usa hoje. Troque o tema no canto superior direito para ver as duas se ajustarem.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="tile"><h3>1. Manchas de luz</h3><p class="muted" style="font-size: var(--t-sm)">Três círculos enormes com <code>filter: blur(80px)</code> e pouca opacidade. Formas orgânicas em vez de malha: duas azuis e uma quente. Uma delas acompanha a rolagem de leve, e é o único parallax do site, e ele acontece onde não atrapalha nada.</p></div>
+      <div class="tile"><h3>2. Grão</h3><p class="muted" style="font-size: var(--t-sm)">Um SVG de ruído embutido em data URI, a 4,5% de opacidade. É ele que tira o ar de "banner com gradiente" e dá textura de papel.</p></div>
+      <div class="tile"><h3>+ Vidro</h3><p class="muted" style="font-size: var(--t-sm)">A barra do topo é a única superfície translúcida: <code>--glass</code> mais um <code>backdrop-filter</code>. Vidro em tudo custa FPS; em um elemento, custa nada e dá o efeito.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== COMO USAR ===================== -->
+  <section id="uso">
+    <div class="sec-head">
+      <p class="eyebrow">08</p>
+      <h2>Como isso vira o site</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-3)">Três arquivos</h3>
+        <p class="muted" style="font-size: var(--t-sm)">
+          <code>assets/css/tokens.css</code>: todas as decisões, nenhuma regra visual.<br>
+          <code>assets/css/system.css</code>: base e componentes, só consumindo token.<br>
+          <code>assets/css/site.css</code>: o que só existe na página do site.<br>
+          <code>assets/js/site.js</code>: o comportamento, escrevendo só classes e variáveis.
+        </p>
+      </div>
+      <div class="tile">
+        <h3 style="margin-bottom: var(--s-3)">A regra de ouro</h3>
+        <p class="muted" style="font-size: var(--t-sm)">
+          Se uma página precisar de um valor que não existe em <code>tokens.css</code>,
+          a resposta certa quase nunca é escrever o valor ali: é decidir se ele merece virar token.
+          É assim que o site continua parecendo do mesmo autor daqui a dois anos.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--s-6); border-color: var(--brand-border)">
+      <h3>O que ainda depende de você</h3>
+      <p class="muted" style="margin-top: var(--s-3)">
+        O azul, o raio e o peso da sombra aqui são a <em>minha</em> proposta, não uma decisão fechada.
+        As perguntas da seção 9 do briefing existem justamente para você confirmar ou derrubar cada uma delas,
+        e como tudo está em variáveis, trocar o azul do site inteiro é editar uma linha.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Cadência v0.1 · proposta de design system para guilhermecassel.com · Guilherme Cassel
+  </footer>
+</main>
+
+<script src="../assets/js/ds.js" defer></script>
+</body>
+</html>

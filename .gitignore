@@ -1,0 +1,10 @@
+# Cache do Visual Studio: é estado da sua máquina, não do projeto.
+.vs/
+
+# Configuração local do Claude Code (só aponta o servidor de preview).
+# Fica na máquina, não vai pro repositório.
+.claude/
+
+# Lixo que o Windows deixa nas pastas.
+Thumbs.db
+desktop.ini

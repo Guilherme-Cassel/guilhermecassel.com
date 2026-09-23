@@ -1,0 +1,215 @@
+/* =============================================================
+   Cadência, o design system pessoal de Guilherme Cassel
+   Camada 1: tokens. Nenhuma regra visual mora fora daqui.
+   Trocar o valor de uma variável aqui deve mudar o site inteiro.
+   ============================================================= */
+
+:root {
+  /* ---------- Escala de azul (a cor da marca) ----------------- */
+  --blue-50:  #eef4ff;
+  --blue-100: #dbe7fe;
+  --blue-200: #bfd3fe;
+  --blue-300: #93b4fd;
+  --blue-400: #608efa;
+  --blue-500: #3b6bf6;
+  --blue-600: #2563eb;  /* cor principal: botões, links, foco  */
+  --blue-700: #1d4ed8;
+  --blue-800: #1e3fa8;
+  --blue-900: #1e3a8a;
+  --blue-950: #0e1c46;
+
+  /* ---------- Neutros (levemente azulados, não cinza morto) --- */
+  --ink-0:   #ffffff;
+  --ink-25:  #fbfcfe;
+  --ink-50:  #f6f8fc;
+  --ink-100: #eef1f7;
+  --ink-200: #e2e7f0;
+  --ink-300: #cbd3e1;
+  --ink-400: #97a3b8;
+  --ink-500: #6b7689;
+  --ink-600: #4e586b;
+  --ink-700: #3a4354;
+  --ink-800: #232b3a;
+  --ink-900: #151b27;
+  --ink-950: #0b0f18;
+
+  /* ---------- Acentos (o "alegre" do minimalista alegre) ------
+     Uso raro e pontual: destaque, badge, detalhe de ilustração.
+     Nunca dois acentos na mesma tela.                           */
+  --accent-warm: #ff7a4d;  /* laranja-coral: energia, destaque   */
+  --accent-mint: #10b981;  /* verde-menta: sucesso, "em produção"*/
+  --accent-gold: #f5b544;  /* âmbar: música, destaque secundário */
+
+  /* ---------- Raios --------------------------------------------
+     Levemente arredondado: só o suficiente para nada parecer
+     quadrado. Escala única, o raio cresce com a superfície.      */
+  --r-xs:   4px;    /* tags, chips pequenos                      */
+  --r-sm:   8px;    /* inputs, botões pequenos                   */
+  --r-md:  10px;    /* botões                                    */
+  --r-lg:  14px;    /* cards                                     */
+  --r-xl:  20px;    /* blocos grandes, fotos, seções destacadas  */
+  --r-full: 999px;  /* pílulas e avatares                        */
+
+  /* ---------- Espaçamento (base 4px) -------------------------- */
+  --s-1:  4px;   --s-2:  8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 20px;   --s-6: 24px;   --s-8: 32px;  --s-10: 40px;
+  --s-12: 48px;  --s-16: 64px;  --s-20: 80px; --s-24: 96px;
+  --s-32: 128px;
+
+  /* ---------- Tipografia -------------------------------------- */
+  --font-sans: "Plus Jakarta Sans", "Segoe UI Variable", "Segoe UI",
+               system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace,
+               SFMono-Regular, Menlo, monospace;
+
+  /* Escala fluida: 6 tamanhos, nada além disso.                  */
+  --t-xs:   clamp(0.75rem, 0.73rem + 0.1vw,  0.8125rem);
+  --t-sm:   clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --t-base: clamp(1rem, 0.97rem + 0.15vw,    1.0625rem);
+  --t-lg:   clamp(1.25rem, 1.15rem + 0.5vw,  1.5rem);
+  --t-xl:   clamp(1.75rem, 1.45rem + 1.5vw,  2.5rem);
+  --t-2xl:  clamp(2.5rem, 1.9rem + 3vw,      4.5rem);
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.3;
+  --lh-body:  1.65;
+
+  --tracking-tight: -0.022em;  /* títulos grandes respiram menos */
+  --tracking-wide:   0.08em;   /* rótulos em caixa alta          */
+
+  /* ---------- Movimento ---------------------------------------
+     Durações e curvas nomeadas. Nada de `transition: all .3s`.   */
+  --d-instant: 90ms;    /* feedback de toque                     */
+  --d-fast:   160ms;    /* hover, cor, foco                      */
+  --d-normal: 260ms;    /* abrir/fechar, deslocamento curto      */
+  --d-slow:   480ms;    /* entrada de seção, revelação           */
+
+  --e-out:    cubic-bezier(0.22, 1, 0.36, 1);     /* sai rápido, pousa macio */
+  --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);     /* simétrica, para trocas  */
+  --e-spring: cubic-bezier(0.34, 1.56, 0.64, 1);  /* passa do ponto e volta  */
+
+  /* ---------- Layout ------------------------------------------ */
+  --page-max: 1120px;
+  --prose-max: 68ch;
+  --header-h: 68px;
+
+  --ring-w: 3px;  /* espessura do anel de foco */
+
+  /* Os dois acentos semânticos não mudam com o tema. */
+  --accent:  var(--accent-warm);
+  --success: var(--accent-mint);
+}
+
+/* =============================================================
+   Tokens semânticos: TEMA ESCURO (padrão)
+   O resto do CSS só consulta estes nomes, nunca --blue-600.
+   O escuro não é o claro invertido: as superfícies sobem, as
+   sombras perdem força e o brilho passa a fazer o trabalho.
+   ============================================================= */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:          #0a0e18;
+  --bg-elevated: #121826;
+  --bg-sunken:   #070a12;
+  --bg-inverse:  var(--ink-50);
+
+  --text:        #eaeefa;
+  --text-muted:  #98a3bb;
+  --text-subtle: #6a7690;
+  --text-on-brand: #ffffff;
+
+  --border:        #222b3e;
+  --border-strong: #344056;
+  --hairline: color-mix(in oklab, #ffffff 9%, transparent);
+
+  --brand:         var(--blue-500);
+  --brand-hover:   var(--blue-400);
+  --brand-active:  var(--blue-300);
+  --brand-subtle:  color-mix(in oklab, var(--blue-600) 16%, transparent);
+  --brand-border:  color-mix(in oklab, var(--blue-400) 32%, transparent);
+  --brand-text:    var(--blue-300);
+
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --sh-2: 0 2px 6px rgba(0, 0, 0, 0.45), 0 8px 20px rgba(0, 0, 0, 0.35);
+  --sh-3: 0 6px 14px rgba(0, 0, 0, 0.5), 0 20px 44px rgba(0, 0, 0, 0.42);
+  --sh-4: 0 10px 24px rgba(0, 0, 0, 0.55), 0 40px 80px rgba(0, 0, 0, 0.5);
+  --sh-brand: 0 2px 8px color-mix(in oklab, var(--blue-500) 30%, transparent),
+              0 12px 36px color-mix(in oklab, var(--blue-500) 34%, transparent);
+
+  --ring: color-mix(in oklab, var(--blue-400) 60%, transparent);
+
+  --glow-1: var(--blue-600);
+  --glow-2: var(--accent-warm);
+  --glow-3: var(--blue-800);
+  --blob-opacity: 0.26;
+  --grain-opacity: 0.075;
+  --glass: color-mix(in oklab, #121826 62%, transparent);
+  --spotlight: color-mix(in oklab, var(--blue-400) 16%, transparent);
+}
+
+/* =============================================================
+   TEMA CLARO: a alternativa, ligada pelo botão do topo.
+   ============================================================= */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg:          var(--ink-25);
+  --bg-elevated: var(--ink-0);
+  --bg-sunken:   var(--ink-100);
+  --bg-inverse:  var(--ink-900);
+
+  --text:        var(--ink-900);
+  --text-muted:  var(--ink-500);
+  --text-subtle: var(--ink-400);
+  --text-on-brand: #ffffff;
+
+  --border:        var(--ink-200);
+  --border-strong: var(--ink-300);
+  --hairline: color-mix(in oklab, var(--ink-900) 8%, transparent);
+
+  --brand:         var(--blue-600);
+  --brand-hover:   var(--blue-700);
+  --brand-active:  var(--blue-800);
+  --brand-subtle:  var(--blue-50);
+  --brand-border:  var(--blue-200);
+  --brand-text:    var(--blue-700);
+
+  /* Sombras em camadas: uma rasa de contato + uma difusa de altura.
+     A luz vem de cima, então o deslocamento é sempre no eixo Y.
+     Todas são tingidas de azul (--blue-900) em vez de preto puro:
+     é o que dá o ar moderno e alegre em vez de cinza de escritório.
+     Usar com moderação; a maioria das superfícies vive só de borda. */
+  --sh-1: 0 1px 2px color-mix(in oklab, var(--blue-900) 7%, transparent);
+  --sh-2: 0 1px 2px color-mix(in oklab, var(--blue-900) 5%, transparent),
+          0 6px 16px color-mix(in oklab, var(--blue-900) 8%, transparent);
+  --sh-3: 0 4px 8px color-mix(in oklab, var(--blue-900) 6%, transparent),
+          0 14px 30px color-mix(in oklab, var(--blue-800) 12%, transparent);
+  --sh-4: 0 8px 16px color-mix(in oklab, var(--blue-900) 8%, transparent),
+          0 28px 56px color-mix(in oklab, var(--blue-800) 16%, transparent);
+  /* Sombra saturada: só em elementos que já são azuis.            */
+  --sh-brand: 0 2px 6px color-mix(in oklab, var(--blue-700) 20%, transparent),
+              0 8px 20px color-mix(in oklab, var(--blue-600) 24%, transparent);
+
+  --ring: color-mix(in oklab, var(--blue-600) 45%, transparent);
+
+  --glow-1: var(--blue-300);
+  --glow-2: var(--accent-warm);
+  --glow-3: var(--blue-200);
+  --blob-opacity: 0.22;
+  --grain-opacity: 0.045;
+  --glass: color-mix(in oklab, var(--ink-0) 62%, transparent);
+  --spotlight: color-mix(in oklab, var(--blue-500) 12%, transparent);
+}
+
+/* Acessibilidade: quem pediu menos movimento recebe menos movimento.
+   As durações viram quase zero e todo o resto do CSS continua igual. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --d-instant: 1ms;
+    --d-fast: 1ms;
+    --d-normal: 1ms;
+    --d-slow: 1ms;
+  }
+}
