@@ -11,9 +11,6 @@
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/system.css">
 <script>
-  /* Inline e antes da primeira pintura, de propósito: aplica o tema salvo
-     (senão o site pisca em claro antes de virar escuro) e marca que há JS
-     (sem JS, nada de .reveal esconde conteúdo). */
   (() => {
     const t = localStorage.getItem('tema');
     if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
@@ -21,7 +18,6 @@
   })();
 </script>
 <style>
-  /* Estilos só desta página de guia (não fazem parte do sistema). */
   .hero { padding-block: var(--s-24) var(--s-16); border-top: 0; }
   .sec-head { margin-bottom: var(--s-8); }
   .sec-head h2 { margin-bottom: var(--s-2); }
@@ -79,7 +75,6 @@
 
 <main class="page" id="topo">
 
-  <!-- ===================== HERO ===================== -->
   <section class="hero">
     <p class="eyebrow reveal">Design system pessoal · proposta</p>
     <h1 class="reveal" style="margin-block: var(--s-4)">Cadência</h1>
@@ -103,7 +98,6 @@
     </div>
   </section>
 
-  <!-- ===================== PRINCÍPIOS ===================== -->
   <section id="principios">
     <div class="sec-head">
       <p class="eyebrow">01</p>
@@ -138,7 +132,6 @@
     </div>
   </section>
 
-  <!-- ===================== COR ===================== -->
   <section id="cor">
     <div class="sec-head">
       <p class="eyebrow">02</p>
@@ -193,7 +186,6 @@
     </div>
   </section>
 
-  <!-- ===================== TIPOGRAFIA ===================== -->
   <section id="tipografia">
     <div class="sec-head">
       <p class="eyebrow">03</p>
@@ -211,7 +203,6 @@
     <div class="type-row"><span class="mono">.tnum</span><span class="tnum" style="font-size: var(--t-lg)">1.284 · 0.977 · 3.109 · números tabulares alinham em coluna</span></div>
   </section>
 
-  <!-- ===================== FORMA ===================== -->
   <section id="forma">
     <div class="sec-head">
       <p class="eyebrow">04</p>
@@ -242,7 +233,6 @@
     </p>
   </section>
 
-  <!-- ===================== COMPONENTES ===================== -->
   <section id="componentes">
     <div class="sec-head">
       <p class="eyebrow">05</p>
@@ -302,7 +292,6 @@
     </div>
   </section>
 
-  <!-- ===================== MOVIMENTO ===================== -->
   <section id="movimento">
     <div class="sec-head">
       <p class="eyebrow">06</p>
@@ -362,7 +351,6 @@
     </div>
   </section>
 
-  <!-- ===================== FUNDO ===================== -->
   <section id="fundo">
     <div class="sec-head">
       <p class="eyebrow">07</p>
@@ -376,7 +364,6 @@
     </div>
   </section>
 
-  <!-- ===================== COMO USAR ===================== -->
   <section id="uso">
     <div class="sec-head">
       <p class="eyebrow">08</p>

@@ -14,12 +14,20 @@
   height: auto;
   display: block;
   background: var(--glass);
-  backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hairline);
   transition: transform var(--d-normal) var(--e-out),
               background-color var(--d-normal) var(--e-in-out);
 }
 .topbar.is-hidden { transform: translateY(-100%); }
+
+/* Quem pediu menos transparência no sistema (e quem roda em máquina
+   fraca costuma ter pedido) recebe uma barra sólida: o vidro é a
+   coisa mais cara da tela, porque repinta o que está atrás a cada
+   quadro de rolagem. */
+@media (prefers-reduced-transparency: reduce) {
+  .topbar { backdrop-filter: none; background: var(--bg-elevated); }
+}
 
 .topbar__inner {
   width: min(100% - var(--s-8), var(--page-max));

@@ -275,16 +275,38 @@
   const topbar = $('[data-topbar]');
   let ultimoY = window.scrollY;
 
-  const aoRolar = () => {
-    const y = window.scrollY;
-    const descendo = y > ultimoY;
-    // só esconde depois de passar do topo, pra não piscar no início
-    topbar?.classList.toggle('is-hidden', descendo && y > 220 && !menuAberto());
-    ultimoY = y;
+  /* A altura da página é medida fora do evento de rolagem. Ler
+     scrollHeight ali dentro obriga o navegador a recalcular o layout
+     inteiro a cada evento, dezenas de vezes por segundo, e é o tipo
+     de coisa que só aparece em máquina sem aceleração de hardware.
+     O ResizeObserver cuida de quando a página muda de tamanho, como
+     quando a tela do joguinho abre. */
+  const camadas = $('.bg-layers');
+  let alturaRolavel = 0;
+  const medirAltura = () => { alturaRolavel = document.body.scrollHeight - innerHeight; };
+  new ResizeObserver(medirAltura).observe(document.body);
+  addEventListener('resize', medirAltura);
+  medirAltura();
 
-    // variável usada pelo CSS pra mover a mancha de luz do fundo
-    const total = document.body.scrollHeight - innerHeight;
-    raiz.style.setProperty('--scroll', total > 0 ? (y / total).toFixed(4) : '0');
+  /* Um quadro, uma atualização: o evento de rolagem dispara muito mais
+     vezes do que a tela é capaz de desenhar. */
+  let agendado = false;
+  const aoRolar = () => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(() => {
+      agendado = false;
+      const y = window.scrollY;
+      const descendo = y > ultimoY;
+      // só esconde depois de passar do topo, pra não piscar no início
+      topbar?.classList.toggle('is-hidden', descendo && y > 220 && !menuAberto());
+      ultimoY = y;
+
+      /* A variável vive na camada de fundo, e não no :root: escrever
+         no :root manda o navegador reavaliar o estilo de todo mundo,
+         quando quem usa isso é uma mancha de luz só. */
+      camadas?.style.setProperty('--scroll', alturaRolavel > 0 ? (y / alturaRolavel).toFixed(3) : '0');
+    });
   };
   addEventListener('scroll', aoRolar, { passive: true });
 

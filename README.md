@@ -55,11 +55,29 @@ token?". Trocar o azul do site inteiro é editar uma linha.
 
 O Cloudflare Pages serve o repositório como está. Duas opções:
 
-1. **Conectar o repositório** no painel do Cloudflare Pages, que publica sozinho a cada push, sem configurar nada. Build command vazio, output directory `/`.
-2. **Pelo GitHub Actions**: o `.github/workflows/deploy.yml` já está pronto; basta criar os segredos `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` no repositório.
+O repositório está conectado ao Cloudflare Pages, que publica sozinho a cada
+push na `master`. Build command vazio, output directory `/`. O `_headers` e o
+`404.html` são lidos pelo Pages sem configurar nada.
 
-Analytics: o trecho do Cloudflare Web Analytics está no fim do `index.html`,
-comentado, esperando o token.
+## Analytics
+
+Não tem nenhum rastreador no site. Para ligar o Cloudflare Web Analytics, que
+não usa cookie e por isso dispensa banner de consentimento: painel da
+Cloudflare › Web Analytics › adicionar o site, e colar o token na última linha
+do `index.html`, antes do `</body>`:
+
+```html
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "SEU_TOKEN"}'></script>
+```
+
+## Por que o HTML parece vazio
+
+Porque ele é só estrutura. Nenhum texto mora nele: cada elemento diz de onde
+vem o conteúdo pelo atributo `data-t`, e o `assets/js/site.js` preenche a
+partir do JSON do idioma. O `<script>` no `<head>` é inline e sem `defer` de
+propósito, porque precisa aplicar tema e idioma antes da primeira pintura;
+qualquer outra coisa ali dentro faria a página piscar.
 
 ## Créditos das escolhas
 

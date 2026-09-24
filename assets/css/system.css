@@ -124,18 +124,24 @@ body { position: relative; }
    orgânicas, bem grandes e bem suaves, que só dão cor ao branco. */
 .blob {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
   opacity: var(--blob-opacity);
-  will-change: transform;
+  /* O desfoque é desenhado, não filtrado: um gradiente radial dá
+     praticamente a mesma mancha que um filtro de blur de 80px, só
+     que é pintura simples em vez de filtrar a tela inteira. Em
+     máquina sem aceleração de hardware, a diferença é dolorosa. */
+  background: radial-gradient(closest-side, var(--cor), transparent);
 }
-.blob--1 { width: 46vw; height: 46vw; left: -12vw; top: -14vw; background: var(--glow-1); }
-.blob--2 { width: 30vw; height: 30vw; right: -8vw;  top: -8vw;  background: var(--glow-2); }
-.blob--3 { width: 42vw; height: 42vw; left: 55vw; top: 55vh;    background: var(--glow-3); }
+.blob--1 { --cor: var(--glow-1); width: 62vw; height: 62vw; left: -20vw; top: -22vw; }
+.blob--2 { --cor: var(--glow-2); width: 42vw; height: 42vw; right: -14vw; top: -14vw; }
+.blob--3 { --cor: var(--glow-3); width: 58vw; height: 58vw; left: 48vw;  top: 48vh; }
 
 /* A terceira mancha acompanha a rolagem de leve: é o único parallax
-   do site, e ele acontece atrás de tudo, onde não atrapalha nada. */
-.blob--3 { transform: translateY(calc(var(--scroll, 0) * -60px)); }
+   do site, e ele acontece atrás de tudo, onde não atrapalha nada.
+   O will-change fica só nela, que é a única que se mexe. */
+.blob--3 {
+  transform: translateY(calc(var(--scroll, 0) * -60px));
+  will-change: transform;
+}
 
 /* grão: tira o aspecto "gradiente de banner" e dá textura de papel */
 .grain {

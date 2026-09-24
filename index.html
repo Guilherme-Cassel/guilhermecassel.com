@@ -1,15 +1,4 @@
 <!doctype html>
-<!-- ============================================================
-     guilhermecassel.com
-     HTML, CSS e JavaScript escritos na mão. Sem framework, sem
-     build, sem dependência. Se você abriu o Ctrl+U procurando
-     bundle minificado: não tem. É tudo legível de propósito.
-
-     O TEXTO NÃO MORA AQUI. Está em content/en.json e content/pt.json.
-     Cada elemento diz de onde vem o texto dele pelo atributo data-t
-     ("data-texto"), e as listas são montadas por assets/js/site.js.
-     Pra mudar uma frase do site, edite o JSON, não este arquivo.
-     ============================================================ -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -19,7 +8,6 @@
 <link rel="canonical" href="https://guilhermecassel.com/">
 <meta name="theme-color" content="#0a0e18">
 
-<!-- Como o link fica quando alguém compartilha no LinkedIn -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://guilhermecassel.com/">
 <meta property="og:title" content="Guilherme Cassel · .NET Developer">
@@ -36,8 +24,6 @@
 <link rel="stylesheet" href="assets/css/site.css">
 
 <script>
-  /* Roda antes da primeira pintura, de propósito: aplica tema e idioma
-     salvos pra página não piscar em claro antes de virar escura. */
   (() => {
     const t = localStorage.getItem('tema');
     if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
@@ -66,7 +52,6 @@
 
 <body>
 
-<!-- Fundo: três manchas de luz desfocadas + grão. Nada disso é imagem. -->
 <div class="bg-layers" aria-hidden="true">
   <div class="blob blob--1"></div>
   <div class="blob blob--2"></div>
@@ -74,7 +59,6 @@
 </div>
 <div class="grain" aria-hidden="true"></div>
 
-<!-- Cursor customizado (só aparece em ponteiro fino, ver site.css) -->
 <div class="cursor" data-cursor aria-hidden="true"><span class="cursor__dot"></span></div>
 
 <a class="skip" href="#main" data-t="ui.skipToContent">Skip to content</a>
@@ -82,7 +66,6 @@
 <header class="topbar" data-topbar>
   <div class="topbar__inner">
     <a class="brandmark" href="#top" aria-label="Guilherme Cassel">
-      <!-- Monograma GC: um G que é também a volta de um trombone -->
       <svg class="monogram" viewBox="0 0 32 32" aria-hidden="true">
         <rect width="32" height="32" rx="9" fill="var(--brand)"/>
         <path d="M21.5 11.6A6 6 0 1 0 22 20h-4.4" fill="none" stroke="#fff"
@@ -121,32 +104,23 @@
     </div>
   </div>
 
-  <!-- Menu do celular: as mesmas âncoras, geradas por JS a partir do nav -->
   <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden aria-label="Main"></nav>
 </header>
 
 <main id="main">
   <span id="top"></span>
 
-  <!-- ==================== HERO ==================== -->
   <section class="hero page">
     <p class="eyebrow" data-t="hero.kicker"></p>
 
-    <!-- O palco sangra até a borda da janela pra máquina de pistões
-         ter de onde vir. O trilho é a régua: dentro dele, x = 0 é
-         exatamente onde o nome mora depois que tudo acaba. -->
     <div class="hero__palco" data-palco>
       <div class="hero__trilho" data-trilho>
         <h1 class="hero__name" data-nome>
-          <!-- Clicar aqui faz cócegas. Sim, foi pedido. -->
           <button class="tickle" data-tickle type="button" data-t="hero.name">Guilherme Cassel</button>
         </h1>
       </div>
     </div>
 
-    <!-- O subtítulo é decorativo: quem usa leitor de tela já ouviu o nome
-         no h1 e ouve a descrição completa no parágrafo abaixo. Letra por
-         letra, a máquina de escrever só atrapalharia. -->
     <p class="hero__role" aria-hidden="true">
       <span class="hero__role-prefix">&gt;</span>
       <span data-typewriter></span><span class="caret" aria-hidden="true"></span>
@@ -164,12 +138,10 @@
     </div>
   </section>
 
-  <!-- ==================== NÚMEROS ==================== -->
   <section class="page stats-section" aria-label="Numbers">
     <div class="stats" data-stats></div>
   </section>
 
-  <!-- ==================== SOBRE ==================== -->
   <section class="page" id="about">
     <p class="eyebrow" data-t="about.eyebrow"></p>
     <h2 data-t="about.title"></h2>
@@ -192,9 +164,6 @@
     </div>
   </section>
 
-  <!-- ==================== INTERVALO: O JOGUINHO ====================
-       A tela fica fechada até alguém apertar o botão. Aí ela desce
-       de cima, como uma persiana que estava atrás do layout. -->
   <section class="page" id="jogo">
     <p class="eyebrow" data-t="game.eyebrow"></p>
     <h2 data-t="game.title"></h2>
@@ -237,14 +206,12 @@
     <p class="muted jogo__nota" data-t="game.footnote"></p>
   </section>
 
-  <!-- ==================== EXPERIÊNCIA ==================== -->
   <section class="page" id="experience">
     <p class="eyebrow" data-t="experience.eyebrow"></p>
     <h2 data-t="experience.title"></h2>
     <ol class="timeline" data-timeline></ol>
   </section>
 
-  <!-- ==================== PROJETOS ==================== -->
   <section class="page" id="work">
     <p class="eyebrow" data-t="projects.eyebrow"></p>
     <h2 data-t="projects.title"></h2>
@@ -257,7 +224,6 @@
     <div class="side" data-side></div>
   </section>
 
-  <!-- ==================== STACK ==================== -->
   <section class="page" id="stack">
     <p class="eyebrow" data-t="stack.eyebrow"></p>
     <h2 data-t="stack.title"></h2>
@@ -265,7 +231,6 @@
     <div class="stack-groups" data-stack></div>
   </section>
 
-  <!-- ==================== TROMBONE ==================== -->
   <section class="page" id="music">
     <div class="music">
       <div class="music__text">
@@ -284,15 +249,12 @@
     </div>
   </section>
 
-  <!-- ==================== CONTATO ==================== -->
   <section class="page" id="contact">
     <div class="contact card">
       <p class="eyebrow" data-t="contact.eyebrow"></p>
       <h2 data-t="contact.title"></h2>
       <p class="lead" data-t="contact.lead"></p>
       <div class="row contact__actions">
-        <!-- O href é montado em JS pra não deixar o e-mail escrito
-             em texto puro no HTML, onde robô de spam varre. -->
         <a class="btn btn--magnetic" data-email href="#"><span data-t="contact.emailLabel"></span></a>
         <span class="contact__links" data-contact-links></span>
       </div>
@@ -318,13 +280,6 @@
 </noscript>
 
 <script src="assets/js/site.js" defer></script>
-
-<!-- Cloudflare Web Analytics: sem cookie, sem banner de consentimento.
-     Para ligar: painel da Cloudflare › Web Analytics › adicionar o site,
-     copiar o token gerado no lugar de COLE_O_TOKEN_AQUI e tirar o comentário.
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token": "COLE_O_TOKEN_AQUI"}'></script>
--->
 
 </body>
 </html>
