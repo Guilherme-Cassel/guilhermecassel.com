@@ -338,6 +338,10 @@
     "code": "404",
     "title": "Essa rota não existe em produção",
     "lead": "Olhei os logs. Não tem nada aqui. Alguém digitou uma URL na mão, o que, convenhamos, é exatamente o tipo de processo manual que eu passo os dias eliminando.",
-    "cta": "Me leva pra home"
+    "cta": "Me leva pra home",
+    "gameHint": "Espaço ou toque pra pular",
+    "gameOver": "Bateu. Aperta de novo pra correr.",
+    "challenge": "Já que você está aqui, aposto que não me ganha nisso.",
+    "gameBeat": "Tá bom, você ganhou. Mas o emprego continua meu."
   }
 }

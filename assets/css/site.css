@@ -366,6 +366,25 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   .jogo__dica { font-size: 10px; }
 }
 
+/* ---------- A pista da página 404 ----------------------------
+   Sem moldura e sem fundo: o bicho corre direto sobre a página,
+   como no joguinho que aparece quando a internet cai.           */
+.corrida { margin-top: var(--s-10); max-width: 640px; }
+.corrida__desafio { font-weight: 650; color: var(--text); margin-bottom: var(--s-3); }
+.corrida canvas {
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  display: block;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.corrida canvas:focus-visible { outline-offset: 4px; }
+.corrida__dica {
+  margin-top: var(--s-2);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  color: var(--text-subtle);
+}
+
 /* ---------- Linha do tempo ----------------------------------- */
 .timeline li h3 { font-size: var(--t-base); }
 .timeline__meta { font-size: var(--t-sm); color: var(--text-muted); margin-bottom: var(--s-3); }

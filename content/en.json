@@ -338,6 +338,10 @@
     "code": "404",
     "title": "This route doesn't exist in production",
     "lead": "I checked the logs. Nothing here. Somebody typed a URL by hand, which, honestly, is exactly the kind of manual process I spend my days getting rid of.",
-    "cta": "Take me home"
+    "cta": "Take me home",
+    "gameHint": "Space or tap to jump",
+    "gameOver": "You crashed. Press again to run.",
+    "challenge": "Since you're here, I bet you can't beat me at this.",
+    "gameBeat": "Fine, you win. I still have the job, though."
   }
 }
