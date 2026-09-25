@@ -73,6 +73,7 @@
       "Before it was C#, it was redstone contraptions in Minecraft. Same pleasure, smaller scale: watching something absurdly complex finally click. In 2022 I started writing add-ons and plugins for Minecraft Java, realised programming was exactly that feeling, and went looking for heavier languages. I landed on .NET in 2023 and never left.",
       "Between 15 and 19 I worked freelance assembling dark poultry houses and swine facilities: feeders, nipple drinkers, curtains, emergency openings, misting systems, exhaust fans, plumbing, water tanks. Follow the manual, test the sensors, no duct tape, hand it over working. I may look like a skinny dev, but I know what it's like to be out in the field and have to solve it right there.",
       "At RGO I started in IT support, because that was the opening. A year in, I could see how much of the company could be fixed with code, so I asked for the role change, and got it. Today I'm on the dev team: we review each other's code, decide architecture together, and nothing ships without every party signing off.",
+      "I use AI the same way I use anything else on the belt. Coding agents and LLMs speed up implementation, refactoring and documentation, and they only work because the spec exists before the first prompt: a model without a spec produces fast and gets thrown away fast. I review and answer for every line that reaches production. The tool speeds up the typing, not the decision.",
       "Outside of that: video games, board games, D&D, cooking something I've never made before, and an amount of coffee that would worry a doctor. I don't listen to music while I work; I end up listening to the music instead of working."
     ],
     "motto": "Those who plan, build.",
@@ -287,7 +288,9 @@
           "Microsoft 365",
           "Active Directory",
           "Microsoft Graph",
-          "PowerShell"
+          "PowerShell",
+          "Claude Code",
+          "GitHub Copilot"
         ]
       }
     ]

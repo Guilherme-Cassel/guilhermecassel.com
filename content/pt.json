@@ -73,6 +73,7 @@
       "Antes de ser C#, era contraption de redstone no Minecraft. Mesmo prazer, escala menor: ver uma coisa absurdamente complexa finalmente funcionar. Em 2022 comecei fazendo add-ons e plugins pro Minecraft Java, percebi que programar era exatamente aquela sensação e fui atrás de linguagens mais pesadas. Caí no .NET em 2023 e não saí mais.",
       "Dos 15 aos 19 trabalhei de freelance montando aviários dark e chiqueiros: comedouro, nípel, cortina, abertura de emergência, pulverização, exaustor, encanamento, caixa d'água. Seguir o manual, testar os sensores, nada de gambiarra, entregar funcionando. Posso parecer um dev magricelo, mas sei o que é estar no campo e ter que resolver ali na hora.",
       "Na RGO comecei no suporte de TI, porque era a vaga que tinha. Um ano depois já dava pra ver quanta coisa da empresa dava pra resolver com código, então pedi a mudança de cargo, e consegui. Hoje estou no time de dev: a gente revisa o código um do outro, decide arquitetura junto e nada sobe sem aprovação de todas as partes.",
+      "Uso IA do mesmo jeito que uso qualquer outra coisa do cinto. Agentes de codificação e LLMs aceleram implementação, refatoração e documentação, e só funcionam porque a especificação existe antes do primeiro prompt: modelo sem especificação produz rápido e se joga fora rápido. Reviso e respondo por cada linha que sobe pra produção. A ferramenta acelera a digitação, não a decisão.",
       "Fora disso: videogame, jogo de tabuleiro, D&D, cozinhar alguma coisa que nunca fiz antes e uma quantidade de café que preocuparia um médico. Não ouço música enquanto trabalho; acabo prestando atenção na música em vez do trabalho."
     ],
     "motto": "Quem planeja, constrói.",
@@ -287,7 +288,9 @@
           "Microsoft 365",
           "Active Directory",
           "Microsoft Graph",
-          "PowerShell"
+          "PowerShell",
+          "Claude Code",
+          "GitHub Copilot"
         ]
       }
     ]
