@@ -319,7 +319,7 @@
     "emailLabel": "Send me an email",
     "emailSubject": "Hello Guilherme",
     "cvLabel": "See my resume",
-    "cvUrl": "/cv/",
+    "cvUrl": "/resume/",
     "links": [
       {
         "name": "LinkedIn",
