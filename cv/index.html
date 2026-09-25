@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Guilherme Cassel · Resume</title>
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+
+  :root {
+    --accent: #2563eb;
+    --ink: #151b27;
+    --muted: #4e586b;
+    --rule: #d6dbe4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    margin: 0 auto;
+    max-width: 180mm;
+    padding: 13mm 15mm;
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.42;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  /* ---------- header ---------- */
+  .nome {
+    margin: 0;
+    font-size: 24pt;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .cargo {
+    margin: 2pt 0 7pt;
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .contato {
+    margin: 0;
+    font-size: 9.2pt;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .contato a { color: var(--muted); text-decoration: none; }
+
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 8pt; }
+
+  /* ---------- sections ---------- */
+  h2 {
+    margin: 13pt 0 6pt;
+    padding-bottom: 2.5pt;
+    border-bottom: 1px solid var(--rule);
+    font-size: 9.6pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  p { margin: 0 0 6pt; }
+  p.resumo { text-align: justify; }
+
+  /* ---------- experience ---------- */
+  .cargo-bloco { margin-bottom: 9pt; break-inside: avoid; }
+
+  .empresa {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+    font-size: 10.8pt;
+    font-weight: 700;
+    margin-bottom: 1pt;
+  }
+  .empresa .local {
+    font-size: 8.8pt;
+    font-weight: 400;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .funcao {
+    font-size: 10.2pt;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4pt;
+  }
+  .funcao .periodo { font-weight: 400; color: var(--muted); }
+
+  ul { margin: 0; padding-left: 13pt; }
+  li { margin-bottom: 3.5pt; }
+
+  /* ---------- skills ---------- */
+  .comp { margin-bottom: 4pt; }
+  .comp b { color: var(--ink); }
+
+  /* ---------- footer blocks ---------- */
+  .item { margin-bottom: 6pt; break-inside: avoid; }
+  .item .linha1 { font-weight: 600; }
+  .item .linha2 { color: var(--muted); font-size: 9.4pt; }
+
+  /* ---------- navigation bar, screen only ---------- */
+  .barra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 9.6pt;
+  }
+  .barra a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .barra a:hover { text-decoration: underline; }
+  .barra .dica { color: var(--muted); font-weight: 400; margin-left: auto; }
+
+  @media screen {
+    body { box-shadow: 0 0 0 1px #e5e7eb; margin-top: 10px; margin-bottom: 18px; }
+  }
+
+  @media print {
+    .barra { display: none; }
+    body { box-shadow: none; margin: 0; padding: 0; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="barra">
+  <a href="/">← Back to the site</a>
+  <a href="/curriculo/">Versão em português</a>
+  <span class="dica">Ctrl+P to save as PDF</span>
+</nav>
+
+<header>
+  <h1 class="nome">Guilherme Cassel</h1>
+  <div class="cargo">Systems Developer &nbsp;|&nbsp; .NET C# · Blazor · Azure DevOps</div>
+  <p class="contato">
+    guilherme.cassel2004@gmail.com · Serafina Corrêa, Rio Grande do Sul, Brazil<br>
+    linkedin.com/in/guilhermecassel · github.com/Guilherme-Cassel · guilhermecassel.com
+  </p>
+</header>
+
+<h2>Professional summary</h2>
+<p class="resumo">Systems developer with three years at an industrial machinery manufacturer, having moved from IT support into application development. Builds internal business systems in .NET, C# and Blazor wired into the company's ERP: centralised dashboards, custom reporting, business-rule modules and process automation, used daily by more than 60 people. Built the company's CI/CD pipelines and Azure delivery path from the ground up, and administers Microsoft 365, Active Directory and a fleet of 85 machines with over 100 accounts. Uses coding agents and LLMs as productivity tools on top of specs written beforehand, reviewing every line that reaches production. Currently pursuing a B.Sc. in Software Engineering with a straight 100% average. Quality-driven, favouring durable solutions over quick workarounds.</p>
+
+<h2>Professional experience</h2>
+
+<div class="cargo-bloco">
+  <div class="empresa"><span>RGO Máquinas Industriais LTDA</span><span class="local">Guaporé, RS, Brazil · Hybrid</span></div>
+  <div class="funcao">Systems Developer <span class="periodo">| Jul 2024 – Present</span></div>
+  <ul>
+    <li>Contributed to the development of RgoSystem (Blazor Server, EF Core, Oracle), the company's central platform for internal automations, used daily by more than 60 people with no downtime since it went into production.</li>
+    <li>Replaced spreadsheets and undocumented workflows with business-rule modules and reports built on ERP data, giving management one centralised view instead of six parallel spreadsheets.</li>
+    <li>Automated material label printing by integrating the Protheus ERP with Zebra and Elesys printers from .NET, making the label a consequence of the record rather than a second, manual truth.</li>
+    <li>Automated 100% of the company's email signatures, generated through Microsoft Graph from the source of truth; standardised, always current and under 20 KB each.</li>
+    <li>Built the Azure delivery path from scratch (resource group, App Service, Key Vault, VNet, NAT gateway with a fixed outbound IP, custom domain and GitHub Actions per branch) along with the company's CI/CD pipelines in Azure DevOps.</li>
+    <li>Model and query relational databases across Microsoft SQL Server, Oracle Database and PostgreSQL.</li>
+    <li>Run code review, architecture decisions and deploy validation for the automations each department builds.</li>
+    <li>Use coding agents and LLMs to speed up implementation, refactoring and documentation, always on top of a written spec, with review and code review on every delivery.</li>
+  </ul>
+</div>
+
+<div class="cargo-bloco">
+  <div class="funcao">IT Assistant <span class="periodo">| Jul 2023 – Jun 2024</span></div>
+  <ul>
+    <li>Administered Microsoft 365 and Active Directory: user accounts, licences, permissions and mailboxes, covering over 100 accounts and 85 machines.</li>
+    <li>Planned and supported IT infrastructure, including workstation assembly, equipment configuration and network resources.</li>
+    <li>Rolled out and configured business software, providing first- and second-level support to every department.</li>
+  </ul>
+</div>
+
+<div class="cargo-bloco">
+  <div class="empresa"><span>AL Equipamentos</span><span class="local">Rio Grande do Sul, Brazil · On-site</span></div>
+  <div class="funcao">Assembly Technician, Freelance <span class="periodo">| Jun 2020 – Feb 2022</span></div>
+  <ul>
+    <li>Analysed technical drawings and assembled equipment for cattle, swine and poultry farming facilities.</li>
+    <li>Tested and commissioned installed equipment, verifying it met project specifications before handover.</li>
+  </ul>
+</div>
+
+<h2>Technical skills</h2>
+<div class="comp"><b>Languages &amp; frameworks:</b> C#, .NET, Blazor Server, Entity Framework Core, Clean Architecture, HTML5</div>
+<div class="comp"><b>Databases:</b> Microsoft SQL Server, Oracle Database, PostgreSQL, Redis</div>
+<div class="comp"><b>DevOps &amp; cloud:</b> Azure, Azure DevOps, GitHub Actions, CI/CD, Docker, Key Vault, Git</div>
+<div class="comp"><b>AI tooling:</b> Claude Code, GitHub Copilot, LLM-assisted development, context engineering and structured specification</div>
+<div class="comp"><b>Integration &amp; automation:</b> ERP integration (Protheus), Microsoft Graph, custom reporting, business process automation</div>
+<div class="comp"><b>IT &amp; infrastructure:</b> Microsoft 365 administration, Active Directory, PowerShell, infrastructure planning</div>
+
+<h2>Education</h2>
+<div class="item">
+  <div class="linha1">Instituto Infnet · B.Sc. Software Engineering · 2025 – 2029</div>
+  <div class="linha2">Straight 100% across all semesters completed so far</div>
+</div>
+
+<h2>Courses and certifications</h2>
+<div class="item">
+  <div class="linha1">Sprint de IA (AI Sprint)</div>
+  <div class="linha2">G4 Educação · Aug 2026</div>
+</div>
+<div class="item">
+  <div class="linha1">Advanced Entrepreneurship</div>
+  <div class="linha2">Instituto Manager Brasil · May 2022</div>
+</div>
+
+<h2>Languages</h2>
+<div class="item">
+  <div class="linha1">Portuguese <span style="font-weight:400;color:var(--muted)">· native</span> &nbsp;&nbsp; English <span style="font-weight:400;color:var(--muted)">· advanced</span></div>
+</div>
+
+</body>
+</html>

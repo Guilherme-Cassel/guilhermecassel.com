@@ -317,6 +317,8 @@
     "lead": "Trabalho com .NET, backend e full-stack. O jeito mais rápido de me achar é e-mail; eu leio tudo.",
     "emailLabel": "Me manda um e-mail",
     "emailSubject": "Olá Guilherme",
+    "cvLabel": "Ver meu currículo",
+    "cvUrl": "/curriculo/",
     "links": [
       {
         "name": "LinkedIn",
