@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guilherme Cassel · Resume</title>
+<meta name="description" content="Resume of Guilherme Cassel, systems developer working in .NET C# and Blazor.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <style>
   @page { size: A4; margin: 13mm 15mm; }
 
@@ -125,9 +128,26 @@
     body { box-shadow: 0 0 0 1px #e5e7eb; margin-top: 10px; margin-bottom: 18px; }
   }
 
+  /* On a narrow screen the document stops imitating an A4 sheet and becomes
+     a normal page, otherwise the browser shrinks everything until it is unreadable. */
+  @media screen and (max-width: 760px) {
+    body {
+      max-width: none;
+      padding: 16px;
+      font-size: 11pt;
+      box-shadow: none;
+      margin: 0;
+    }
+    .nome { font-size: 20pt; }
+    .empresa { flex-direction: column; gap: 0; }
+    .empresa .local { white-space: normal; }
+    .barra .dica { display: none; }
+    p.resumo { text-align: left; }
+  }
+
   @media print {
     .barra { display: none; }
-    body { box-shadow: none; margin: 0; padding: 0; max-width: none; }
+    body { box-shadow: none; margin: 0; padding: 0; max-width: none; font-size: 10.2pt; }
   }
 </style>
 </head>

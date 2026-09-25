@@ -191,8 +191,8 @@
       botao.href = `mailto:${EMAIL}?subject=${encodeURIComponent(conteudo.contact.emailSubject)}`;
     }
     // O currículo tem uma página por idioma; a url vem do JSON do idioma atual.
-    const cv = $('[data-cv]');
-    if (cv) cv.href = conteudo.contact.cvUrl;
+    // São dois botões: um no hero e outro no contato.
+    $$('[data-cv]').forEach((a) => { a.href = conteudo.contact.cvUrl; });
     const alvo = $('[data-contact-links]');
     if (!alvo) return;
     // Link com url vazia no JSON simplesmente não aparece.
