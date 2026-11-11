@@ -107,6 +107,23 @@
       }
     ]
   },
+  "pc": {
+    "title": "And I still take things apart",
+    "lead": "This is the PC this site was written on. Keep scrolling and it comes apart, piece by piece.",
+    "hint": "Scroll to take it apart. Drag to turn it around.",
+    "alt": "A 3D drawing of a glass-panel PC case that comes apart into its parts as the page scrolls",
+    "parts": [
+      "Redragon fish-tank case, glass on two sides",
+      "Liquid cooler, triple radiator on top",
+      "AMD Ryzen 7 (5000 series), under the pump block",
+      "HyperX Fury DDR4 memory",
+      "ASUS GeForce RTX graphics card",
+      "ASRock Steel Legend motherboard",
+      "Kingston M.2 SSD",
+      "Nine DeepCool fans, all white",
+      "Power supply, in the back chamber"
+    ]
+  },
   "game": {
     "eyebrow": "Intermission",
     "title": "Try to outrun it",
@@ -134,12 +151,14 @@
   "experience": {
     "eyebrow": "Experience",
     "title": "Where I've been",
+    "command": "git log --graph --all",
     "items": [
       {
         "role": "Systems Developer",
         "org": "RGO Máquinas Industriais",
         "period": "Jul 2024 to now",
         "current": true,
+        "ref": "HEAD → main",
         "bullets": [
           "Full-stack internal applications in .NET, C# and Blazor, wired straight into the company's ERP so management sees one centralised view instead of six spreadsheets.",
           "Custom reports and business-rule modules on top of ERP data, replacing manual routines.",
@@ -174,6 +193,8 @@
         "org": "Instituto Infnet",
         "period": "2025 to 2029",
         "current": true,
+        "ref": "branch: study",
+        "branch": true,
         "bullets": [
           "Straight 100% across all three semesters so far."
         ]
@@ -404,11 +425,11 @@
   },
   "trombone": {
     "title": "Go on, play it",
-    "lead": "A tenor trombone in B flat, synthesised in your browser. Seven positions, four harmonics, and the glissando comes free.",
+    "lead": "A tenor trombone in B flat, modelled in 3D to real proportions and synthesised in your browser. Seven positions at their true spacing, four harmonics, and the glissando comes free.",
     "position": "Position",
     "partials": "Harmonic",
     "slide": "Trombone slide",
-    "hint": "Hold the slide to blow, drag to change the note. On a keyboard: focus it, hold Space and move with the arrow keys."
+    "hint": "Hold the slide to blow and drag it to change the note. Drag anywhere else to turn the trombone around. On a keyboard: focus it, hold Space, move with the arrow keys, turn with Q and E."
   },
   "password": {
     "title": "Try it right here",

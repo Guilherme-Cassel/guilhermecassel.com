@@ -163,8 +163,9 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   margin-inline: calc(50% - 50vw);
   padding-inline: calc(50vw - 50%);
   /* respiro vertical pro bloco, sem mexer no ritmo da página */
-  padding-block: calc(var(--cel) * 0.3);
-  margin-block: calc(var(--cel) * -0.3);
+  /* 0.55 e não 0.3: o bloco tem uma face de cima que precisa caber */
+  padding-block: calc(var(--cel) * 0.55);
+  margin-block: calc(var(--cel) * -0.55);
   overflow: hidden;
 }
 .hero__trilho { position: relative; }
@@ -191,12 +192,14 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   pointer-events: none;
 }
 
-/* Corpo: madeira, o trapézio riscado que é a assinatura da textura
-   original, e a placa da cabeça encostada na direita. */
+/* Corpo: a base de pedra, com a borda escura do lado em que a cabeça
+   encosta. Pixel art própria, com a anatomia e as cores de um pistão
+   grudento: pedra na base, tábua com cantoneira de ferro na cabeça e
+   slime na face que empurra. */
 .pistao__corpo {
   position: absolute; inset: 0;
-  background-color: #9d7f4f;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%239d7f4f'/%3E%3Crect width='12' height='1' y='3' fill='%238b7045'/%3E%3Crect width='12' height='1' y='12' fill='%238b7045'/%3E%3Cpath d='M12 0.5 L4.5 4 L4.5 12 L12 15.5' fill='none' stroke='%236f5836' stroke-width='1'/%3E%3Crect x='12' width='4' height='16' fill='%237fae56'/%3E%3Crect x='12' width='1' height='16' fill='%235d4a2e'/%3E%3Crect x='14' y='3' width='1' height='2' fill='%23689447'/%3E%3Crect x='13' y='9' width='1' height='2' fill='%2395c46a'/%3E%3C/svg%3E");
+  background-color: #646464;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='16' height='16' fill='%23646464'/%3E%3Crect x='1' y='1' width='2' height='1' fill='%234a4a4a'/%3E%3Crect x='5' y='2' width='1' height='2' fill='%234a4a4a'/%3E%3Crect x='9' y='1' width='2' height='1' fill='%234a4a4a'/%3E%3Crect x='3' y='5' width='2' height='1' fill='%234a4a4a'/%3E%3Crect x='7' y='6' width='3' height='1' fill='%234a4a4a'/%3E%3Crect x='12' y='4' width='1' height='2' fill='%234a4a4a'/%3E%3Crect x='1' y='9' width='1' height='2' fill='%234a4a4a'/%3E%3Crect x='5' y='10' width='2' height='1' fill='%234a4a4a'/%3E%3Crect x='10' y='9' width='2' height='2' fill='%234a4a4a'/%3E%3Crect x='2' y='13' width='3' height='1' fill='%234a4a4a'/%3E%3Crect x='8' y='13' width='1' height='2' fill='%234a4a4a'/%3E%3Crect x='12' y='12' width='2' height='1' fill='%234a4a4a'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='7' y='3' width='2' height='1' fill='%237a7a7a'/%3E%3Crect x='11' y='2' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='10' y='5' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='7' y='11' width='2' height='1' fill='%237a7a7a'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='5' y='14' width='2' height='1' fill='%237a7a7a'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%237a7a7a'/%3E%3Crect x='0' y='0' width='16' height='1' fill='%23858585'/%3E%3Crect x='0' y='15' width='16' height='1' fill='%23393939'/%3E%3Crect x='0' y='0' width='1' height='16' fill='%23393939'/%3E%3Crect x='14' y='1' width='1' height='14' fill='%23444444'/%3E%3Crect x='15' y='0' width='1' height='16' fill='%232c2c2c'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   image-rendering: pixelated;
 }
@@ -209,17 +212,86 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   transition: width var(--passo, 170ms) var(--curva, var(--e-out));
 }
 
-/* Cabeça: a placa de slime na ponta do braço, que é o que encosta
-   no nome e empurra. */
+/* Cabeça: tábua com cantoneiras de ferro em cima e embaixo, e a face
+   de slime na direita, que é o que encosta no nome e empurra. */
 .pistao__cabeca {
   position: absolute; top: 0; bottom: 0; left: 100%;
   width: calc(var(--cel) * 0.26);
-  background-color: #7fae56;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16' shape-rendering='crispEdges'%3E%3Crect width='8' height='16' fill='%237fae56'/%3E%3Crect width='1' height='16' fill='%235d4a2e'/%3E%3Crect x='7' width='1' height='16' fill='%23689447'/%3E%3Crect x='3' y='3' width='2' height='2' fill='%2395c46a'/%3E%3Crect x='4' y='11' width='2' height='2' fill='%23689447'/%3E%3C/svg%3E");
+  background-color: #a88a52;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='16' fill='%23a88a52'/%3E%3Crect x='0' y='5' width='8' height='1' fill='%237d6439'/%3E%3Crect x='0' y='10' width='8' height='1' fill='%237d6439'/%3E%3Crect x='2' y='2' width='2' height='1' fill='%23b89a60'/%3E%3Crect x='3' y='7' width='2' height='1' fill='%23b89a60'/%3E%3Crect x='1' y='12' width='2' height='1' fill='%23b89a60'/%3E%3Crect x='0' y='0' width='8' height='2' fill='%23c9c9c9'/%3E%3Crect x='0' y='1' width='8' height='1' fill='%239c9c9c'/%3E%3Crect x='0' y='14' width='8' height='2' fill='%23c9c9c9'/%3E%3Crect x='0' y='15' width='8' height='1' fill='%238a8a8a'/%3E%3Crect x='0' y='0' width='1' height='16' fill='%236a5430'/%3E%3Crect x='6' y='0' width='2' height='16' fill='%237fbf5f'/%3E%3Crect x='7' y='0' width='1' height='16' fill='%2369a84c'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23a2dc82'/%3E%3Crect x='6' y='8' width='1' height='2' fill='%23a2dc82'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23a2dc82'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%238fd06e'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%238fd06e'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   image-rendering: pixelated;
   transform: translateX(var(--braco, 0px));
   transition: transform var(--passo, 170ms) var(--curva, var(--e-out));
+}
+
+/* ---------- A máquina em 3D ----------------------------------
+   Os pistões são blocos, não figurinhas. A face da frente é a de
+   sempre (é ela que encosta no nome, então não pode sair do lugar).
+   O volume vem de duas faces a mais, desenhadas em projeção oblíqua,
+   como bloco de Minecraft visto de cima e de lado: a de cima, que
+   foge pra trás e pra esquerda, e a lateral esquerda do corpo.
+
+   --fundo é a profundidade do bloco. Cada face é um retângulo
+   entortado 45 graus: skewX deita a de cima, skewY inclina a lateral.
+   Mais clara em cima, mais escura do lado, que é como a luz bate. */
+.pistao { --fundo: calc(var(--cel) * 0.26); }
+.pistao__corpo::before, .pistao__corpo::after,
+.pistao__braco::before, .pistao__cabeca::before {
+  content: ""; position: absolute; image-rendering: pixelated;
+}
+/* faces de cima */
+.pistao__corpo::before, .pistao__braco::before, .pistao__cabeca::before {
+  left: 0; right: 0; bottom: 100%; height: var(--fundo);
+  transform-origin: left bottom; transform: skewX(45deg);
+}
+.pistao__corpo::before {
+  background: repeating-linear-gradient(0deg, #838383 0 25%, #757575 25% 50%);
+}
+.pistao__cabeca::before {
+  /* de cima: o ferro da cantoneira, e o slime na beirada que empurra */
+  background: linear-gradient(90deg, #d6d6d6 0 72%, #93d070 72% 100%);
+}
+/* o braço é fino também no fundo, então a face de cima dele é rasa */
+.pistao__braco::before { height: calc(var(--fundo) * 0.4); background: #d9b97f; }
+/* A haste sai do MEIO da profundidade do bloco, não da frente. Nesta
+   projeção, o que está mais pro fundo aparece deslocado pra cima e
+   pra esquerda; por isso ela sobe e recua --meio, e fica atrás da
+   face da frente da base e da cabeça (z-index -1). Sem isso a face
+   de cima da haste aparecia por cima da pedra. O comprimento ganha o
+   mesmo --meio pra ponta continuar escondida atrás da cabeça. */
+.pistao { --meio: calc(var(--fundo) * 0.32); }
+.pistao__braco {
+  z-index: -1;
+  width: calc(var(--braco, 0px) + var(--meio));
+  transform: translate(calc(var(--meio) * -1), calc(var(--meio) * -1));
+}
+/* As costas da cabeça: a face de trás da placa, que é o que dá
+   espessura a ela. Anda junto com a cabeça e fica por baixo de tudo
+   (z-index -2): a haste chega pelo meio dela, e recolhida ela some
+   atrás da base. Sem ela a tampa de cima da cabeça ficava no ar. */
+.pistao__costas {
+  position: absolute; top: 0; bottom: 0; z-index: -2;
+  left: calc(100% - var(--fundo)); width: var(--fundo);
+  transform-origin: right bottom;
+  transform: translateX(var(--braco, 0px)) skewY(45deg);
+  transition: transform var(--passo, 170ms) var(--curva, var(--e-out));
+  background: linear-gradient(#8f8f8f 0 12.5%, #86693a 12.5% 33%, #6a5430 33% 36%, #86693a 36% 64%, #6a5430 64% 67%, #86693a 67% 87.5%, #7a7a7a 87.5% 100%);
+}
+/* A lateral esquerda só existe no pistão de trás. No da frente ela
+   ficaria encostada no de trás, ou seja, escondida; desenhada, ela
+   aparecia por cima da pedra do vizinho. */
+.pistao:not(.pistao--tras) .pistao__corpo::after { display: none; }
+/* lateral esquerda do corpo: a parte de trás do pistão */
+.pistao__corpo::after {
+  top: 0; bottom: 0; right: 100%; width: var(--fundo);
+  transform-origin: right bottom; transform: skewY(45deg);
+  background: repeating-linear-gradient(90deg, #474747 0 25%, #3d3d3d 25% 50%);
+}
+/* uma sombra no chão dá peso ao bloco */
+.pistao::after {
+  content: ""; position: absolute; left: -8%; right: -34%; top: 100%; height: calc(var(--cel) * 0.14);
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.38), transparent);
 }
 
 .hero__role {
@@ -400,6 +472,113 @@ h2 { margin-block: var(--s-2) var(--s-5); }
 .timeline__bullets { margin: 0; padding-left: var(--s-5); display: grid; gap: var(--s-2); }
 .timeline__bullets li { color: var(--text-muted); font-size: var(--t-sm); padding-left: 0; }
 .timeline__bullets li::before, .timeline__bullets li::after { display: none; }
+/* ---------- Experiência como git log --graph ------------------
+   Cada cargo é um commit na linha principal (azul). O que tem
+   "branch" no JSON sai num ramo ao lado (verde), ligado por uma
+   curva. O grafo é todo desenhado com ::before (a bolinha do
+   commit) e ::after (o trecho de linha até o próximo).
+
+   Medidas: a linha principal passa em x=13 e o ramo em x=37.     */
+.historico__comando {
+  margin-top: var(--s-5);
+  font-family: var(--font-mono); font-size: var(--t-sm); color: var(--text-muted);
+  display: flex; align-items: baseline; gap: var(--s-2);
+}
+.historico__cifrao { color: var(--brand); font-weight: 600; }
+.historico__comando .caret { width: 0.5em; height: 1em; }
+
+.historico { list-style: none; padding: 0; margin: var(--s-6) 0 0; display: grid; gap: var(--s-8); }
+.commit { position: relative; padding-left: 64px; --tinta: var(--brand); }
+.commit--ramo { --tinta: var(--accent-mint); }
+
+/* a bolinha */
+.commit::before {
+  content: ""; position: absolute; left: 6px; top: 3px;
+  width: 14px; height: 14px; border-radius: var(--r-full);
+  background: var(--bg); border: 3px solid var(--tinta);
+  transition: transform var(--d-normal) var(--e-spring), box-shadow var(--d-normal) var(--e-out);
+}
+.commit--ramo::before { left: 30px; }
+.commit.is-current::before { background: var(--tinta); box-shadow: 0 0 0 5px color-mix(in oklab, var(--tinta) 22%, transparent); }
+.commit:hover::before { transform: scale(1.35); }
+
+/* o trecho de linha que desce até o commit de baixo */
+.commit::after {
+  content: ""; position: absolute; left: 12px; top: 22px; bottom: calc(var(--s-8) * -1);
+  width: 2px; border-radius: 2px;
+  background: linear-gradient(var(--tinta), var(--border-strong));
+  transform-origin: top;
+}
+.commit:last-child:not(.commit--ramo)::after { display: none; }
+/* no ramo, o ::after vira a curva que sai da linha principal e entra na bolinha */
+.commit--ramo::after {
+  top: 0; bottom: auto; height: 11px; width: 18px;
+  background: none; border-radius: 0 0 0 12px;
+  border-left: 2px solid var(--border-strong); border-bottom: 2px solid var(--tinta);
+  transform-origin: top left;
+}
+
+.commit__topo {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-2) var(--s-3);
+  margin-bottom: var(--s-2);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+}
+.commit__hash {
+  display: inline-block; width: 7ch; overflow: hidden; white-space: nowrap;
+  color: var(--accent-gold); font-family: inherit;
+}
+.commit__ref {
+  padding: 1px var(--s-2); border-radius: var(--r-full);
+  border: 1px solid color-mix(in oklab, var(--tinta) 55%, transparent);
+  background: color-mix(in oklab, var(--tinta) 14%, transparent);
+  color: var(--text); font-weight: 600; white-space: nowrap;
+}
+.commit__data { color: var(--text-subtle); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.commit h3 { font-size: var(--t-lg); transition: color var(--d-fast) var(--e-out); }
+.commit:hover h3 { color: var(--brand-text); }
+.commit--ramo:hover h3 { color: var(--accent-mint); }
+.commit .timeline__bullets li::marker { color: var(--tinta); }
+
+/* A entrada: quando o commit chega na tela (o site.js põe
+   .esta-visivel), a bolinha estoura, o hash é digitado, o texto
+   desliza da direita e a linha desce até o próximo. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .commit:not(.esta-visivel)::before { transform: scale(0); }
+  .js .commit:not(.esta-visivel)::after { transform: scale(0); }
+  .js .commit:not(.esta-visivel) > *,
+  .js .commit:not(.esta-visivel) .timeline__bullets li { opacity: 0; transform: translateX(18px); }
+  .js .commit:not(.esta-visivel) .commit__hash { width: 0; }
+  .js .commit:not(.esta-visivel) .commit__ref { transform: scale(0.4); }
+
+  .commit::after { transition: transform 700ms var(--e-in-out) 320ms; }
+  .commit > *, .commit .timeline__bullets li {
+    transition: opacity var(--d-slow) var(--e-out), transform var(--d-slow) var(--e-out);
+  }
+  .commit > :nth-child(1) { transition-delay: 80ms; }
+  .commit > :nth-child(2) { transition-delay: 170ms; }
+  .commit > :nth-child(3) { transition-delay: 240ms; }
+  .commit .timeline__bullets li:nth-child(1) { transition-delay: 330ms; }
+  .commit .timeline__bullets li:nth-child(2) { transition-delay: 410ms; }
+  .commit .timeline__bullets li:nth-child(3) { transition-delay: 490ms; }
+  .commit .timeline__bullets li:nth-child(4) { transition-delay: 570ms; }
+  .commit .timeline__bullets li:nth-child(n + 5) { transition-delay: 650ms; }
+
+  .commit.esta-visivel .commit__hash { animation: digita-hash 520ms steps(7) 160ms backwards; }
+  .commit__ref { transition: transform var(--d-normal) var(--e-spring) 520ms; }
+
+  /* o commit atual respira, e a linha dele tem um brilho que escorre */
+  .commit.is-current.esta-visivel::before { animation: commit-vivo 2.6s var(--e-in-out) 900ms infinite; }
+  .commit.is-current:not(.commit--ramo).esta-visivel::after {
+    background: linear-gradient(var(--tinta), var(--border-strong) 45%, var(--tinta) 50%, var(--border-strong) 55%) 0 0 / 100% 300%;
+    animation: commit-escorre 3.2s linear 1.2s infinite;
+  }
+}
+@keyframes digita-hash { from { width: 0; } to { width: 7ch; } }
+@keyframes commit-vivo {
+  50% { box-shadow: 0 0 0 9px color-mix(in oklab, var(--tinta) 0%, transparent); }
+}
+@keyframes commit-escorre { from { background-position: 0 100%; } to { background-position: 0 0; } }
+
 /* o marcador do item atual pulsa de leve */
 .timeline li.is-current::before { box-shadow: 0 0 0 4px var(--brand-subtle); animation: pulse 2.4s var(--e-in-out) infinite; }
 
@@ -760,6 +939,52 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   .planilha, .painel { transition: none; }
 }
 
+/* ---------- O PC que se desmonta ------------------------------
+   O desenho é um canvas (assets/js/pc.js). O painel é escuro nos
+   dois temas de propósito: é um gabinete preto com luz branca, e
+   num fundo claro a luz não aparece. */
+.pc {
+  margin-top: var(--s-12); padding: var(--s-6);
+  display: grid; gap: var(--s-6); align-items: center;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+.pc__texto h3 { margin-bottom: var(--s-2); }
+.pc__tela {
+  display: block; width: 100%; aspect-ratio: 6 / 5;
+  border-radius: var(--r-lg);
+  background: radial-gradient(120% 90% at 50% 40%, #131a2e, #05070d);
+  cursor: grab; touch-action: pan-y;
+}
+.pc__tela:active { cursor: grabbing; }
+.pc__pecas {
+  list-style: none; padding: 0; margin: var(--s-4) 0 0;
+  display: grid; gap: var(--s-1); counter-reset: peca;
+}
+.pc__pecas li {
+  counter-increment: peca;
+  display: flex; align-items: baseline; gap: var(--s-3);
+  padding: var(--s-1) var(--s-2); border-radius: var(--r-sm);
+  font-size: var(--t-sm); color: var(--text-muted); cursor: default;
+  /* a lista acompanha o gabinete: apagada com ele fechado, acesa com ele aberto */
+  opacity: 0.45;
+  transition: opacity var(--d-slow) var(--e-out), background-color var(--d-fast) var(--e-out), color var(--d-fast) var(--e-out);
+}
+.pc.esta-aberto .pc__pecas li { opacity: 1; }
+.pc__pecas li::before {
+  content: counter(peca); flex: none;
+  display: inline-grid; place-items: center; width: 1.6em; height: 1.6em;
+  border-radius: var(--r-full); background: var(--brand); color: var(--text-on-brand);
+  font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 700;
+}
+.pc__pecas li:hover { background: var(--brand-subtle); color: var(--text); }
+.pc__pecas li:hover::before { background: var(--accent-gold); color: #1a1202; }
+.pc__dica { margin-top: var(--s-4); font-family: var(--font-mono); font-size: var(--t-xs); color: var(--text-subtle); }
+@media (max-width: 900px) {
+  .pc { grid-template-columns: 1fr; }
+  .pc__tela { order: -1; }
+}
+@media (max-width: 560px) { .pc__tela { aspect-ratio: 1 / 1; } }
+
 /* ---------- Trombone tocável ---------------------------------
    O desenho é um SVG de linhas grossas: os tubos são traço, não
    preenchimento. A vara anda pela variável --vara, em unidades do
@@ -791,20 +1016,47 @@ h2 { margin-block: var(--s-2) var(--s-5); }
 }
 .trombone__vara:active { cursor: grabbing; }
 .trombone__vara svg { display: block; width: 100%; height: auto; }
+/* O modelo 3D: um canvas que o trombone.js põe no lugar do desenho plano. */
+.trombone__tela { display: block; width: 100%; aspect-ratio: 66 / 27; cursor: move; }
+@media (max-width: 560px) { .trombone__tela { aspect-ratio: 66 / 34; } }
+/* Profundidade: o instrumento fica levemente de lado, e gira um
+   pouco conforme a vara sai, como se você acompanhasse o braço do
+   trombonista. --vara vai de 0 a 168 (as sete posições). */
+.trombone__vara { perspective: 900px; }
+.trombone__vara svg {
+  transform: rotateX(10deg) rotateY(calc(6deg - var(--vara, 0) * 0.075deg));
+  transform-origin: 30% 50%;
+  transition: transform 180ms var(--e-out);
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.35));
+}
+@media (prefers-reduced-motion: reduce) { .trombone__vara svg { transform: none; transition: none; } }
 .trombone__vara path {
   fill: none; stroke-linecap: round; stroke-linejoin: round;
 }
-.trombone__fixo path { stroke: var(--text-subtle); stroke-width: 5; }
-.trombone__fixo .trombone__campana {
-  fill: var(--accent-gold); stroke: var(--accent-gold); stroke-width: 3;
+/* Cromado por padrão: os tubos internos da vara, que só aparecem
+   quando ela sai. O que é latão diz que é latão. */
+.trombone__fixo path { stroke: #aab3c2; stroke-width: 5; }
+.trombone__vara .trombone__latao { stroke: #e3ad45; stroke-width: 6.5; }
+.trombone__vara .trombone__campana {
+  fill: url(#trombone-latao); stroke: #b98522; stroke-width: 1;
   transition: filter var(--d-fast) var(--e-out);
 }
-.trombone__fixo .trombone__bocal { fill: var(--text-subtle); stroke-width: 2; }
+/* a boca da campana: a borda grossa de latão e o interior escurecendo até a garganta */
+.trombone__boca { fill: url(#trombone-dentro); stroke: #f0c35c; stroke-width: 3; }
+.trombone__garganta { fill: #120c01; opacity: 0.85; }
+.trombone__vara .trombone__travessa { stroke: #c9952f; stroke-width: 4; }
+.trombone__vara .trombone__travessa--cromo { stroke: #8d96a6; }
+.trombone__vara .trombone__luva { stroke: #c9952f; stroke-width: 8; stroke-linecap: butt; }
+.trombone__vara .trombone__bocal { fill: #d5dbe6; stroke: #8d96a6; stroke-width: 1.5; }
+.trombone__vara .trombone__bocal-borda { stroke: #eef2f8; stroke-width: 4; }
+/* o reflexo claro em cima de cada tubo é o que faz o traço virar cilindro */
+.trombone__vara .trombone__reflexo { stroke: rgb(255 255 255 / 0.45); stroke-width: 2; }
 .trombone__movel {
   transform: translateX(calc(var(--vara, 0) * 1px));
 }
-.trombone__movel path { stroke: var(--accent-gold); stroke-width: 9; }
-.trombone__movel .trombone__trava { stroke-width: 4; }
+.trombone__movel path { stroke: #e9b84e; stroke-width: 9; }
+.trombone__movel .trombone__trava { stroke-width: 4.500; stroke: #c9952f; }
+.trombone__vara .trombone__chave { stroke: #c9952f; stroke-width: 3; }
 .trombone__pega { fill: var(--brand); stroke: var(--bg-sunken); stroke-width: 3; }
 .trombone__marcas text {
   font-family: var(--font-mono); font-size: 13px;
@@ -852,18 +1104,54 @@ h2 { margin-block: var(--s-2) var(--s-5); }
 .senha__nota { font-size: var(--t-xs); margin-top: var(--s-4); max-width: 80ch; }
 
 /* ---------- Segredos: d20, recado e modo difícil --------------- */
+/* O d20 mora no topo, do mesmo tamanho e feitio dos botões vizinhos. */
 .d20 {
-  margin-top: var(--s-4);
   display: inline-grid; place-items: center;
-  width: 44px; height: 44px; padding: 0;
-  border: 0; border-radius: var(--r-md); background: none;
-  color: var(--text-subtle); cursor: pointer;
-  transition: color var(--d-fast) var(--e-out), transform var(--d-normal) var(--e-spring);
+  width: 40px; height: 40px; padding: 0;
+  border: 1px solid var(--border-strong); border-radius: var(--r-full);
+  background: var(--bg-elevated); box-shadow: var(--sh-1);
+  color: var(--text-muted); cursor: pointer;
+  transition: color var(--d-fast) var(--e-out), border-color var(--d-fast) var(--e-out),
+              transform var(--d-normal) var(--e-spring);
 }
-.d20 svg { width: 26px; height: 26px; }
-.d20:hover { color: var(--brand-text); transform: rotate(18deg); }
-.d20.esta-rolando { animation: d20-gira 520ms linear infinite; color: var(--brand-text); }
-@keyframes d20-gira { to { transform: rotate(360deg); } }
+.d20 svg { width: 22px; height: 22px; }
+.d20:hover { color: var(--brand-text); border-color: var(--brand-border); }
+
+/* O dado em 3D. O segredos.js calcula onde cada face do icosaedro
+   cai na tela e quanta luz ela pega (--luz, de 0 a 1); a cor sai
+   daqui, misturando o azul da marca com o escuro conforme a luz. */
+.d20 .d20__solido { width: 30px; height: 30px; overflow: visible; }
+.d20__solido polygon {
+  fill: color-mix(in oklab, var(--blue-400) calc(var(--luz, 0.5) * 100%), var(--blue-950));
+  stroke: color-mix(in oklab, var(--blue-200) 55%, transparent);
+  stroke-width: 0.03; stroke-linejoin: round;
+}
+.d20__solido text {
+  fill: #fff; font-family: var(--font-sans); font-weight: 800; font-size: 0.5px;
+  text-anchor: middle; dominant-baseline: central;
+  paint-order: stroke; stroke: var(--blue-950); stroke-width: 0.06px;
+}
+
+/* Na hora de rolar, um dado grande tomba no meio da tela. */
+.d20-palco {
+  position: fixed; inset: 0; z-index: 45; pointer-events: none;
+  display: grid; place-items: center;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--bg) 78%, transparent), transparent 70%);
+  opacity: 0; transition: opacity var(--d-normal) var(--e-out);
+}
+.d20-palco.esta-visivel { opacity: 1; }
+.d20-palco .d20__solido {
+  width: min(46vmin, 240px); height: min(46vmin, 240px);
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.45));
+  transform: scale(0.3); transition: transform var(--d-slow) var(--e-spring);
+}
+.d20-palco.esta-visivel .d20__solido { transform: scale(1); }
+.d20-palco.acertou .d20__solido polygon {
+  fill: color-mix(in oklab, var(--accent-gold) calc(var(--luz, 0.5) * 100%), #3a2a05);
+}
+.d20-palco.errou .d20__solido polygon {
+  fill: color-mix(in oklab, var(--accent-warm) calc(var(--luz, 0.5) * 100%), #2a0d08);
+}
 
 .recado {
   position: fixed; left: 50%; bottom: var(--s-5); z-index: 40;
@@ -888,8 +1176,8 @@ h2 { margin-block: var(--s-2) var(--s-5); }
 .modo-dificil .jogo__modo { display: inline; }
 
 @media (prefers-reduced-motion: reduce) {
-  .d20.esta-rolando, .acerto-critico .contact { animation: none; }
-  .d20:hover { transform: none; }
+  .acerto-critico .contact { animation: none; }
+  .d20-palco .d20__solido { transition: none; }
 }
 
 /* ---------- Telas pequenas ----------------------------------- */
@@ -898,9 +1186,14 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   .about__aside { position: static; }
 }
 
-@media (max-width: 760px) {
+/* O menu vira botão antes de o resto encolher: com o d20 no topo e os
+   nomes das seções em português, a barra não cabe inteira abaixo disso. */
+@media (max-width: 980px) {
   .nav { display: none; }
   .nav-toggle { display: inline-grid; }
+}
+
+@media (max-width: 760px) {
   .brandmark__last { display: none; }
   .hero { padding-block: var(--s-12) var(--s-10) !important; }
   .contact { padding: var(--s-6); }

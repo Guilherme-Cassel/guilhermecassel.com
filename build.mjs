@@ -44,6 +44,16 @@ const tag = (nome, classe, texto) =>
 const chips = (itens) =>
   `<div class="row">${itens.map((i) => tag('span', 'badge', i)).join('')}</div>`;
 
+/** O mesmo hashCurto de assets/js/site.js (FNV-1a, 7 caracteres). */
+function hashCurto(texto) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < texto.length; i += 1) {
+    h ^= texto.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7);
+}
+
 /** Mesma conta de assets/js/site.js: idade e tempo de casa. */
 function calcularValor(stat) {
   if (stat.auto === 'age' || stat.auto === 'yearsSince') {
@@ -69,11 +79,15 @@ const blocos = (c) => ({
   'data-about-text': c.about.paragraphs.map((p) => tag('p', '', p)).join(''),
   'data-music-text': c.music.paragraphs.map((p) => tag('p', '', p)).join(''),
 
-  'data-timeline': c.experience.items.map((item) =>
-    `<li${item.current ? ' class="is-current"' : ''}>${tag('h3', '', item.role)}` +
-    tag('p', 'timeline__meta', `${item.org} · ${item.period}`) +
-    `<ul class="timeline__bullets">${item.bullets.map((b) => tag('li', '', b)).join('')}</ul></li>`
-  ).join(''),
+  'data-timeline': c.experience.items.map((item) => {
+    const classes = ['commit', item.current && 'is-current', item.branch && 'commit--ramo'].filter(Boolean).join(' ');
+    return `<li class="${classes}"><div class="commit__topo">` +
+      tag('code', 'commit__hash', hashCurto(item.role + item.org)) +
+      (item.ref ? tag('span', 'commit__ref', item.ref) : '') +
+      tag('span', 'commit__data', item.period) + '</div>' +
+      tag('h3', '', item.role) + tag('p', 'timeline__meta', item.org) +
+      `<ul class="timeline__bullets">${item.bullets.map((b) => tag('li', '', b)).join('')}</ul></li>`;
+  }).join(''),
 
   'data-work': c.projects.work.map((p) =>
     `<article class="card card--interactive work-card">` +

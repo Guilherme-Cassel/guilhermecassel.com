@@ -45,9 +45,10 @@ assets/css/system.css   base e componentes reutilizáveis
 assets/css/site.css     o que só existe nesta página
 assets/js/site.js       todo o comportamento, comentado de ponta a ponta
 assets/js/previa.js     a janelinha do topo onde o jogo se joga sozinho
+assets/js/pc.js         o PC em 3D que se desmonta ao rolar, no fim do "Sobre"
 assets/js/trombone.js   o trombone tocável (baixado só perto da seção de música)
 assets/js/senha.js      a demonstração do friendly-password-generator
-assets/js/segredos.js   o d20 do rodapé e o código Konami do modo difícil
+assets/js/segredos.js   o d20 do topo e o código Konami do modo difícil
 assets/js/demos.js      as demonstrações dentro dos cards de projeto (etiqueta,
                         assinatura, planilhas, rede); um projeto ganha uma
                         pondo "demo" nele em content/*.json

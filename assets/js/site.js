@@ -145,15 +145,48 @@
   function montarLinhaDoTempo() {
     const alvo = $('[data-timeline]');
     if (!alvo) return;
+    /* A experiência é desenhada como um `git log --graph`: cada cargo é
+       um commit na linha principal, e o que tem "branch" no JSON (a
+       faculdade) sai num ramo ao lado. O desenho e o movimento são do
+       CSS; aqui só montamos as peças. Espelhado em build.mjs. */
     alvo.replaceChildren(...conteudo.experience.items.map((item) => {
-      const li = criar('li', item.current ? 'is-current' : '');
-      li.append(criar('h3', null, item.role));
-      li.append(criar('p', 'timeline__meta', `${item.org} · ${item.period}`));
+      const classes = ['commit', item.current && 'is-current', item.branch && 'commit--ramo'].filter(Boolean);
+      const li = criar('li', classes.join(' '));
+
+      const topo = criar('div', 'commit__topo');
+      topo.append(criar('code', 'commit__hash', hashCurto(item.role + item.org)));
+      if (item.ref) topo.append(criar('span', 'commit__ref', item.ref));
+      topo.append(criar('span', 'commit__data', item.period));
+
       const ul = criar('ul', 'timeline__bullets');
       item.bullets.forEach((b) => ul.append(criar('li', null, b)));
-      li.append(ul);
+      li.append(topo, criar('h3', null, item.role), criar('p', 'timeline__meta', item.org), ul);
       return li;
     }));
+
+    // cada commit entra quando chega na tela, um de cada vez
+    observadorCommits?.disconnect();
+    observadorCommits = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('esta-visivel');
+        observadorCommits.unobserve(e.target);
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+    $$('.commit', alvo).forEach((li) => observadorCommits.observe(li));
+  }
+
+  let observadorCommits = null;
+
+  /** Sete caracteres com cara de hash de commit, sempre os mesmos pro
+      mesmo texto (FNV-1a). É enfeite: não é hash de commit nenhum. */
+  function hashCurto(texto) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < texto.length; i += 1) {
+      h ^= texto.charCodeAt(i);
+      h = Math.imul(h, 0x01000193);
+    }
+    return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7);
   }
 
   /** As fases do "Sobre": redstone, campo, primeiro código, suporte, dev.
@@ -528,6 +561,7 @@
       const p = criar('div', 'pistao');
       p.append(
         criar('span', 'pistao__corpo'),
+        criar('span', 'pistao__costas'),   // a face de trás da cabeça, que fecha o bloco
         criar('span', 'pistao__braco'),
         criar('span', 'pistao__cabeca'),
       );
@@ -536,6 +570,7 @@
     };
 
     const tras = pistao();
+    tras.classList.add('pistao--tras');   // só o de trás mostra a lateral esquerda
     const frente = pistao();
     palco.prepend(tras, frente);
 
@@ -1142,6 +1177,7 @@
 
     // a prévia do jogo fica no topo, então entra logo
     baixar('/assets/js/previa.js');
+    quandoPerto('[data-pc]', '/assets/js/pc.js');
     quandoPerto('[data-trombone]', '/assets/js/trombone.js');
     quandoPerto('[data-senha]', '/assets/js/senha.js');
     quandoPerto('[data-work]', '/assets/js/demos.js');

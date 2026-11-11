@@ -107,6 +107,23 @@
       }
     ]
   },
+  "pc": {
+    "title": "E continuo desmontando",
+    "lead": "Este é o PC em que este site foi escrito. Continue rolando e ele se desmonta, peça por peça.",
+    "hint": "Role pra desmontar. Arraste pra girar.",
+    "alt": "Desenho 3D de um gabinete de PC com painéis de vidro que se desmonta em peças conforme a página rola",
+    "parts": [
+      "Gabinete aquário Redragon, vidro em dois lados",
+      "Water cooler, radiador triplo no topo",
+      "AMD Ryzen 7 (série 5000), embaixo do bloco",
+      "Memória HyperX Fury DDR4",
+      "Placa de vídeo ASUS GeForce RTX",
+      "Placa-mãe ASRock Steel Legend",
+      "SSD Kingston M.2",
+      "Nove fans DeepCool, todos brancos",
+      "Fonte, na câmara de trás"
+    ]
+  },
   "game": {
     "eyebrow": "Intervalo",
     "title": "Tenta correr mais que ela",
@@ -134,12 +151,14 @@
   "experience": {
     "eyebrow": "Experiência",
     "title": "Por onde passei",
+    "command": "git log --graph --all",
     "items": [
       {
         "role": "Desenvolvedor de Sistemas",
         "org": "RGO Máquinas Industriais",
         "period": "jul 2024 até hoje",
         "current": true,
+        "ref": "HEAD → main",
         "bullets": [
           "Aplicações internas full-stack em .NET, C# e Blazor, ligadas direto no ERP da empresa, dando à gestão uma visão centralizada no lugar de seis planilhas.",
           "Relatórios customizados e módulos de regra de negócio sobre os dados do ERP, substituindo rotinas manuais.",
@@ -174,6 +193,8 @@
         "org": "Instituto Infnet",
         "period": "2025 a 2029",
         "current": true,
+        "ref": "branch: estudo",
+        "branch": true,
         "bullets": [
           "100% de aproveitamento nos três semestres até aqui."
         ]
@@ -404,11 +425,11 @@
   },
   "trombone": {
     "title": "Vai, toca",
-    "lead": "Um trombone tenor em si bemol, sintetizado no seu navegador. Sete posições, quatro harmônicos, e o glissando vem de brinde.",
+    "lead": "Um trombone tenor em si bemol, modelado em 3D nas proporções reais e sintetizado no seu navegador. Sete posições no espaçamento de verdade, quatro harmônicos, e o glissando vem de brinde.",
     "position": "Posição",
     "partials": "Harmônico",
     "slide": "Vara do trombone",
-    "hint": "Segure a vara pra soprar e arraste pra mudar a nota. No teclado: foque nela, segure Espaço e mova com as setas."
+    "hint": "Segure a vara pra soprar e arraste pra mudar a nota. Arraste fora dela pra girar o trombone. No teclado: foque nele, segure Espaço, mova com as setas e gire com Q e E."
   },
   "password": {
     "title": "Experimenta aqui mesmo",

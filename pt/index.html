@@ -90,6 +90,14 @@
     </nav>
 
     <div class="topbar__actions">
+      <!-- O d20: rola e leva pra uma seção do site. (assets/js/segredos.js) -->
+      <button class="d20" type="button" data-d20 data-label="eggs.roll" aria-label="Rolar um d20">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 2 28.1 9v14L16 30 3.9 23V9Z"/>
+          <path d="M16 9.5 22.5 20.5h-13Z"/>
+          <path d="M16 2v7.5M3.9 9 16 9.5 28.1 9M9.5 20.5 3.9 23M22.5 20.5 28.1 23M9.5 20.5 16 30l6.5-9.5M3.9 9l5.6 11.5M28.1 9l-5.6 11.5"/>
+        </svg>
+      </button>
       <a class="chip-btn" data-lang-toggle href="/" hreflang="en" data-label="ui.langToggle" aria-label="Read in English">
         <span data-t="ui.langShort">EN</span>
       </a>
@@ -192,6 +200,18 @@
         </blockquote>
       </aside>
     </div>
+
+    <!-- O PC de verdade, que se desmonta conforme a página rola.
+         Quem desenha é o assets/js/pc.js, baixado sob demanda. -->
+    <div class="pc card" data-pc>
+      <div class="pc__texto">
+        <h3 data-t="pc.title">E continuo desmontando</h3>
+        <p class="muted" data-t="pc.lead">Este é o PC em que este site foi escrito. Continue rolando e ele se desmonta, peça por peça.</p>
+        <ol class="pc__pecas" data-pc-pecas></ol>
+        <p class="pc__dica" data-t="pc.hint">Role pra desmontar. Arraste pra girar.</p>
+      </div>
+      <canvas class="pc__tela" data-pc-tela tabindex="0" role="img" data-label="pc.alt" aria-label="Desenho 3D de um gabinete de PC com painéis de vidro que se desmonta em peças conforme a página rola"></canvas>
+    </div>
   </section>
 
   <section class="page" id="jogo">
@@ -240,7 +260,12 @@
   <section class="page" id="experience">
     <p class="eyebrow" data-t="experience.eyebrow">Experiência</p>
     <h2 data-t="experience.title">Por onde passei</h2>
-    <ol class="timeline" data-timeline><li class="is-current"><h3>Desenvolvedor de Sistemas</h3><p class="timeline__meta">RGO Máquinas Industriais · jul 2024 até hoje</p><ul class="timeline__bullets"><li>Aplicações internas full-stack em .NET, C# e Blazor, ligadas direto no ERP da empresa, dando à gestão uma visão centralizada no lugar de seis planilhas.</li><li>Relatórios customizados e módulos de regra de negócio sobre os dados do ERP, substituindo rotinas manuais.</li><li>Montou do zero as pipelines de CI/CD no Azure DevOps; controle de versão no Azure DevOps e no GitHub.</li><li>Revisão de código, decisão de arquitetura e validação de deploy das automações feitas por cada setor.</li></ul></li><li><h3>Assistente de TI</h3><p class="timeline__meta">RGO Máquinas Industriais · jul 2023 a jun 2024</p><ul class="timeline__bullets"><li>Microsoft 365 e Active Directory: contas, licenças, permissões, caixas de e-mail.</li><li>Planejamento e suporte de infraestrutura: estações de trabalho, equipamentos e rede.</li><li>Implantação de softwares corporativos com suporte de primeiro e segundo nível.</li><li>Comecei a escrever software interno em paralelo ao suporte, e foi isso que levou à mudança para o time de desenvolvimento.</li></ul></li><li><h3>Técnico de Montagem · freelance</h3><p class="timeline__meta">AL Equipamentos · jun 2020 a fev 2022</p><ul class="timeline__bullets"><li>Leitura de projeto técnico e montagem de equipamentos para galpões de bovinos, suínos e aves.</li><li>Comissionamento e teste dos sistemas instalados contra a especificação antes da entrega.</li></ul></li><li class="is-current"><h3>Bacharelado em Engenharia de Software</h3><p class="timeline__meta">Instituto Infnet · 2025 a 2029</p><ul class="timeline__bullets"><li>100% de aproveitamento nos três semestres até aqui.</li></ul></li></ol>
+    <!-- A experiência como um git log: o comando em cima, os commits embaixo. -->
+    <p class="historico__comando" aria-hidden="true">
+      <span class="historico__cifrao">$</span>
+      <span data-t="experience.command">git log --graph --all</span><span class="caret"></span>
+    </p>
+    <ol class="historico" data-timeline><li class="commit is-current"><div class="commit__topo"><code class="commit__hash">dded7fe</code><span class="commit__ref">HEAD → main</span><span class="commit__data">jul 2024 até hoje</span></div><h3>Desenvolvedor de Sistemas</h3><p class="timeline__meta">RGO Máquinas Industriais</p><ul class="timeline__bullets"><li>Aplicações internas full-stack em .NET, C# e Blazor, ligadas direto no ERP da empresa, dando à gestão uma visão centralizada no lugar de seis planilhas.</li><li>Relatórios customizados e módulos de regra de negócio sobre os dados do ERP, substituindo rotinas manuais.</li><li>Montou do zero as pipelines de CI/CD no Azure DevOps; controle de versão no Azure DevOps e no GitHub.</li><li>Revisão de código, decisão de arquitetura e validação de deploy das automações feitas por cada setor.</li></ul></li><li class="commit"><div class="commit__topo"><code class="commit__hash">1041b3f</code><span class="commit__data">jul 2023 a jun 2024</span></div><h3>Assistente de TI</h3><p class="timeline__meta">RGO Máquinas Industriais</p><ul class="timeline__bullets"><li>Microsoft 365 e Active Directory: contas, licenças, permissões, caixas de e-mail.</li><li>Planejamento e suporte de infraestrutura: estações de trabalho, equipamentos e rede.</li><li>Implantação de softwares corporativos com suporte de primeiro e segundo nível.</li><li>Comecei a escrever software interno em paralelo ao suporte, e foi isso que levou à mudança para o time de desenvolvimento.</li></ul></li><li class="commit"><div class="commit__topo"><code class="commit__hash">9e317a3</code><span class="commit__data">jun 2020 a fev 2022</span></div><h3>Técnico de Montagem · freelance</h3><p class="timeline__meta">AL Equipamentos</p><ul class="timeline__bullets"><li>Leitura de projeto técnico e montagem de equipamentos para galpões de bovinos, suínos e aves.</li><li>Comissionamento e teste dos sistemas instalados contra a especificação antes da entrega.</li></ul></li><li class="commit is-current commit--ramo"><div class="commit__topo"><code class="commit__hash">06c2fa8</code><span class="commit__ref">branch: estudo</span><span class="commit__data">2025 a 2029</span></div><h3>Bacharelado em Engenharia de Software</h3><p class="timeline__meta">Instituto Infnet</p><ul class="timeline__bullets"><li>100% de aproveitamento nos três semestres até aqui.</li></ul></li></ol>
   </section>
 
   <section class="page" id="work">
@@ -303,7 +328,7 @@
       <div class="trombone__topo">
         <div>
           <h3 data-t="trombone.title">Vai, toca</h3>
-          <p class="muted" data-t="trombone.lead">Um trombone tenor em si bemol, sintetizado no seu navegador. Sete posições, quatro harmônicos, e o glissando vem de brinde.</p>
+          <p class="muted" data-t="trombone.lead">Um trombone tenor em si bemol, modelado em 3D nas proporções reais e sintetizado no seu navegador. Sete posições no espaçamento de verdade, quatro harmônicos, e o glissando vem de brinde.</p>
         </div>
         <p class="trombone__leitura" aria-live="off">
           <span data-t="trombone.position">Posição</span> <b data-trombone-posicao>1</b>
@@ -313,26 +338,67 @@
 
       <div class="trombone__vara" data-trombone-vara role="slider" tabindex="0"
            aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" data-label="trombone.slide" aria-label="Vara do trombone">
-        <svg viewBox="0 0 660 132" aria-hidden="true">
-          <!-- a parte que não se mexe: campana, bocal e os tubos internos -->
+        <!-- Um trombone tenor visto de lado, com a anatomia de verdade:
+             bocal -> tubo interno de baixo -> vara externa (a que anda) ->
+             tubo interno de cima -> volta de afinação, lá atrás -> campana,
+             que aponta pra frente.
+
+             A regra de quem toca: na 3ª posição a mão chega na borda da
+             campana. Por isso a borda fica em x=252, que é exatamente onde
+             a travessa da mão (x=196 na 1ª) está depois de andar duas
+             posições de 28. Os números das posições ficam embaixo da mão. -->
+        <svg viewBox="0 0 660 190" aria-hidden="true">
+          <defs>
+            <linearGradient id="trombone-latao" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffe7a0"/><stop offset="0.38" stop-color="#e9b84e"/>
+              <stop offset="0.78" stop-color="#b98522"/><stop offset="1" stop-color="#7c5710"/>
+            </linearGradient>
+            <radialGradient id="trombone-dentro" cx="0.35" cy="0.5" r="0.7">
+              <stop offset="0" stop-color="#1b1202"/><stop offset="0.7" stop-color="#6b4a10"/><stop offset="1" stop-color="#c9952f"/>
+            </radialGradient>
+          </defs>
+
+          <!-- a parte que não se mexe -->
           <g class="trombone__fixo">
-            <path class="trombone__campana" d="M150 34 C110 34 70 30 18 8 L18 68 C70 46 110 42 150 42 Z"/>
-            <path d="M150 38 H392" />
-            <path d="M118 94 H392" />
-            <path class="trombone__bocal" d="M96 86 L118 91 V97 L96 102 Z"/>
-            <path d="M150 38 V20 H250 V38" />
+            <!-- seção da campana: sai do tubo de cima, dá a volta de afinação e vem pra frente -->
+            <path class="trombone__latao" d="M150 96 H70 A28 28 0 0 1 70 40 H146"/>
+            <path class="trombone__reflexo" d="M72 37.500 H144 M72 93.500 H146"/>
+            <!-- o cone da campana, abrindo até a borda -->
+            <path class="trombone__campana" d="M140 36.500 C192 35 228 27 252 5 L252 75 C228 53 192 45 140 43.500 Z"/>
+            <path class="trombone__reflexo" d="M144 38 C192 36.500 226 30 247 12"/>
+            <!-- a boca, vista um pouco de lado: a borda, o interior e a garganta -->
+            <ellipse class="trombone__boca" cx="252" cy="40" rx="11" ry="35"/>
+            <ellipse class="trombone__garganta" cx="249" cy="40" rx="5" ry="16"/>
+            <!-- travessa que une os dois tubos da seção da campana -->
+            <path class="trombone__travessa" d="M104 40 V96"/>
+
+            <!-- tubos internos da vara: são cromados, e é o que aparece quando ela sai -->
+            <path d="M150 96 H392"/>
+            <path d="M120 152 H392"/>
+            <path class="trombone__travessa trombone__travessa--cromo" d="M162 96 V152"/>
+            <!-- as luvas onde a vara encaixa -->
+            <path class="trombone__luva" d="M144 96 H160 M144 152 H160"/>
+            <!-- bocal: a taça, a borda onde o lábio encosta e a haste -->
+            <path class="trombone__bocal" d="M122 149 L101 142 V162 L122 155 Z"/>
+            <path class="trombone__bocal-borda" d="M100 140 V164"/>
           </g>
-          <!-- a vara: é este grupo que anda -->
+
+          <!-- a vara externa: é este grupo que anda -->
           <g class="trombone__movel">
-            <path d="M176 38 H420 A28 28 0 0 1 420 94 H176" />
-            <path class="trombone__trava" d="M196 38 V94" />
-            <circle class="trombone__pega" cx="448" cy="66" r="9"/>
+            <path d="M176 96 H420 A28 28 0 0 1 420 152 H176"/>
+            <path class="trombone__reflexo" d="M178 93 H420 A31 31 0 0 1 447 108"/>
+            <path class="trombone__reflexo" d="M178 149 H418"/>
+            <!-- a travessa que a mão segura, e a chave d'água na curva -->
+            <path class="trombone__trava" d="M196 96 V152"/>
+            <path class="trombone__chave" d="M424 158 L437 166"/>
+            <circle class="trombone__pega" cx="196" cy="124" r="9"/>
           </g>
+
           <!-- as sete posições -->
           <g class="trombone__marcas">
-            <text x="448" y="126">1</text><text x="476" y="126">2</text><text x="504" y="126">3</text>
-            <text x="532" y="126">4</text><text x="560" y="126">5</text><text x="588" y="126">6</text>
-            <text x="616" y="126">7</text>
+            <text x="196" y="186">1</text><text x="224" y="186">2</text><text x="252" y="186">3</text>
+            <text x="280" y="186">4</text><text x="308" y="186">5</text><text x="336" y="186">6</text>
+            <text x="364" y="186">7</text>
           </g>
         </svg>
       </div>
@@ -345,7 +411,7 @@
           <button type="button" class="chip-btn" data-trombone-parcial="2">B♭3</button>
           <button type="button" class="chip-btn" data-trombone-parcial="3">D4</button>
         </div>
-        <p class="muted trombone__dica" data-t="trombone.hint">Segure a vara pra soprar e arraste pra mudar a nota. No teclado: foque nela, segure Espaço e mova com as setas.</p>
+        <p class="muted trombone__dica" data-t="trombone.hint">Segure a vara pra soprar e arraste pra mudar a nota. Arraste fora dela pra girar o trombone. No teclado: foque nele, segure Espaço, mova com as setas e gire com Q e E.</p>
       </div>
     </div>
   </section>
@@ -370,14 +436,6 @@
     <span data-t="footer.rights">© 2026 Guilherme Cassel</span> ·
     <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source">Código no GitHub</a>
   </p>
-  <!-- Um d20 no rodapé. Quem achou, achou. (assets/js/segredos.js) -->
-  <button class="d20" type="button" data-d20 data-label="eggs.roll" aria-label="Rolar um d20">
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-      <path d="M16 2 28.1 9v14L16 30 3.9 23V9Z"/>
-      <path d="M16 9.5 22.5 20.5h-13Z"/>
-      <path d="M16 2v7.5M3.9 9 16 9.5 28.1 9M9.500 20.5 3.9 23M22.5 20.5 28.1 23M9.5 20.5 16 30l6.5-9.5M3.9 9l5.6 11.5M28.1 9l-5.600 11.5"/>
-    </svg>
-  </button>
 </footer>
 
 <script src="/assets/js/site.js" defer></script>

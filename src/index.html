@@ -89,6 +89,14 @@
     </nav>
 
     <div class="topbar__actions">
+      <!-- O d20: rola e leva pra uma seção do site. (assets/js/segredos.js) -->
+      <button class="d20" type="button" data-d20 data-label="eggs.roll">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 2 28.1 9v14L16 30 3.9 23V9Z"/>
+          <path d="M16 9.5 22.5 20.5h-13Z"/>
+          <path d="M16 2v7.5M3.9 9 16 9.5 28.1 9M9.5 20.5 3.9 23M22.5 20.5 28.1 23M9.5 20.5 16 30l6.5-9.5M3.9 9l5.6 11.5M28.1 9l-5.6 11.5"/>
+        </svg>
+      </button>
       <a class="chip-btn" data-lang-toggle href="{{altUrl}}" hreflang="{{altLang}}" data-label="ui.langToggle">
         <span data-t="ui.langShort">PT</span>
       </a>
@@ -191,6 +199,18 @@
         </blockquote>
       </aside>
     </div>
+
+    <!-- O PC de verdade, que se desmonta conforme a página rola.
+         Quem desenha é o assets/js/pc.js, baixado sob demanda. -->
+    <div class="pc card" data-pc>
+      <div class="pc__texto">
+        <h3 data-t="pc.title"></h3>
+        <p class="muted" data-t="pc.lead"></p>
+        <ol class="pc__pecas" data-pc-pecas></ol>
+        <p class="pc__dica" data-t="pc.hint"></p>
+      </div>
+      <canvas class="pc__tela" data-pc-tela tabindex="0" role="img" data-label="pc.alt"></canvas>
+    </div>
   </section>
 
   <section class="page" id="jogo">
@@ -239,7 +259,12 @@
   <section class="page" id="experience">
     <p class="eyebrow" data-t="experience.eyebrow"></p>
     <h2 data-t="experience.title"></h2>
-    <ol class="timeline" data-timeline></ol>
+    <!-- A experiência como um git log: o comando em cima, os commits embaixo. -->
+    <p class="historico__comando" aria-hidden="true">
+      <span class="historico__cifrao">$</span>
+      <span data-t="experience.command"></span><span class="caret"></span>
+    </p>
+    <ol class="historico" data-timeline></ol>
   </section>
 
   <section class="page" id="work">
@@ -312,26 +337,67 @@
 
       <div class="trombone__vara" data-trombone-vara role="slider" tabindex="0"
            aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" data-label="trombone.slide">
-        <svg viewBox="0 0 660 132" aria-hidden="true">
-          <!-- a parte que não se mexe: campana, bocal e os tubos internos -->
+        <!-- Um trombone tenor visto de lado, com a anatomia de verdade:
+             bocal -> tubo interno de baixo -> vara externa (a que anda) ->
+             tubo interno de cima -> volta de afinação, lá atrás -> campana,
+             que aponta pra frente.
+
+             A regra de quem toca: na 3ª posição a mão chega na borda da
+             campana. Por isso a borda fica em x=252, que é exatamente onde
+             a travessa da mão (x=196 na 1ª) está depois de andar duas
+             posições de 28. Os números das posições ficam embaixo da mão. -->
+        <svg viewBox="0 0 660 190" aria-hidden="true">
+          <defs>
+            <linearGradient id="trombone-latao" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffe7a0"/><stop offset="0.38" stop-color="#e9b84e"/>
+              <stop offset="0.78" stop-color="#b98522"/><stop offset="1" stop-color="#7c5710"/>
+            </linearGradient>
+            <radialGradient id="trombone-dentro" cx="0.35" cy="0.5" r="0.7">
+              <stop offset="0" stop-color="#1b1202"/><stop offset="0.7" stop-color="#6b4a10"/><stop offset="1" stop-color="#c9952f"/>
+            </radialGradient>
+          </defs>
+
+          <!-- a parte que não se mexe -->
           <g class="trombone__fixo">
-            <path class="trombone__campana" d="M150 34 C110 34 70 30 18 8 L18 68 C70 46 110 42 150 42 Z"/>
-            <path d="M150 38 H392" />
-            <path d="M118 94 H392" />
-            <path class="trombone__bocal" d="M96 86 L118 91 V97 L96 102 Z"/>
-            <path d="M150 38 V20 H250 V38" />
+            <!-- seção da campana: sai do tubo de cima, dá a volta de afinação e vem pra frente -->
+            <path class="trombone__latao" d="M150 96 H70 A28 28 0 0 1 70 40 H146"/>
+            <path class="trombone__reflexo" d="M72 37.500 H144 M72 93.500 H146"/>
+            <!-- o cone da campana, abrindo até a borda -->
+            <path class="trombone__campana" d="M140 36.500 C192 35 228 27 252 5 L252 75 C228 53 192 45 140 43.500 Z"/>
+            <path class="trombone__reflexo" d="M144 38 C192 36.500 226 30 247 12"/>
+            <!-- a boca, vista um pouco de lado: a borda, o interior e a garganta -->
+            <ellipse class="trombone__boca" cx="252" cy="40" rx="11" ry="35"/>
+            <ellipse class="trombone__garganta" cx="249" cy="40" rx="5" ry="16"/>
+            <!-- travessa que une os dois tubos da seção da campana -->
+            <path class="trombone__travessa" d="M104 40 V96"/>
+
+            <!-- tubos internos da vara: são cromados, e é o que aparece quando ela sai -->
+            <path d="M150 96 H392"/>
+            <path d="M120 152 H392"/>
+            <path class="trombone__travessa trombone__travessa--cromo" d="M162 96 V152"/>
+            <!-- as luvas onde a vara encaixa -->
+            <path class="trombone__luva" d="M144 96 H160 M144 152 H160"/>
+            <!-- bocal: a taça, a borda onde o lábio encosta e a haste -->
+            <path class="trombone__bocal" d="M122 149 L101 142 V162 L122 155 Z"/>
+            <path class="trombone__bocal-borda" d="M100 140 V164"/>
           </g>
-          <!-- a vara: é este grupo que anda -->
+
+          <!-- a vara externa: é este grupo que anda -->
           <g class="trombone__movel">
-            <path d="M176 38 H420 A28 28 0 0 1 420 94 H176" />
-            <path class="trombone__trava" d="M196 38 V94" />
-            <circle class="trombone__pega" cx="448" cy="66" r="9"/>
+            <path d="M176 96 H420 A28 28 0 0 1 420 152 H176"/>
+            <path class="trombone__reflexo" d="M178 93 H420 A31 31 0 0 1 447 108"/>
+            <path class="trombone__reflexo" d="M178 149 H418"/>
+            <!-- a travessa que a mão segura, e a chave d'água na curva -->
+            <path class="trombone__trava" d="M196 96 V152"/>
+            <path class="trombone__chave" d="M424 158 L437 166"/>
+            <circle class="trombone__pega" cx="196" cy="124" r="9"/>
           </g>
+
           <!-- as sete posições -->
           <g class="trombone__marcas">
-            <text x="448" y="126">1</text><text x="476" y="126">2</text><text x="504" y="126">3</text>
-            <text x="532" y="126">4</text><text x="560" y="126">5</text><text x="588" y="126">6</text>
-            <text x="616" y="126">7</text>
+            <text x="196" y="186">1</text><text x="224" y="186">2</text><text x="252" y="186">3</text>
+            <text x="280" y="186">4</text><text x="308" y="186">5</text><text x="336" y="186">6</text>
+            <text x="364" y="186">7</text>
           </g>
         </svg>
       </div>
@@ -369,14 +435,6 @@
     <span data-t="footer.rights"></span> ·
     <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source"></a>
   </p>
-  <!-- Um d20 no rodapé. Quem achou, achou. (assets/js/segredos.js) -->
-  <button class="d20" type="button" data-d20 data-label="eggs.roll">
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-      <path d="M16 2 28.1 9v14L16 30 3.9 23V9Z"/>
-      <path d="M16 9.5 22.5 20.5h-13Z"/>
-      <path d="M16 2v7.5M3.9 9 16 9.5 28.1 9M9.500 20.5 3.9 23M22.5 20.5 28.1 23M9.5 20.5 16 30l6.5-9.5M3.9 9l5.6 11.5M28.1 9l-5.600 11.5"/>
-    </svg>
-  </button>
 </footer>
 
 <script src="/assets/js/site.js" defer></script>
