@@ -521,6 +521,40 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   }
 }
 
+/* ---------- Prévia do jogo no topo ----------------------------
+   Uma faixa baixa onde o jogo se joga sozinho. As bordas somem num
+   degradê pra ela parecer uma janela, não uma caixa. */
+.hero__previa {
+  position: relative; display: block;
+  margin-top: var(--s-10); height: 132px;
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  background: var(--bg-sunken); overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: border-color var(--d-fast) var(--e-out), transform var(--d-normal) var(--e-spring);
+}
+.hero__previa:hover { border-color: var(--brand-border); transform: translateY(-2px); }
+.hero__previa canvas {
+  display: block; width: 100%; height: 100%;
+  opacity: 0; transition: opacity var(--d-slow) var(--e-out);
+  -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent 96%);
+          mask-image: linear-gradient(90deg, #000 55%, transparent 96%);
+}
+.hero__previa.esta-pronta canvas { opacity: 0.85; }
+.hero__previa-chamada {
+  position: absolute; right: var(--s-4); bottom: var(--s-4);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--brand-border); border-radius: var(--r-full);
+  background: var(--bg-elevated); box-shadow: var(--sh-2);
+  font-size: var(--t-sm); font-weight: 650; color: var(--brand-text);
+}
+.hero__previa-chamada svg { width: 14px; height: 14px; fill: currentColor; }
+@media (max-width: 760px) {
+  .hero__previa { height: 110px; margin-top: var(--s-8); }
+  .hero__previa-chamada { right: var(--s-3); bottom: var(--s-3); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__previa:hover { transform: none; } }
+
 /* ---------- As fases do "Sobre" -------------------------------
    Cinco paradas ligadas por um fio. No celular viram uma coluna. */
 .so-desenhos { position: absolute; width: 0; height: 0; overflow: hidden; }

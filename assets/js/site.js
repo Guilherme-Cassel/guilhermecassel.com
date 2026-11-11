@@ -1048,6 +1048,19 @@
       }, calmo.matches ? 0 : 520);
     });
 
+    /* A prévia do topo é um link pro jogo. Clicar nela já abre a tela;
+       se já estava aberta, só rola até lá e começa de novo. */
+    $('[data-previa]')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!palco.classList.contains('esta-aberto')) {
+        $('#jogo')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+        $('[data-jogo-abrir]')?.click();
+        return;
+      }
+      $('.jogo__tela', palco).scrollIntoView({ behavior: calmo.matches ? 'auto' : 'smooth', block: 'center' });
+      $('[data-jogo-reiniciar]')?.click();
+    });
+
     document.addEventListener('jogo:dificil', (e) => {
       dificil = Boolean(e.detail);
       Object.assign(AJUSTE, NORMAL, dificil ? DIFICIL : {});
@@ -1127,6 +1140,8 @@
       olheiro.observe(el);
     };
 
+    // a prévia do jogo fica no topo, então entra logo
+    baixar('/assets/js/previa.js');
     quandoPerto('[data-trombone]', '/assets/js/trombone.js');
     quandoPerto('[data-senha]', '/assets/js/senha.js');
     quandoPerto('[data-work]', '/assets/js/demos.js');

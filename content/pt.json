@@ -127,7 +127,9 @@
     "overCaught": "Você foi substituído pela IA :(",
     "footnote": "Escrito na mão, em cerca de 200 linhas de JavaScript. Sem engine, sem sprite, e cada som é sintetizado na hora.",
     "soundToggle": "Ligar ou desligar o som",
-    "hard": "DIFÍCIL"
+    "hard": "DIFÍCIL",
+    "previewCta": "Acha que consegue fugir?",
+    "previewLabel": "Jogar o joguinho"
   },
   "experience": {
     "eyebrow": "Experiência",

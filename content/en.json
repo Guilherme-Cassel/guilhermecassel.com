@@ -127,7 +127,9 @@
     "overCaught": "You were replaced by AI :(",
     "footnote": "Written from scratch in about 200 lines of JavaScript. No engine, no sprites, and every sound is synthesised on the spot.",
     "soundToggle": "Sound on or off",
-    "hard": "HARD"
+    "hard": "HARD",
+    "previewCta": "Think you can outrun it?",
+    "previewLabel": "Play the game"
   },
   "experience": {
     "eyebrow": "Experience",

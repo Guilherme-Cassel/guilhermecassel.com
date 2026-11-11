@@ -44,6 +44,7 @@ assets/css/tokens.css   as decisões visuais: cor, raio, sombra, tipo, tempo
 assets/css/system.css   base e componentes reutilizáveis
 assets/css/site.css     o que só existe nesta página
 assets/js/site.js       todo o comportamento, comentado de ponta a ponta
+assets/js/previa.js     a janelinha do topo onde o jogo se joga sozinho
 assets/js/trombone.js   o trombone tocável (baixado só perto da seção de música)
 assets/js/senha.js      a demonstração do friendly-password-generator
 assets/js/segredos.js   o d20 do rodapé e o código Konami do modo difícil
