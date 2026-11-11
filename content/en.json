@@ -125,7 +125,8 @@
         "bullets": [
           "Microsoft 365 and Active Directory: accounts, licences, permissions, mailboxes.",
           "Infrastructure planning and support: workstations, equipment and network resources.",
-          "Rolled out business software with first- and second-level support."
+          "Rolled out business software with first- and second-level support.",
+          "Started writing internal software alongside the support work, which is what led to the move to the dev team."
         ]
       },
       {
@@ -309,7 +310,8 @@
     "photoCaption": "Banda Municipal de Serafina Corrêa"
   },
   "personal": {
-    "photoAlt": "Minha princesa Estela",
+    "photoAlt": "Two pairs of feet side by side in plush slippers, one black and one white, on a wooden floor.",
+    "photoTitle": "Minha princesa Estela",
     "photoCaption": "Non-negotiable dress code at home."
   },
   "contact": {
@@ -336,7 +338,7 @@
     ]
   },
   "footer": {
-    "built": "Handwritten HTML, CSS and JavaScript. No framework, no build step, no dependencies.",
+    "built": "Handwritten HTML, CSS and JavaScript. No framework, no dependencies.",
     "source": "Source on GitHub",
     "rights": "© {year} Guilherme Cassel"
   },

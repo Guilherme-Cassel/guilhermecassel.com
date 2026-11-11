@@ -125,7 +125,8 @@
         "bullets": [
           "Microsoft 365 e Active Directory: contas, licenças, permissões, caixas de e-mail.",
           "Planejamento e suporte de infraestrutura: estações de trabalho, equipamentos e rede.",
-          "Implantação de softwares corporativos com suporte de primeiro e segundo nível."
+          "Implantação de softwares corporativos com suporte de primeiro e segundo nível.",
+          "Comecei a escrever software interno em paralelo ao suporte, e foi isso que levou à mudança para o time de desenvolvimento."
         ]
       },
       {
@@ -309,7 +310,8 @@
     "photoCaption": "Banda Municipal de Serafina Corrêa"
   },
   "personal": {
-    "photoAlt": "Minha princesa Estela",
+    "photoAlt": "Dois pares de pés lado a lado de pantufas de pelúcia, uma preta e uma branca, num piso de madeira.",
+    "photoTitle": "Minha princesa Estela",
     "photoCaption": "Dress code inegociável aqui em casa."
   },
   "contact": {
@@ -336,7 +338,7 @@
     ]
   },
   "footer": {
-    "built": "HTML, CSS e JavaScript escritos na mão. Sem framework, sem build, sem dependência.",
+    "built": "HTML, CSS e JavaScript escritos na mão. Sem framework, sem dependência.",
     "source": "Código no GitHub",
     "rights": "© {year} Guilherme Cassel"
   },

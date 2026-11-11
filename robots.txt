@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# src/ é o molde do build, sem texto dentro. A página de verdade é a raiz.
+Disallow: /src/
+
+Sitemap: https://guilhermecassel.com/sitemap.xml

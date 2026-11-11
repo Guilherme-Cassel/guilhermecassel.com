@@ -64,6 +64,7 @@
               color var(--d-fast) var(--e-out),
               transform var(--d-fast) var(--e-spring);
 }
+a.chip-btn { text-decoration: none; color: inherit; }
 .chip-btn:hover { border-color: var(--brand-border); color: var(--brand-text); transform: translateY(-1px); }
 .chip-btn svg { width: 18px; height: 18px; }
 
@@ -225,6 +226,14 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   font-family: var(--font-mono); font-size: var(--t-lg);
   color: var(--text-muted); min-height: 1.6em;
   display: flex; align-items: baseline; gap: var(--s-2);
+}
+/* Texto e cursor correm juntos: quando a frase quebra de linha, o
+   cursor fica colado na última letra em vez de ir pro canto. */
+.hero__role-texto { min-width: 0; }
+/* No celular as frases mais longas ocupam duas linhas. A altura já
+   fica reservada pra página não pular a cada troca de frase. */
+@media (max-width: 640px) {
+  .hero__role { min-height: calc(2lh + 0.1em); }
 }
 .hero__role-prefix { color: var(--brand); font-weight: 600; }
 .caret {
@@ -432,10 +441,21 @@ h2 { margin-block: var(--s-2) var(--s-5); }
 .music__text p { color: var(--text-muted); }
 .music .photo img { box-shadow: var(--sh-3); }
 
+/* O número já vem escrito no HTML pra quem chega sem JavaScript. Com
+   JavaScript ele espera invisível até a contagem começar, senão
+   apareceria pronto, zeraria e subiria de novo. */
+.js [data-count]:not(.is-counting) { opacity: 0; }
+
 /* ---------- Contato ------------------------------------------ */
 .contact { padding: var(--s-10); border-color: var(--brand-border); }
 .contact__actions { margin-top: var(--s-6); gap: var(--s-5); }
 .contact__links { display: flex; gap: var(--s-4); flex-wrap: wrap; }
+/* No toque, o link ganha a altura mínima de um dedo (44px). */
+@media (pointer: coarse) {
+  .contact__links .link, .site-footer .link {
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+}
 
 .site-footer { padding-block: var(--s-10) var(--s-16); border-top: 1px solid var(--hairline); }
 .site-footer p { font-size: var(--t-sm); color: var(--text-muted); }

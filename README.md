@@ -2,9 +2,21 @@
 
 Site pessoal / portfólio de Guilherme Cassel, desenvolvedor .NET e músico.
 
-HTML, CSS e JavaScript escritos na mão. **Sem framework, sem build, sem
-dependência.** Não tem `npm install`, não tem bundle: o que está no repositório
-é exatamente o que o navegador recebe.
+HTML, CSS e JavaScript escritos na mão. **Sem framework, sem dependência.**
+Não tem `npm install`, não tem bundle: o que está no repositório é exatamente
+o que o navegador recebe.
+
+O único passo de geração é o `build.mjs`, que roda na sua máquina e grava o
+texto dos JSON dentro do HTML, uma página por idioma:
+
+```bash
+node build.mjs
+```
+
+Ele lê `src/index.html` (a estrutura) e `content/*.json` (o texto) e gera
+`index.html` (inglês), `pt/index.html` (português) e `sitemap.xml`. Os três
+vão pro repositório; o Cloudflare Pages só serve o que está commitado.
+**Mudou o JSON ou o `src/index.html`? Roda o build antes do commit.**
 
 ## Rodar local
 
@@ -19,7 +31,12 @@ cliques não funciona por causa da política de origem do navegador.
 ## Onde mexer em quê
 
 ```
-index.html              a estrutura da página. Não tem texto aqui dentro.
+src/index.html          a estrutura da página. Não tem texto aqui dentro.
+build.mjs               junta estrutura + texto e gera as páginas abaixo
+index.html              GERADO: a página em inglês. Não editar.
+pt/index.html           GERADO: a página em português. Não editar.
+sitemap.xml             GERADO.
+robots.txt              aponta o sitemap pros buscadores
 404.html                página de erro.
 content/en.json         TODO o texto em inglês  ← é aqui que se edita o site
 content/pt.json         TODO o texto em português
@@ -33,8 +50,11 @@ design-system/          Cadência: o guia visual vivo, abre no navegador
 _headers                cabeçalhos HTTP lidos pelo Cloudflare Pages
 ```
 
-**Para mudar uma frase do site, edite o JSON; dá pra fazer direto pela
-interface do GitHub, commitar, e em segundos está no ar.** As duas línguas têm
+**Para mudar uma frase do site, edite o JSON, rode `node build.mjs` e
+commite.** Editar só o JSON pela interface do GitHub ainda funciona pra quem
+abre o site no navegador (o `site.js` relê o JSON), mas o texto gravado no
+HTML, que é o que buscador e preview de link enxergam, só muda com o build.
+As duas línguas têm
 exatamente as mesmas chaves: criou chave nova num arquivo, cria no outro.
 
 A regra que mantém o visual coerente: se um valor não existe em `tokens.css`,
@@ -43,7 +63,7 @@ token?". Trocar o azul do site inteiro é editar uma linha.
 
 ## O que o site faz
 
-- **Bilíngue**: começa em inglês, botão `PT`/`EN` no topo, escolha lembrada no navegador.
+- **Bilíngue**: inglês em `/`, português em `/pt/`, cada um com seu endereço, `hreflang` e texto no HTML. O botão `PT`/`EN` no topo é um link entre os dois.
 - **Tema escuro e claro**: nasce escuro, e a escolha de quem clicar no botão fica lembrada no navegador.
 - **Idade e tempo de experiência se calculam sozinhos** a partir das datas em `content/*.json`. Nenhum número envelhece esquecido.
 - **O nome chega empurrado** por um extensor duplo de pistões a cada carregamento da página, com a mesma sequência do Minecraft: o da frente estende, o de trás empurra o da frente, os dois recolhem e o nome fica. As texturas são SVG desenhado à mão, não arquivo do jogo.
@@ -71,11 +91,12 @@ do `index.html`, antes do `</body>`:
         data-cf-beacon='{"token": "SEU_TOKEN"}'></script>
 ```
 
-## Por que o HTML parece vazio
+## Por que o `src/index.html` parece vazio
 
 Porque ele é só estrutura. Nenhum texto mora nele: cada elemento diz de onde
-vem o conteúdo pelo atributo `data-t`, e o `assets/js/site.js` preenche a
-partir do JSON do idioma. O `<script>` no `<head>` é inline e sem `defer` de
+vem o conteúdo pelo atributo `data-t`. O `build.mjs` preenche a partir do JSON
+de cada idioma na hora de gerar as páginas, e o `assets/js/site.js` faz o
+mesmo no navegador. O `<script>` no `<head>` é inline e sem `defer` de
 propósito, porque precisa aplicar tema e idioma antes da primeira pintura;
 qualquer outra coisa ali dentro faria a página piscar.
 

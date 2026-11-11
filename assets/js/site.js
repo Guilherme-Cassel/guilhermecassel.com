@@ -1,7 +1,12 @@
 /* =============================================================
    guilhermecassel.com, todo o comportamento do site.
-   Sem framework, sem build, sem dependência. Um arquivo, leitura
-   de cima pra baixo, cada bloco fazendo uma coisa só.
+   Sem framework, sem dependência. Um arquivo, leitura de cima pra
+   baixo, cada bloco fazendo uma coisa só.
+
+   O HTML já chega com o texto dentro (o build.mjs grava o JSON nele,
+   uma página por idioma: / em inglês, /pt/ em português). Este
+   arquivo refaz o conteúdo a partir do mesmo JSON e liga o
+   comportamento por cima.
 
    Regra que vale pro arquivo inteiro: o JS decide O QUE acontece,
    o CSS decide COMO aparece. Aqui dentro só trocamos classes e
@@ -31,7 +36,7 @@
     caminho.split('.').reduce((o, k) => (o == null ? undefined : o[k]), conteudo);
 
   async function carregarIdioma(novo) {
-    const resposta = await fetch(`content/${novo}.json`, { cache: 'no-cache' });
+    const resposta = await fetch(`/content/${novo}.json`, { cache: 'no-cache' });
     if (!resposta.ok) throw new Error(`content/${novo}.json: ${resposta.status}`);
     conteudo = await resposta.json();
     idioma = novo;
@@ -55,7 +60,11 @@
     // (o title junto é de propósito: é o texto que aparece no hover)
     $$('[data-alt]').forEach((el) => {
       const v = pegar(el.dataset.alt);
-      if (typeof v === 'string') { el.alt = v; el.title = v; }
+      if (typeof v !== 'string') return;
+      el.alt = v;
+      // data-title é opcional: um recado no hover diferente da descrição
+      const t = el.dataset.title && pegar(el.dataset.title);
+      el.title = typeof t === 'string' && t ? t : v;
     });
 
     // Nome acessível dos botões que só têm ícone
@@ -106,7 +115,8 @@
     alvo.replaceChildren(...conteudo.stats.map((s) => {
       const bloco = criar('div', 'stat');
       const valor = criar('p', 'stat__value');
-      const numero = criar('span', null, '0');
+      // O valor final fica escrito; a contagem só zera na hora de subir.
+      const numero = criar('span', null, String(calcularValor(s)));
       numero.dataset.count = String(calcularValor(s));
       valor.append(numero, document.createTextNode(s.suffix || ''));
       bloco.append(valor, criar('p', 'stat__label', s.label));
@@ -227,7 +237,10 @@
     // Quem pediu menos movimento recebe a frase pronta, sem teatro.
     if (calmo.matches) { alvo.textContent = frases[0]; return; }
 
-    let i = 0, pos = 0, apagando = false;
+    /* A primeira frase já vem escrita no HTML. Em vez de sumir com ela
+       de uma vez, a máquina começa parada no fim dela e segue o ciclo. */
+    const jaEscrita = alvo.textContent === frases[0];
+    let i = 0, pos = jaEscrita ? frases[0].length : 0, apagando = jaEscrita;
     const passo = () => {
       const frase = frases[i];
       pos += apagando ? -1 : 1;
@@ -238,8 +251,8 @@
       else if (apagando && pos === 0) { apagando = false; i = (i + 1) % frases.length; espera = 320; }
       timerEscrita = setTimeout(passo, espera);
     };
-    alvo.textContent = '';
-    timerEscrita = setTimeout(passo, 400);
+    if (!jaEscrita) alvo.textContent = '';
+    timerEscrita = setTimeout(passo, jaEscrita ? 2200 : 400);
   }
 
   /* ===========================================================
@@ -261,6 +274,7 @@
 
   function animarContador(el) {
     const alvo = Number(el.dataset.count);
+    el.classList.add('is-counting');
     const duracao = calmo.matches ? 0 : 900;
     const inicio = performance.now();
     const passo = (agora) => {
@@ -357,8 +371,11 @@
     localStorage.setItem('tema', proximo);
   });
 
-  $('[data-lang-toggle]')?.addEventListener('click', () => {
-    carregarIdioma(idioma === 'pt' ? 'en' : 'pt').catch(console.error);
+  /* Cada idioma é uma página (/ e /pt/), então o botão é um link de
+     verdade. Aqui só levamos junto a seção em que o leitor estava. */
+  $('[data-lang-toggle]')?.addEventListener('click', (e) => {
+    const atual = $('.nav a.is-current')?.getAttribute('href') || '';
+    if (atual) e.currentTarget.href = e.currentTarget.getAttribute('href').split('#')[0] + atual;
   });
 
   /* ===========================================================
@@ -1019,16 +1036,17 @@
      12. Partida
      =========================================================== */
   carregarIdioma(idioma)
-    // só depois do texto na tela, e só nesta primeira vez: trocar de
-    // idioma redesenha o conteúdo, mas não traz a máquina de volta
+    // só depois do texto na tela
     .then(() => { entregarONome(); prepararJogo(); })
     .catch((erro) => {
       console.error('Não consegui carregar o conteúdo:', erro);
       document.body.classList.add('sem-conteudo');
+      // sem JSON não tem contagem: mostra os números que vieram no HTML
+      $$('[data-count]').forEach((el) => el.classList.add('is-counting'));
     });
 
   console.log(
-    '%cGuilherme Cassel%c\nHTML, CSS e JS na mão. Sem framework, sem build, sem dependência.\n' +
+    '%cGuilherme Cassel%c\nHTML, CSS e JS na mão. Sem framework, sem dependência.\n' +
     'Se você chegou até aqui, provavelmente a gente ia se dar bem: ' + EMAIL,
     'font-size:18px;font-weight:700;color:#2563eb', 'font-size:12px;color:#6b7689'
   );

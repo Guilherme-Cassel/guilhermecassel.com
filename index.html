@@ -1,34 +1,37 @@
 <!doctype html>
-<html lang="en">
+<!-- GERADO por build.mjs a partir de src/index.html e content/en.json. Não edite este arquivo: edite a origem e rode "node build.mjs". -->
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guilherme Cassel · .NET Developer</title>
-<meta name="description" content="Full-stack .NET developer. I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline built from scratch.">
+<meta name="description" content="Full-stack .NET developer. I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline I built from scratch.">
 <link rel="canonical" href="https://guilhermecassel.com/">
+<link rel="alternate" hreflang="en" href="https://guilhermecassel.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://guilhermecassel.com/pt/">
+<link rel="alternate" hreflang="x-default" href="https://guilhermecassel.com/">
 <meta name="theme-color" content="#0a0e18">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://guilhermecassel.com/">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Guilherme Cassel · .NET Developer">
-<meta property="og:description" content="I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline built from scratch.">
+<meta property="og:description" content="Full-stack .NET developer. I build the internal systems an industrial machinery factory runs on: C#, Blazor, Entity Framework and a CI/CD pipeline I built from scratch.">
 <meta property="og:image" content="https://guilhermecassel.com/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/system.css">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/system.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 
 <script>
   (() => {
     const t = localStorage.getItem('tema');
     if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
-    const l = localStorage.getItem('idioma');
-    if (l === 'pt' || l === 'en') document.documentElement.dataset.lang = l;
     document.documentElement.classList.add('js');
   })();
 </script>
@@ -40,9 +43,11 @@
   "name": "Guilherme Cassel",
   "jobTitle": ".NET Developer",
   "url": "https://guilhermecassel.com",
+  "image": "https://guilhermecassel.com/assets/img/trombone.jpg",
   "sameAs": [
     "https://linkedin.com/in/guilhermecassel",
-    "https://github.com/Guilherme-Cassel"
+    "https://github.com/Guilherme-Cassel",
+    "https://www.instagram.com/guilherme.cassel2004"
   ],
   "knowsAbout": ["C#", ".NET", "Blazor", "Entity Framework Core", "Azure DevOps", "CI/CD"],
   "address": { "@type": "PostalAddress", "addressRegion": "RS", "addressCountry": "BR" }
@@ -80,15 +85,15 @@
       <a href="#experience" data-t="nav.experience">Experience</a>
       <a href="#work"       data-t="nav.work">Work</a>
       <a href="#stack"      data-t="nav.stack">Stack</a>
-      <a href="#music"      data-t="nav.music">Trombone</a>
+      <a href="#music"      data-t="nav.music">Music</a>
       <a href="#contact"    data-t="nav.contact">Contact</a>
     </nav>
 
     <div class="topbar__actions">
-      <button class="chip-btn" data-lang-toggle type="button" data-label="ui.langToggle">
+      <a class="chip-btn" data-lang-toggle href="/pt/" hreflang="pt-BR" data-label="ui.langToggle" aria-label="Ler em português">
         <span data-t="ui.langShort">PT</span>
-      </button>
-      <button class="theme-toggle" data-theme-toggle type="button" data-label="ui.themeToggle">
+      </a>
+      <button class="theme-toggle" data-theme-toggle type="button" data-label="ui.themeToggle" aria-label="Switch between light and dark">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
         </svg>
@@ -96,7 +101,7 @@
           <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
         </svg>
       </button>
-      <button class="chip-btn nav-toggle" data-nav-toggle type="button" data-label="ui.menu" aria-expanded="false" aria-controls="mobile-nav">
+      <button class="chip-btn nav-toggle" data-nav-toggle type="button" data-label="ui.menu" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
@@ -111,7 +116,7 @@
   <span id="top"></span>
 
   <section class="hero page">
-    <p class="eyebrow" data-t="hero.kicker"></p>
+    <p class="eyebrow" data-t="hero.kicker">Serafina Corrêa, Brazil · working full time in Guaporé, RS</p>
 
     <div class="hero__palco" data-palco>
       <div class="hero__trilho" data-trilho>
@@ -123,70 +128,70 @@
 
     <p class="hero__role" aria-hidden="true">
       <span class="hero__role-prefix">&gt;</span>
-      <span data-typewriter></span><span class="caret" aria-hidden="true"></span>
+      <span class="hero__role-texto"><span data-typewriter>full-stack .NET developer</span><span class="caret" aria-hidden="true"></span></span>
     </p>
 
-    <p class="lead hero__lead" data-t="hero.lead"></p>
+    <p class="lead hero__lead" data-t="hero.lead">I build the internal systems an industrial machinery factory actually runs on. Three years turning undocumented spreadsheets into software that nobody has to think about anymore. Planned first, built after, and built to last.</p>
 
     <div class="row hero__cta">
-      <a class="btn btn--magnetic" data-cv href="#">
-        <span data-t="hero.ctaResume"></span>
+      <a class="btn btn--magnetic" data-cv href="/resume/">
+        <span data-t="hero.ctaResume">Resume</span>
       </a>
-      <a class="btn btn--ghost btn--magnetic" data-link="linkedin" href="#" target="_blank" rel="noopener">
-        <span data-t="hero.ctaPrimary"></span>
+      <a class="btn btn--ghost btn--magnetic" data-link="linkedin" href="https://linkedin.com/in/guilhermecassel" target="_blank" rel="noopener">
+        <span data-t="hero.ctaPrimary">LinkedIn</span>
       </a>
-      <a class="btn btn--ghost btn--magnetic" data-link="github" href="#" target="_blank" rel="noopener">
-        <span data-t="hero.ctaSecondary"></span>
+      <a class="btn btn--ghost btn--magnetic" data-link="github" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener">
+        <span data-t="hero.ctaSecondary">GitHub</span>
       </a>
     </div>
   </section>
 
   <section class="page stats-section" aria-label="Numbers">
-    <div class="stats" data-stats></div>
+    <div class="stats" data-stats><div class="stat"><p class="stat__value"><span data-count="22">22</span></p><p class="stat__label">years old. Taking computers apart since I was 10.</p></div><div class="stat"><p class="stat__value"><span data-count="3">3</span>+</p><p class="stat__label">years writing software that runs in production.</p></div><div class="stat"><p class="stat__value"><span data-count="60">60</span>+</p><p class="stat__label">people using what I build, every single day.</p></div><div class="stat"><p class="stat__value"><span data-count="85">85</span></p><p class="stat__label">machines and 100+ accounts under my administration.</p></div></div>
   </section>
 
   <section class="page" id="about">
-    <p class="eyebrow" data-t="about.eyebrow"></p>
-    <h2 data-t="about.title"></h2>
+    <p class="eyebrow" data-t="about.eyebrow">About</p>
+    <h2 data-t="about.title">I got here by taking things apart</h2>
     <div class="about">
-      <div class="about__text" data-about-text></div>
+      <div class="about__text" data-about-text><p>Before it was C#, it was redstone contraptions in Minecraft. Same pleasure, smaller scale: watching something absurdly complex finally click. In 2022 I started writing add-ons and plugins for Minecraft Java, realised programming was exactly that feeling, and went looking for heavier languages. I landed on .NET in 2023 and never left.</p><p>Between 15 and 19 I worked freelance assembling dark poultry houses and swine facilities: feeders, nipple drinkers, curtains, emergency openings, misting systems, exhaust fans, plumbing, water tanks. Follow the manual, test the sensors, no duct tape, hand it over working. I may look like a skinny dev, but I know what it's like to be out in the field and have to solve it right there.</p><p>At RGO I started in IT support, because that was the opening. A year in, I could see how much of the company could be fixed with code, so I asked for the role change, and got it. Today I'm on the dev team: we review each other's code, decide architecture together, and nothing ships without every party signing off.</p><p>I use AI the same way I use anything else on the belt. Coding agents and LLMs speed up implementation, refactoring and documentation, and they only work because the spec exists before the first prompt: a model without a spec produces fast and gets thrown away fast. I review and answer for every line that reaches production. The tool speeds up the typing, not the decision.</p><p>Outside of that: video games, board games, D&amp;D, cooking something I've never made before, and an amount of coffee that would worry a doctor. I don't listen to music while I work; I end up listening to the music instead of working.</p></div>
       <aside class="about__aside">
         <figure class="photo photo--soft">
           <picture>
-            <source srcset="assets/img/pantufas.webp" type="image/webp">
-            <img src="assets/img/pantufas.jpg" width="1200" height="904"
-                 loading="lazy" decoding="async" data-alt="personal.photoAlt" alt="">
+            <source srcset="/assets/img/pantufas.webp" type="image/webp">
+            <img src="/assets/img/pantufas.jpg" width="1200" height="904"
+                 loading="lazy" decoding="async" data-alt="personal.photoAlt" data-title="personal.photoTitle" alt="Two pairs of feet side by side in plush slippers, one black and one white, on a wooden floor." title="Minha princesa Estela">
           </picture>
-          <figcaption data-t="personal.photoCaption"></figcaption>
+          <figcaption data-t="personal.photoCaption">Non-negotiable dress code at home.</figcaption>
         </figure>
         <blockquote class="motto">
-          <p data-t="about.motto"></p>
-          <cite data-t="about.mottoOriginal"></cite>
+          <p data-t="about.motto">Those who plan, build.</p>
+          <cite data-t="about.mottoOriginal">Quem planeja, constrói.</cite>
         </blockquote>
       </aside>
     </div>
   </section>
 
   <section class="page" id="jogo">
-    <p class="eyebrow" data-t="game.eyebrow"></p>
-    <h2 data-t="game.title"></h2>
-    <p class="lead" data-t="game.lead"></p>
+    <p class="eyebrow" data-t="game.eyebrow">Intermission</p>
+    <h2 data-t="game.title">Try to outrun it</h2>
+    <p class="lead" data-t="game.lead">An infinite runner with one rule: the thing behind you gets faster every second and never gets tired. Nobody wins this one. That is the joke, and also the point.</p>
 
     <p class="jogo__acao">
       <button class="btn btn--magnetic" type="button" data-jogo-abrir>
-        <span data-t="game.play"></span>
+        <span data-t="game.play">Play</span>
       </button>
     </p>
 
     <div class="jogo__palco" data-jogo-palco>
       <div class="jogo__tela">
-        <canvas data-jogo-canvas tabindex="0" role="img" data-label="game.title"></canvas>
+        <canvas data-jogo-canvas tabindex="0" role="img" data-label="game.title" aria-label="Try to outrun it"></canvas>
 
         <div class="jogo__hud">
-          <span><span data-t="game.score"></span> <b data-jogo-pontos>0</b></span>
-          <span><span data-t="game.best"></span> <b data-jogo-recorde>0</b></span>
+          <span><span data-t="game.score">Score</span> <b data-jogo-pontos>0</b></span>
+          <span><span data-t="game.best">Best</span> <b data-jogo-recorde>0</b></span>
           <button class="jogo__som" type="button" data-jogo-som
-                  data-label="game.soundToggle" aria-pressed="true">
+                  data-label="game.soundToggle" aria-label="Sound on or off" aria-pressed="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M11 5 6 9H3v6h3l5 4z"/>
               <path class="jogo__som-ondas" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>
@@ -195,95 +200,86 @@
           </button>
         </div>
 
-        <p class="jogo__dica" data-t="game.hint"></p>
+        <p class="jogo__dica" data-t="game.hint">Space, click or tap to flap</p>
 
         <div class="jogo__aviso" data-jogo-aviso hidden>
           <p data-jogo-mensagem></p>
           <button class="btn" type="button" data-jogo-reiniciar>
-            <span data-t="game.again"></span>
+            <span data-t="game.again">Try again</span>
           </button>
         </div>
       </div>
     </div>
 
-    <p class="muted jogo__nota" data-t="game.footnote"></p>
+    <p class="muted jogo__nota" data-t="game.footnote">Written from scratch in about 200 lines of JavaScript. No engine, no sprites, and every sound is synthesised on the spot.</p>
   </section>
 
   <section class="page" id="experience">
-    <p class="eyebrow" data-t="experience.eyebrow"></p>
-    <h2 data-t="experience.title"></h2>
-    <ol class="timeline" data-timeline></ol>
+    <p class="eyebrow" data-t="experience.eyebrow">Experience</p>
+    <h2 data-t="experience.title">Where I've been</h2>
+    <ol class="timeline" data-timeline><li class="is-current"><h3>Systems Developer</h3><p class="timeline__meta">RGO Máquinas Industriais · Jul 2024 to now</p><ul class="timeline__bullets"><li>Full-stack internal applications in .NET, C# and Blazor, wired straight into the company's ERP so management sees one centralised view instead of six spreadsheets.</li><li>Custom reports and business-rule modules on top of ERP data, replacing manual routines.</li><li>Built the company's CI/CD pipelines from scratch in Azure DevOps; source control across Azure DevOps and GitHub.</li><li>Code review, architecture decisions and deploy validation for the automations each department builds.</li></ul></li><li><h3>IT Assistant</h3><p class="timeline__meta">RGO Máquinas Industriais · Jul 2023 to Jun 2024</p><ul class="timeline__bullets"><li>Microsoft 365 and Active Directory: accounts, licences, permissions, mailboxes.</li><li>Infrastructure planning and support: workstations, equipment and network resources.</li><li>Rolled out business software with first- and second-level support.</li><li>Started writing internal software alongside the support work, which is what led to the move to the dev team.</li></ul></li><li><h3>Assembly Technician · freelance</h3><p class="timeline__meta">AL Equipamentos · Jun 2020 to Feb 2022</p><ul class="timeline__bullets"><li>Read technical drawings and assembled equipment for cattle, swine and poultry facilities.</li><li>Commissioned and tested installed systems against spec before handover.</li></ul></li><li class="is-current"><h3>B.Sc. Software Engineering</h3><p class="timeline__meta">Instituto Infnet · 2025 to 2029</p><ul class="timeline__bullets"><li>Straight 100% across all three semesters so far.</li></ul></li></ol>
   </section>
 
   <section class="page" id="work">
-    <p class="eyebrow" data-t="projects.eyebrow"></p>
-    <h2 data-t="projects.title"></h2>
-    <p class="lead" data-t="projects.lead"></p>
+    <p class="eyebrow" data-t="projects.eyebrow">Work</p>
+    <h2 data-t="projects.title">Things I built that people use</h2>
+    <p class="lead" data-t="projects.lead">Problem, decision, result. Everything below runs in production at an industrial machinery manufacturer.</p>
 
-    <div class="work" data-work></div>
+    <div class="work" data-work><article class="card card--interactive work-card"><div class="work-card__head"><h3>RgoSystem</h3><span class="badge badge--live">in production</span></div><dl><div><dt>The problem</dt><dd>The ERP doesn't cover everything the company needs. What it doesn't cover turns into spreadsheets and undocumented workflows that live in someone's head.</dd></div><div><dt>The call I made</dt><dd>Blazor Server, because the backend is already C# and I wasn't giving up end-to-end type safety to write a web app. Direct data access through EF Core instead of standing up an API microservice for a system that is centralised anyway; mapped to the last millimetre.</dd></div><div><dt>What changed</dt><dd>One place for the company's automations, with the workflows documented instead of improvised. Over 60 people use it daily, and it has never gone down on me.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor Server</span><span class="badge">EF Core</span><span class="badge">Oracle</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Protheus label printing</h3><span class="badge badge--live">in production</span></div><dl><div><dt>The problem</dt><dd>Labels for incoming and internal materials were written by hand. The pen smudged, the label faded, and the shop floor lost track of what was what.</dd></div><div><dt>The call I made</dt><dd>Pull the data straight from the ERP and drive Zebra and Elesys printers from .NET, so a label is a consequence of the record, not a second, manual truth.</dd></div><div><dt>What changed</dt><dd>Labels come out printed, current, adhesive and legible. Receiving and internal shipping stopped guessing.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Zebra</span><span class="badge">Elesys</span><span class="badge">ERP integration</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Microsoft 365 signature generator</h3><span class="badge badge--live">in production</span></div><dl><div><dt>The problem</dt><dd>Email signatures were made by hand, one image at a time: heavy, inconsistent and outdated the moment someone changed roles.</dd></div><div><dt>The call I made</dt><dd>Generate them from the source of truth. Microsoft Graph already knows every user's data, so .NET renders the image from it.</dd></div><div><dt>What changed</dt><dd>100% automated, standardised across the company, transparent, crisply rasterised, and under 20 KB each.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Microsoft Graph</span><span class="badge">Microsoft 365</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Azure delivery pipeline</h3><span class="badge badge--live">infrastructure</span></div><dl><div><dt>The problem</dt><dd>Applications were published by building to a folder and ClickOnce, tied to local infrastructure, with no repeatable path from commit to production.</dd></div><div><dt>The call I made</dt><dd>Put a new ASP.NET app on Azure and build the whole path properly: resource group, app service plan, Key Vault, virtual network, NAT gateway with a fixed outbound IP, custom domain, and GitHub Actions deploying per branch.</dd></div><div><dt>What changed</dt><dd>A commit to the right branch is a deploy. Nothing depends on a machine under someone's desk anymore.</dd></div></dl><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">ASP.NET</span><span class="badge">Key Vault</span></div></article></div>
 
-    <h3 class="side__title" data-t="projects.sideTitle"></h3>
-    <p class="muted" data-t="projects.sideLead"></p>
-    <div class="side" data-side></div>
+    <h3 class="side__title" data-t="projects.sideTitle">Side projects</h3>
+    <p class="muted" data-t="projects.sideLead">Small things I built for myself, out in the open on GitHub.</p>
+    <div class="side" data-side><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/friendly-password-generator" target="_blank" rel="noopener"><h4>friendly-password-generator</h4><p>Strong passwords you can actually dictate over the phone. Real words and symbols instead of unreadable noise, so long passwords stop being something you write on a sticky note.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Desktop</span></div></a><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/teacher-schoolar-management" target="_blank" rel="noopener"><h4>teacher-schoolar-management</h4><p>School management aimed at teachers: tracks how a student's behaviour over a term feeds into their final grade, putting the human and social side back into a number.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span></div></a><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/family-home-hub" target="_blank" rel="noopener"><h4>family-home-hub</h4><p>Household management for the family: chores, pantry stock, shopping forecasts and recipes, with a healthy amount of AI doing the boring parts.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">AI</span></div></a></div>
   </section>
 
   <section class="page" id="stack">
-    <p class="eyebrow" data-t="stack.eyebrow"></p>
-    <h2 data-t="stack.title"></h2>
-    <p class="lead" data-t="stack.lead"></p>
-    <div class="stack-groups" data-stack></div>
+    <p class="eyebrow" data-t="stack.eyebrow">Stack</p>
+    <h2 data-t="stack.title">What I work with</h2>
+    <p class="lead" data-t="stack.lead">No percentage bars. If it's on this list, I've shipped something with it.</p>
+    <div class="stack-groups" data-stack><div class="stack-group"><h3>Core</h3><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor</span><span class="badge">Entity Framework Core</span><span class="badge">Clean Architecture</span></div></div><div class="stack-group"><h3>Data</h3><div class="row"><span class="badge">PostgreSQL</span><span class="badge">Oracle Database</span><span class="badge">SQL Server</span><span class="badge">Redis</span></div></div><div class="stack-group"><h3>Shipping it</h3><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">CI/CD</span><span class="badge">Docker</span></div></div><div class="stack-group"><h3>Also on the belt</h3><div class="row"><span class="badge">Microsoft 365</span><span class="badge">Active Directory</span><span class="badge">Microsoft Graph</span><span class="badge">PowerShell</span><span class="badge">Claude Code</span><span class="badge">GitHub Copilot</span></div></div></div>
   </section>
 
   <section class="page" id="music">
     <div class="music">
       <div class="music__text">
-        <p class="eyebrow" data-t="music.eyebrow"></p>
-        <h2 data-t="music.title"></h2>
-        <div data-music-text></div>
+        <p class="eyebrow" data-t="music.eyebrow">Off the clock</p>
+        <h2 data-t="music.title">Eight years of music</h2>
+        <div data-music-text><p>I joined the town's municipal band because my friends were there, and stayed because of the music: theory, classical repertoire, big arrangements. Today I play with the Banda Municipal de Serafina Corrêa and the city's orchestra, and the nights that stuck were the Teutônia music festivals in 2022 and 2025, huge arrangements played alongside hundreds of other young musicians.</p><p>Trombone is the one I actually have mastery in. But a mouthpiece is a mouthpiece, so hand me any brass instrument and something comes out of it; I play basic transverse flute, I'm studying violin, and I'll try whatever instrument happens to be within reach.</p><p>Nothing here makes a sound unless you ask it to. The game below is the only thing with audio, and it has a mute button.</p><p>No autoplay, no sound on this page. You're welcome.</p></div>
       </div>
       <figure class="photo">
         <picture>
-          <source srcset="assets/img/trombone.webp" type="image/webp">
-          <img src="assets/img/trombone.jpg" width="1191" height="795"
-               loading="lazy" decoding="async" data-alt="music.photoAlt" alt="">
+          <source srcset="/assets/img/trombone.webp" type="image/webp">
+          <img src="/assets/img/trombone.jpg" width="1191" height="795"
+               loading="lazy" decoding="async" data-alt="music.photoAlt" alt="Guilherme playing trombone with the Banda Municipal, in uniform" title="Guilherme playing trombone with the Banda Municipal, in uniform">
         </picture>
-        <figcaption data-t="music.photoCaption"></figcaption>
+        <figcaption data-t="music.photoCaption">Banda Municipal de Serafina Corrêa</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="page" id="contact">
     <div class="contact card">
-      <p class="eyebrow" data-t="contact.eyebrow"></p>
-      <h2 data-t="contact.title"></h2>
-      <p class="lead" data-t="contact.lead"></p>
+      <p class="eyebrow" data-t="contact.eyebrow">Contact</p>
+      <h2 data-t="contact.title">Let's talk</h2>
+      <p class="lead" data-t="contact.lead">Backend and full-stack .NET work. The fastest way to reach me is email; I read everything.</p>
       <div class="row contact__actions">
-        <a class="btn btn--magnetic" data-email href="#"><span data-t="contact.emailLabel"></span></a>
-        <a class="btn btn--ghost" data-cv href="#"><span data-t="contact.cvLabel"></span></a>
-        <span class="contact__links" data-contact-links></span>
+        <a class="btn btn--magnetic" data-email href="#"><span data-t="contact.emailLabel">Send me an email</span></a>
+        <a class="btn btn--ghost" data-cv href="/resume/"><span data-t="contact.cvLabel">See my resume</span></a>
+        <span class="contact__links" data-contact-links><a class="link" href="https://linkedin.com/in/guilhermecassel" target="_blank" rel="noopener">LinkedIn</a><a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener">GitHub</a><a class="link" href="https://www.instagram.com/guilherme.cassel2004" target="_blank" rel="noopener">Instagram</a></span>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="page site-footer">
-  <p data-t="footer.built"></p>
+  <p data-t="footer.built">Handwritten HTML, CSS and JavaScript. No framework, no dependencies.</p>
   <p class="muted">
-    <span data-t="footer.rights"></span> ·
-    <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source"></a>
+    <span data-t="footer.rights">© 2026 Guilherme Cassel</span> ·
+    <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source">Source on GitHub</a>
   </p>
 </footer>
 
-<noscript>
-  <div class="page noscript">
-    <p><strong>Guilherme Cassel</strong>, full-stack .NET developer (C#, Blazor, Entity Framework, Azure DevOps).
-       This page loads its text with JavaScript. Reach me at
-       <a href="https://linkedin.com/in/guilhermecassel">LinkedIn</a> or
-       <a href="https://github.com/Guilherme-Cassel">GitHub</a>.</p>
-  </div>
-</noscript>
-
-<script src="assets/js/site.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </body>
 </html>
