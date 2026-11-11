@@ -78,7 +78,34 @@
       "Outside of that: video games, board games, D&D, cooking something I've never made before, and an amount of coffee that would worry a doctor. I don't listen to music while I work; I end up listening to the music instead of working."
     ],
     "motto": "Those who plan, build.",
-    "mottoOriginal": "Quem planeja, constrói."
+    "mottoOriginal": "Quem planeja, constrói.",
+    "phases": [
+      {
+        "icon": "redstone",
+        "when": "The start",
+        "label": "Redstone contraptions in Minecraft"
+      },
+      {
+        "icon": "campo",
+        "when": "2020",
+        "label": "Assembling poultry and swine houses"
+      },
+      {
+        "icon": "codigo",
+        "when": "2022",
+        "label": "First code: Minecraft add-ons"
+      },
+      {
+        "icon": "suporte",
+        "when": "2023",
+        "label": ".NET, and IT support at RGO"
+      },
+      {
+        "icon": "dev",
+        "when": "2024",
+        "label": "On the dev team"
+      }
+    ]
   },
   "game": {
     "eyebrow": "Intermission",
@@ -167,6 +194,7 @@
         "problem": "The ERP doesn't cover everything the company needs. What it doesn't cover turns into spreadsheets and undocumented workflows that live in someone's head.",
         "decision": "Blazor Server, because the backend is already C# and I wasn't giving up end-to-end type safety to write a web app. Direct data access through EF Core instead of standing up an API microservice for a system that is centralised anyway; mapped to the last millimetre.",
         "result": "One place for the company's automations, with the workflows documented instead of improvised. Over 60 people use it daily, and it has never gone down on me.",
+        "demo": "sheets",
         "stack": [
           "C#",
           ".NET",
@@ -181,6 +209,7 @@
         "problem": "Labels for incoming and internal materials were written by hand. The pen smudged, the label faded, and the shop floor lost track of what was what.",
         "decision": "Pull the data straight from the ERP and drive Zebra and Elesys printers from .NET, so a label is a consequence of the record, not a second, manual truth.",
         "result": "Labels come out printed, current, adhesive and legible. Receiving and internal shipping stopped guessing.",
+        "demo": "label",
         "stack": [
           "C#",
           ".NET",
@@ -195,6 +224,7 @@
         "problem": "Email signatures were made by hand, one image at a time: heavy, inconsistent and outdated the moment someone changed roles.",
         "decision": "Generate them from the source of truth. Microsoft Graph already knows every user's data, so .NET renders the image from it.",
         "result": "100% automated, standardised across the company, transparent, crisply rasterised, and under 20 KB each.",
+        "demo": "signature",
         "stack": [
           "C#",
           ".NET",
@@ -222,6 +252,7 @@
         "problem": "The Blazor Server app ran fine on Azure, but the performance was not good enough for daily use, and the cloud setup was dropped.",
         "decision": "Build it in-house from zero: a Linux VM on Hyper-V with Ubuntu Server, Coolify managing the Docker containers, and the company firewall reconfigured with an internal DMZ network that points at that VM and nothing else.",
         "result": "The app runs on the company's own servers, reachable from outside on the company domain, with external traffic confined to the DMZ. And it is fast: performance stopped being a topic.",
+        "demo": "net",
         "stack": [
           "Ubuntu Server",
           "Hyper-V",
@@ -266,6 +297,35 @@
         ]
       }
     ]
+  },
+  "demos": {
+    "label": {
+      "code": "Code",
+      "desc": "Description",
+      "lot": "Lot",
+      "defaultDesc": "STEEL SHEET 1020 3MM",
+      "zpl": "What goes to the printer (ZPL)",
+      "note": "Made-up data. In production the fields come from the ERP record; here you type them."
+    },
+    "signature": {
+      "name": "Name",
+      "role": "Role",
+      "defaultName": "Your Name",
+      "defaultRole": "Your role here",
+      "footer": "your-company.com",
+      "size": "Transparent PNG, {kb} KB",
+      "note": "The real one is rendered in .NET from Microsoft Graph data. This one is drawn in your browser to show the idea."
+    },
+    "sheets": {
+      "before": "Before: six spreadsheets, each with its own truth",
+      "after": "After: one panel",
+      "toggle": "Before / after"
+    },
+    "net": {
+      "lan": "Internal network",
+      "domain": "company domain",
+      "caption": "Whoever comes from outside reaches the app and stops at the DMZ."
+    }
   },
   "stack": {
     "eyebrow": "Stack",

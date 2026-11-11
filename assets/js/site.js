@@ -83,6 +83,7 @@
     montarParagrafos('[data-about-text]', conteudo.about.paragraphs);
     montarParagrafos('[data-music-text]', conteudo.music.paragraphs);
     montarLinhaDoTempo();
+    montarFases();
     montarProjetos();
     montarSideProjects();
     montarStack();
@@ -155,6 +156,39 @@
     }));
   }
 
+  /** As fases do "Sobre": redstone, campo, primeiro código, suporte, dev.
+      O desenho de cada ícone mora no <svg> escondido do HTML. */
+  function montarFases() {
+    const alvo = $('[data-fases]');
+    if (!alvo) return;
+    const SVG = 'http://www.w3.org/2000/svg';
+    alvo.replaceChildren(...conteudo.about.phases.map((f) => {
+      const li = criar('li', 'fase');
+      const icone = document.createElementNS(SVG, 'svg');
+      icone.setAttribute('class', 'fase__icone');
+      icone.setAttribute('viewBox', '0 0 24 24');
+      icone.setAttribute('aria-hidden', 'true');
+      const uso = document.createElementNS(SVG, 'use');
+      uso.setAttribute('href', `#fase-${f.icon}`);
+      icone.append(uso);
+      li.append(icone, criar('span', 'fase__quando', f.when), criar('span', 'fase__nome', f.label));
+      return li;
+    }));
+  }
+
+  /* O sinal de redstone só parte quando a linha está de fato na tela.
+     A classe fica na lista, não nas paradas, então refazer o conteúdo
+     não desliga o circuito. O movimento todo está no CSS. */
+  const fases = $('[data-fases]');
+  if (fases) {
+    const olheiroFases = new IntersectionObserver((entradas) => {
+      if (!entradas.some((e) => e.isIntersecting)) return;
+      olheiroFases.disconnect();
+      fases.classList.add('esta-ligada');
+    }, { threshold: 0.6 });
+    olheiroFases.observe(fases);
+  }
+
   function montarProjetos() {
     const alvo = $('[data-work]');
     if (!alvo) return;
@@ -169,7 +203,15 @@
         bloco.append(criar('dt', null, rotulos[k]), criar('dd', null, texto));
         dl.append(bloco);
       });
-      card.append(head, dl, chips(p.stack));
+      card.append(head, dl);
+      /* Projeto com "demo" no JSON ganha um espaço vazio marcado; quem
+         desenha a demonstração ali dentro é o assets/js/demos.js. */
+      if (p.demo) {
+        const demo = criar('div', 'work-card__demo');
+        demo.dataset.demo = p.demo;
+        card.append(demo);
+      }
+      card.append(chips(p.stack));
       return card;
     }));
   }
@@ -1087,6 +1129,7 @@
 
     quandoPerto('[data-trombone]', '/assets/js/trombone.js');
     quandoPerto('[data-senha]', '/assets/js/senha.js');
+    quandoPerto('[data-work]', '/assets/js/demos.js');
     // os segredos não têm pressa: entram quando o navegador estiver à toa
     (window.requestIdleCallback || setTimeout)(() => baixar('/assets/js/segredos.js'));
   }

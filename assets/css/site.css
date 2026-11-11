@@ -521,6 +521,211 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   }
 }
 
+/* ---------- As fases do "Sobre" -------------------------------
+   Cinco paradas ligadas por um fio. No celular viram uma coluna. */
+.so-desenhos { position: absolute; width: 0; height: 0; overflow: hidden; }
+.fases {
+  list-style: none; padding: 0; margin: var(--s-6) 0 var(--s-10);
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-4);
+}
+.fase { position: relative; display: grid; gap: var(--s-1); justify-items: start; align-content: start; }
+/* o fio que liga uma parada à próxima */
+.fase:not(:last-child)::after {
+  content: ""; position: absolute; top: 21px; left: 52px; right: calc(var(--s-4) * -1 + 8px);
+  height: 1px; background: var(--border-strong);
+}
+.fase__icone {
+  width: 44px; height: 44px; padding: 10px; margin-bottom: var(--s-2);
+  border: 1px solid var(--brand-border); border-radius: var(--r-md);
+  background: var(--brand-subtle); color: var(--brand-text);
+  fill: none; stroke: currentColor; stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.fase:last-child .fase__icone { background: var(--brand); color: var(--text-on-brand); border-color: transparent; }
+.fase__quando {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-subtle);
+}
+.fase__nome { font-size: var(--t-sm); font-weight: 600; line-height: var(--lh-snug); }
+
+/* A animação: um sinal de redstone percorrendo o circuito.
+
+   Quando a linha entra na tela (o site.js põe .esta-ligada), o sinal
+   sai da primeira parada e vai acendendo uma por uma: o fio se
+   desenha em vermelho-redstone, o ícone seguinte "recebe energia" e
+   cada um reage do seu jeito. Depois disso, de tempos em tempos um
+   pulso volta a correr o fio, como um relógio de redstone.
+
+   --i é a posição da parada (0 a 4) e decide o atraso de tudo. */
+.fase:nth-child(1) { --i: 0; } .fase:nth-child(2) { --i: 1; } .fase:nth-child(3) { --i: 2; }
+.fase:nth-child(4) { --i: 3; } .fase:nth-child(5) { --i: 4; }
+.fases { --passo: 420ms; --fio-vazio: scaleX(0); }
+
+/* o pulso que corre o fio depois que tudo acendeu */
+.fase:not(:last-child)::before {
+  content: ""; position: absolute; z-index: 1;
+  top: 18px; left: 52px; width: 7px; height: 7px; border-radius: 2px;
+  background: var(--accent-warm); box-shadow: 0 0 10px 2px var(--accent-warm);
+  opacity: 0;
+}
+.fase__icone { transition: transform var(--d-normal) var(--e-spring), box-shadow var(--d-normal) var(--e-out); }
+.fase:hover .fase__icone { transform: translateY(-3px) scale(1.06); box-shadow: 0 0 0 4px var(--brand-subtle); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* antes do sinal chegar: circuito desligado */
+  .js .fases:not(.esta-ligada) .fase__icone { opacity: 0.25; transform: scale(0.8); filter: grayscale(1); }
+  .js .fases:not(.esta-ligada) .fase__quando,
+  .js .fases:not(.esta-ligada) .fase__nome { opacity: 0; }
+  .js .fases:not(.esta-ligada) .fase::after { transform: var(--fio-vazio); }
+
+  .fase::after { transform-origin: left top; }
+
+  .esta-ligada .fase__icone {
+    animation: fase-liga 620ms var(--e-spring) backwards;
+    animation-delay: calc(var(--i) * var(--passo));
+  }
+  .esta-ligada .fase__quando, .esta-ligada .fase__nome {
+    animation: fase-texto 420ms var(--e-out) backwards;
+    animation-delay: calc(var(--i) * var(--passo) + 160ms);
+  }
+  .esta-ligada .fase::after {
+    animation: fase-fio var(--passo) linear backwards;
+    animation-delay: calc(var(--i) * var(--passo) + 200ms);
+  }
+  /* o relógio: um pulso a cada 7s, cada trecho no seu tempo */
+  .esta-ligada .fase:not(:last-child)::before {
+    animation: fase-pulso 7s linear infinite;
+    animation-delay: calc(3.2s + var(--i) * 380ms);
+  }
+
+  /* cada parada reage do seu jeito quando a energia chega */
+  .esta-ligada .fase:nth-child(1) .fase__icone use { animation: tocha 2.4s ease-in-out 600ms infinite; }
+  .esta-ligada .fase:nth-child(2) .fase__icone use {
+    transform-origin: 12px 12px;
+    animation: aperta 700ms var(--e-in-out) calc(1 * var(--passo) + 300ms) 2;
+  }
+  .esta-ligada .fase:nth-child(3) .fase__icone use { animation: pisca 520ms steps(2) calc(2 * var(--passo) + 300ms) 3; }
+  .esta-ligada .fase:nth-child(4) .fase__icone use { animation: liga-tela 900ms var(--e-out) calc(3 * var(--passo) + 200ms) both; }
+  .esta-ligada .fase:nth-child(5) .fase__icone use {
+    transform-origin: 12px 12px;
+    animation: empilha 800ms var(--e-spring) calc(4 * var(--passo) + 200ms) both;
+  }
+}
+
+@keyframes fase-liga {
+  0%   { opacity: 0.25; transform: scale(0.8); filter: grayscale(1); }
+  45%  { opacity: 1; transform: scale(1.18); filter: grayscale(0) drop-shadow(0 0 12px var(--accent-warm)); }
+  100% { opacity: 1; transform: scale(1); filter: none; }
+}
+@keyframes fase-texto {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+/* o fio nasce vermelho e aceso, e esfria até a cor de sempre */
+@keyframes fase-fio {
+  0%   { transform: var(--fio-vazio); background: var(--accent-warm); box-shadow: 0 0 8px 1px var(--accent-warm); }
+  70%  { transform: none; background: var(--accent-warm); box-shadow: 0 0 8px 1px var(--accent-warm); }
+  100% { transform: none; background: var(--border-strong); box-shadow: none; }
+}
+/* anda o trecho inteiro num pedacinho do ciclo e some o resto do tempo */
+@keyframes fase-pulso {
+  0%   { opacity: 0; left: 52px; }
+  1%   { opacity: 1; }
+  5%   { opacity: 1; left: calc(100% + var(--s-4) - 14px); }
+  6%, 100% { opacity: 0; left: calc(100% + var(--s-4) - 14px); }
+}
+@keyframes tocha   { 50% { filter: drop-shadow(0 0 3px var(--accent-warm)); stroke: var(--accent-warm); } }
+@keyframes aperta  { 50% { transform: rotate(-28deg); } }
+@keyframes pisca   { 50% { opacity: 0.15; } }
+@keyframes liga-tela { 0% { opacity: 0.2; } 30% { opacity: 1; filter: brightness(2.2); } 100% { opacity: 1; filter: none; } }
+@keyframes empilha { 0% { transform: translateY(-5px) scaleY(1.25); } 100% { transform: none; } }
+
+@media (max-width: 760px) {
+  /* em coluna o fio é vertical: cresce pra baixo, e o pulso fica de fora */
+  .fases { --fio-vazio: scaleY(0); }
+  .fase:not(:last-child)::before { display: none; }
+  .fases { grid-template-columns: 1fr; gap: var(--s-3); }
+  .fase { grid-template-columns: 44px 1fr; column-gap: var(--s-4); align-items: center; }
+  .fase__icone { grid-row: span 2; margin-bottom: 0; }
+  .fase__quando { align-self: end; }
+  .fase__nome { align-self: start; }
+  .fase:not(:last-child)::after { top: 46px; bottom: calc(var(--s-3) * -1 + 2px); left: 21px; right: auto; width: 1px; height: auto; }
+}
+
+/* ---------- Demonstrações dentro dos cards --------------------
+   O espaço nasce vazio e só ganha borda quando o demos.js preenche,
+   pra não sobrar uma caixa oca se o script não chegar. */
+.work-card__demo.esta-pronta {
+  margin-top: var(--s-5); padding: var(--s-4);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  background: var(--bg-sunken);
+  display: grid; gap: var(--s-3);
+}
+.demo__campos { display: grid; gap: var(--s-2); grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+.demo__campo { display: grid; gap: 2px; font-size: var(--t-xs); color: var(--text-subtle); min-width: 0; }
+.demo__campo .field { font-size: var(--t-sm); padding: 0.4em 0.6em; min-width: 0; width: 100%; }
+.demo__rotulo { font-size: var(--t-xs); color: var(--text-subtle); font-family: var(--font-mono); }
+.demo__nota { font-size: var(--t-xs); color: var(--text-subtle); }
+.demo__linha { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+.demo__linha .chip-btn { height: 32px; }
+.demo__codigo {
+  margin: 0; padding: var(--s-3); overflow-x: auto;
+  border-radius: var(--r-sm); background: var(--bg);
+  font-family: var(--font-mono); font-size: var(--t-xs); line-height: 1.5; color: var(--text-muted);
+}
+
+/* A etiqueta é papel: branca com tinta preta nos dois temas. */
+.etiqueta { display: block; width: 100%; max-width: 360px; height: auto; margin-inline: auto; }
+.etiqueta__papel { fill: #fff; stroke: #cbd5e1; }
+.etiqueta__barra { fill: #000; }
+.etiqueta text { fill: #000; font-family: var(--font-mono); }
+.etiqueta__titulo { font-size: 17px; font-weight: 600; font-family: var(--font-sans) !important; }
+.etiqueta__digitos { font-size: 12px; letter-spacing: 0.18em; }
+.etiqueta__lote { font-size: 12px; font-weight: 600; }
+.etiqueta__data { font-size: 11px; text-anchor: end; }
+
+/* E-mail tem fundo branco, então a prévia da assinatura também. */
+.assinatura__email { padding: var(--s-3); border-radius: var(--r-sm); background: #fff; overflow: hidden; }
+.assinatura__tela { display: block; width: 100%; max-width: 380px; height: auto; }
+
+/* Seis planilhas soltas que se juntam num painel. Quem troca o
+   estado é a classe .depois; o movimento é todo daqui. */
+.planilhas { display: block; width: 100%; height: auto; }
+.planilha {
+  transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) rotate(var(--giro));
+  transition: transform var(--d-slow) var(--e-in-out), opacity var(--d-slow) var(--e-out);
+}
+.planilha__folha { fill: var(--bg-elevated); stroke: var(--border-strong); }
+.planilha__topo { fill: var(--success); opacity: 0.75; }
+.planilha__grade { stroke: var(--border-strong); fill: none; }
+.depois .planilha { transform: translate(128px, 57px) rotate(0deg) scale(0.4); opacity: 0; }
+.painel { opacity: 0; transition: opacity var(--d-slow) var(--e-out); }
+.depois .painel { opacity: 1; transition-delay: 220ms; }
+.painel__fundo { fill: var(--bg-elevated); stroke: var(--brand-border); }
+.painel__topo { fill: var(--brand); }
+.painel__kpi { fill: var(--brand-subtle); stroke: var(--brand-border); }
+.painel__barra { fill: var(--brand); }
+
+/* O caminho de fora até a aplicação. */
+.rede { display: block; width: 100%; height: auto; }
+.rede__no rect { fill: var(--bg-elevated); stroke: var(--border-strong); }
+.rede__no text { fill: var(--text); font-size: 11px; font-family: var(--font-mono); text-anchor: middle; }
+.rede__no--firewall rect { stroke: var(--accent-warm); }
+.rede__no--app rect { fill: var(--brand); stroke: transparent; }
+.rede__no--app text { fill: var(--text-on-brand); }
+.rede__no--interno rect { stroke-dasharray: 3 3; }
+.rede__no--interno text { fill: var(--text-subtle); }
+.rede__dmz { fill: none; stroke: var(--brand-border); stroke-dasharray: 5 4; }
+.rede__titulo { fill: var(--brand-text); font-size: 11px; font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.12em; }
+.rede__legenda { fill: var(--text-subtle); font-size: 9.5px; font-family: var(--font-mono); text-anchor: middle; }
+.rede__fio { stroke: var(--border-strong); stroke-width: 1.5; fill: none; }
+.rede__fio--interno { stroke-dasharray: 3 3; }
+.rede__pacote { fill: var(--accent-gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  .planilha, .painel { transition: none; }
+}
+
 /* ---------- Trombone tocável ---------------------------------
    O desenho é um SVG de linhas grossas: os tubos são traço, não
    preenchimento. A vara anda pela variável --vara, em unidades do

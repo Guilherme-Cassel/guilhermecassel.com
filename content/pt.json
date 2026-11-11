@@ -78,7 +78,34 @@
       "Fora disso: videogame, jogo de tabuleiro, D&D, cozinhar alguma coisa que nunca fiz antes e uma quantidade de café que preocuparia um médico. Não ouço música enquanto trabalho; acabo prestando atenção na música em vez do trabalho."
     ],
     "motto": "Quem planeja, constrói.",
-    "mottoOriginal": ""
+    "mottoOriginal": "",
+    "phases": [
+      {
+        "icon": "redstone",
+        "when": "O começo",
+        "label": "Contraptions de redstone no Minecraft"
+      },
+      {
+        "icon": "campo",
+        "when": "2020",
+        "label": "Montagem de aviários e chiqueiros"
+      },
+      {
+        "icon": "codigo",
+        "when": "2022",
+        "label": "Primeiro código: add-ons de Minecraft"
+      },
+      {
+        "icon": "suporte",
+        "when": "2023",
+        "label": ".NET, e suporte de TI na RGO"
+      },
+      {
+        "icon": "dev",
+        "when": "2024",
+        "label": "No time de desenvolvimento"
+      }
+    ]
   },
   "game": {
     "eyebrow": "Intervalo",
@@ -167,6 +194,7 @@
         "problem": "O ERP não cobre tudo que a empresa precisa. E o que ele não cobre vira planilha e workflow não documentado que mora na cabeça de alguém.",
         "decision": "Blazor Server, porque o backend já é C# e eu não ia abrir mão de tipagem de ponta a ponta pra fazer web. Acesso a dados direto por EF Core em vez de levantar um microsserviço de API pra um sistema que já é centralizado; mapeado milimetricamente.",
         "result": "Um lugar só pras automações da empresa, com os workflows documentados em vez de improvisados. Mais de 60 pessoas usam todo dia, e ele nunca me deu problema.",
+        "demo": "sheets",
         "stack": [
           "C#",
           ".NET",
@@ -181,6 +209,7 @@
         "problem": "As etiquetas de material recebido e de movimentação interna eram escritas à mão. A caneta borrava, a etiqueta apagava e o chão de fábrica perdia o controle do que era o quê.",
         "decision": "Puxar a informação direto do ERP e falar com as impressoras Zebra e Elesys pelo .NET, pra que a etiqueta seja consequência do registro, e não uma segunda verdade escrita à mão.",
         "result": "Etiqueta sai impressa, atualizada, adesiva e legível. Estoque e expedição interna pararam de adivinhar.",
+        "demo": "label",
         "stack": [
           "C#",
           ".NET",
@@ -195,6 +224,7 @@
         "problem": "As assinaturas de e-mail eram feitas na mão, uma imagem por vez: pesadas, desalinhadas entre si e desatualizadas no instante em que alguém mudava de cargo.",
         "decision": "Gerar a partir da fonte da verdade. O Microsoft Graph já sabe os dados de cada usuário, então o .NET desenha a imagem a partir dele.",
         "result": "100% automatizado, padronizado na empresa inteira, transparente, com boa rasterização, e menos de 20 KB cada.",
+        "demo": "signature",
         "stack": [
           "C#",
           ".NET",
@@ -222,6 +252,7 @@
         "problem": "A aplicação Blazor Server rodava bem no Azure, mas a performance não era boa o bastante pro uso diário, e o ambiente em nuvem foi abandonado.",
         "decision": "Montar dentro de casa, do zero: uma VM Linux no Hyper-V com Ubuntu Server, o Coolify gerenciando os containers Docker, e o firewall da empresa reconfigurado com uma rede DMZ interna que aponta pra essa VM e pra mais nada.",
         "result": "A aplicação roda nos servidores da própria empresa, acessível de fora pelo domínio da empresa, com o tráfego externo confinado à DMZ. E é rápida: performance deixou de ser assunto.",
+        "demo": "net",
         "stack": [
           "Ubuntu Server",
           "Hyper-V",
@@ -266,6 +297,35 @@
         ]
       }
     ]
+  },
+  "demos": {
+    "label": {
+      "code": "Código",
+      "desc": "Descrição",
+      "lot": "Lote",
+      "defaultDesc": "CHAPA ACO 1020 3MM",
+      "zpl": "O que vai pra impressora (ZPL)",
+      "note": "Dados inventados. Em produção os campos vêm do registro no ERP; aqui é você quem digita."
+    },
+    "signature": {
+      "name": "Nome",
+      "role": "Cargo",
+      "defaultName": "Seu Nome",
+      "defaultRole": "Seu cargo aqui",
+      "footer": "sua-empresa.com.br",
+      "size": "PNG transparente, {kb} KB",
+      "note": "A de verdade é desenhada em .NET com os dados do Microsoft Graph. Esta é desenhada no seu navegador pra mostrar a ideia."
+    },
+    "sheets": {
+      "before": "Antes: seis planilhas, cada uma com a sua verdade",
+      "after": "Depois: um painel só",
+      "toggle": "Antes / depois"
+    },
+    "net": {
+      "lan": "Rede interna",
+      "domain": "domínio da empresa",
+      "caption": "Quem vem de fora chega na aplicação e para na DMZ."
+    }
   },
   "stack": {
     "eyebrow": "Stack",

@@ -152,6 +152,18 @@
   <section class="page" id="about">
     <p class="eyebrow" data-t="about.eyebrow"></p>
     <h2 data-t="about.title"></h2>
+
+    <!-- A história em cinco paradas, pra quem não vai ler os parágrafos.
+         Os desenhos ficam aqui; o texto de cada parada vem do JSON. -->
+    <svg class="so-desenhos" aria-hidden="true">
+      <symbol id="fase-redstone" viewBox="0 0 24 24"><path d="M12 12v8M9 20h6"/><rect x="9.500" y="5" width="5" height="7" rx="1"/><path d="M12 2v1M6.500 4.500l.8.8M17.500 4.500l-.8.8"/></symbol>
+      <symbol id="fase-campo" viewBox="0 0 24 24"><path d="M14.500 6.500a4 4 0 0 0 5 5L11 20a2.100 2.100 0 0 1-3-3Z"/><path d="M14.500 6.500 17 4l3 3-2.500 2.500"/></symbol>
+      <symbol id="fase-codigo" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.500 5l-3 14"/></symbol>
+      <symbol id="fase-suporte" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+      <symbol id="fase-dev" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    </svg>
+    <ol class="fases" data-fases></ol>
+
     <div class="about">
       <div class="about__text" data-about-text></div>
       <aside class="about__aside">

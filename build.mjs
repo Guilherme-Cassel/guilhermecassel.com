@@ -80,7 +80,13 @@ const blocos = (c) => ({
     `<div class="work-card__head">${tag('h3', '', p.name)}${tag('span', 'badge badge--live', p.tag)}</div>` +
     `<dl>${[['problem', p.problem], ['decision', p.decision], ['result', p.result]]
       .map(([k, texto]) => `<div>${tag('dt', '', c.projects.labels[k])}${tag('dd', '', texto)}</div>`).join('')}</dl>` +
+    (p.demo ? `<div class="work-card__demo" data-demo="${esc(p.demo)}"></div>` : '') +
     `${chips(p.stack)}</article>`
+  ).join(''),
+
+  'data-fases': c.about.phases.map((f) =>
+    `<li class="fase"><svg class="fase__icone" viewBox="0 0 24 24" aria-hidden="true"><use href="#fase-${esc(f.icon)}"/></svg>` +
+    `${tag('span', 'fase__quando', f.when)}${tag('span', 'fase__nome', f.label)}</li>`
   ).join(''),
 
   'data-side': c.projects.side.map((p) =>
