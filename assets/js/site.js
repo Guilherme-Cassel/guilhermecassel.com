@@ -719,11 +719,13 @@
     };
 
     /* ---------- Estado ---------------------------------------- */
-    const RECORDE = 'recorde-jogo';
+    // o modo difícil tem recorde próprio: não é justo comparar os dois
+    let dificil = false;
+    const chaveRecorde = () => (dificil ? 'recorde-jogo-dificil' : 'recorde-jogo');
     const VEZ_IA = 'jogo-ia';
     let aveY, aveV, canos, pontos, iaX, rodando, morto, ultimo, quadro;
     let contagem, iaTipo;
-    let recorde = Number(localStorage.getItem(RECORDE) || 0);
+    let recorde = Number(localStorage.getItem(chaveRecorde()) || 0);
     let vezIA = Number(localStorage.getItem(VEZ_IA) || 0);
 
     const AVE_X = 108, AVE_R = 13;
@@ -747,6 +749,12 @@
       espacoAperta: 1.8,
       vantagemIA: 0.15,  // a IA anda 15% mais rápido que você
     };
+
+    /* O modo difícil, liberado pelo código Konami (assets/js/segredos.js).
+       Só troca os números de cima: tudo mais rápido, buraco menor, e a
+       IA com quase o dobro da vantagem. */
+    const NORMAL = { ...AJUSTE };
+    const DIFICIL = { vel: 160, velSobe: 3.4, vao: 126, vaoMin: 98, espaco: 255, vantagemIA: 0.27 };
 
     const vaoDe = (p) => Math.max(AJUSTE.vaoMin, AJUSTE.vao - p * AJUSTE.vaoAperta);
     const velDe = (p) => AJUSTE.vel + p * AJUSTE.velSobe;
@@ -932,7 +940,7 @@
       cancelAnimationFrame(quadro);
       if (pontos > recorde) {
         recorde = pontos;
-        localStorage.setItem(RECORDE, String(recorde));
+        localStorage.setItem(chaveRecorde(), String(recorde));
         atualizarPlacar();
       }
       /* Bater sozinho tem várias respostas, e o jogo sorteia uma.
@@ -998,6 +1006,24 @@
       }, calmo.matches ? 0 : 520);
     });
 
+    document.addEventListener('jogo:dificil', (e) => {
+      dificil = Boolean(e.detail);
+      Object.assign(AJUSTE, NORMAL, dificil ? DIFICIL : {});
+      palco.classList.toggle('modo-dificil', dificil);
+      recorde = Number(localStorage.getItem(chaveRecorde()) || 0);
+
+      // tela ainda fechada: abrir já começa a partida no modo novo
+      if (!palco.classList.contains('esta-aberto')) { $('[data-jogo-abrir]')?.click(); return; }
+
+      cancelAnimationFrame(quadro);
+      aviso?.setAttribute('hidden', '');
+      $('.jogo__tela', palco).scrollIntoView({
+        behavior: calmo.matches ? 'auto' : 'smooth', block: 'center',
+      });
+      lerCores(); dimensionar(); reiniciar(); tocar();
+      tela.focus({ preventScroll: true });
+    });
+
     function abrirPalco() {
       const alvo = $('.jogo__tela', palco);
       palco.style.height = `${Math.round(alvo.getBoundingClientRect().width * (alvo.offsetHeight / alvo.offsetWidth || 7 / 16))}px`;
@@ -1033,11 +1059,44 @@
   }
 
   /* ===========================================================
-     12. Partida
+     12. Extras sob demanda
+
+     O trombone, a demonstração de senha e os segredos moram em
+     arquivos próprios. Cada um só é baixado quando a seção dele
+     chega perto da tela, então quem só lê o topo não paga por eles.
+     =========================================================== */
+  // os extras leem os textos do idioma atual por aqui
+  window.gcTexto = (caminho) => pegar(caminho);
+
+  function carregarExtras() {
+    const baixar = (src) => {
+      const s = criar('script');
+      s.src = src;
+      document.head.append(s);
+    };
+    const quandoPerto = (seletor, src) => {
+      const el = $(seletor);
+      if (!el) return;
+      const olheiro = new IntersectionObserver((entradas) => {
+        if (!entradas.some((e) => e.isIntersecting)) return;
+        olheiro.disconnect();
+        baixar(src);
+      }, { rootMargin: '600px 0px' });
+      olheiro.observe(el);
+    };
+
+    quandoPerto('[data-trombone]', '/assets/js/trombone.js');
+    quandoPerto('[data-senha]', '/assets/js/senha.js');
+    // os segredos não têm pressa: entram quando o navegador estiver à toa
+    (window.requestIdleCallback || setTimeout)(() => baixar('/assets/js/segredos.js'));
+  }
+
+  /* ===========================================================
+     13. Partida
      =========================================================== */
   carregarIdioma(idioma)
     // só depois do texto na tela
-    .then(() => { entregarONome(); prepararJogo(); })
+    .then(() => { entregarONome(); prepararJogo(); carregarExtras(); })
     .catch((erro) => {
       console.error('Não consegui carregar o conteúdo:', erro);
       document.body.classList.add('sem-conteudo');

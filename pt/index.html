@@ -190,6 +190,7 @@
         <div class="jogo__hud">
           <span><span data-t="game.score">Pontos</span> <b data-jogo-pontos>0</b></span>
           <span><span data-t="game.best">Recorde</span> <b data-jogo-recorde>0</b></span>
+          <span class="jogo__modo" data-t="game.hard">DIFÍCIL</span>
           <button class="jogo__som" type="button" data-jogo-som
                   data-label="game.soundToggle" aria-label="Ligar ou desligar o som" aria-pressed="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -223,20 +224,38 @@
   <section class="page" id="work">
     <p class="eyebrow" data-t="projects.eyebrow">Projetos</p>
     <h2 data-t="projects.title">Coisas que construí e que as pessoas usam</h2>
-    <p class="lead" data-t="projects.lead">Problema, decisão, resultado. Tudo aqui roda em produção numa indústria de máquinas.</p>
+    <p class="lead" data-t="projects.lead">Problema, decisão, resultado. Tudo abaixo foi construído pra produção numa indústria de máquinas.</p>
 
-    <div class="work" data-work><article class="card card--interactive work-card"><div class="work-card__head"><h3>RgoSystem</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>O ERP não cobre tudo que a empresa precisa. E o que ele não cobre vira planilha e workflow não documentado que mora na cabeça de alguém.</dd></div><div><dt>A decisão</dt><dd>Blazor Server, porque o backend já é C# e eu não ia abrir mão de tipagem de ponta a ponta pra fazer web. Acesso a dados direto por EF Core em vez de levantar um microsserviço de API pra um sistema que já é centralizado; mapeado milimetricamente.</dd></div><div><dt>O que mudou</dt><dd>Um lugar só pras automações da empresa, com os workflows documentados em vez de improvisados. Mais de 60 pessoas usam todo dia, e ele nunca me deu problema.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor Server</span><span class="badge">EF Core</span><span class="badge">Oracle</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Etiquetas Protheus</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>As etiquetas de material recebido e de movimentação interna eram escritas à mão. A caneta borrava, a etiqueta apagava e o chão de fábrica perdia o controle do que era o quê.</dd></div><div><dt>A decisão</dt><dd>Puxar a informação direto do ERP e falar com as impressoras Zebra e Elesys pelo .NET, pra que a etiqueta seja consequência do registro, e não uma segunda verdade escrita à mão.</dd></div><div><dt>O que mudou</dt><dd>Etiqueta sai impressa, atualizada, adesiva e legível. Estoque e expedição interna pararam de adivinhar.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Zebra</span><span class="badge">Elesys</span><span class="badge">integração com ERP</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Gerador de assinaturas Microsoft 365</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>As assinaturas de e-mail eram feitas na mão, uma imagem por vez: pesadas, desalinhadas entre si e desatualizadas no instante em que alguém mudava de cargo.</dd></div><div><dt>A decisão</dt><dd>Gerar a partir da fonte da verdade. O Microsoft Graph já sabe os dados de cada usuário, então o .NET desenha a imagem a partir dele.</dd></div><div><dt>O que mudou</dt><dd>100% automatizado, padronizado na empresa inteira, transparente, com boa rasterização, e menos de 20 KB cada.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Microsoft Graph</span><span class="badge">Microsoft 365</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Esteira de entrega no Azure</h3><span class="badge badge--live">infraestrutura</span></div><dl><div><dt>O problema</dt><dd>As aplicações eram publicadas com build em pasta e ClickOnce, presas à infraestrutura local, sem caminho repetível do commit até a produção.</dd></div><div><dt>A decisão</dt><dd>Subir uma aplicação ASP.NET nova no Azure e montar o caminho inteiro direito: grupo de recursos, plano de serviço, Key Vault, rede virtual, NAT gateway com IP de saída fixo, domínio personalizado e GitHub Actions publicando por branch.</dd></div><div><dt>O que mudou</dt><dd>Commit na branch certa é deploy. Nada mais depende de uma máquina embaixo da mesa de alguém.</dd></div></dl><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">ASP.NET</span><span class="badge">Key Vault</span></div></article></div>
+    <div class="work" data-work><article class="card card--interactive work-card"><div class="work-card__head"><h3>RgoSystem</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>O ERP não cobre tudo que a empresa precisa. E o que ele não cobre vira planilha e workflow não documentado que mora na cabeça de alguém.</dd></div><div><dt>A decisão</dt><dd>Blazor Server, porque o backend já é C# e eu não ia abrir mão de tipagem de ponta a ponta pra fazer web. Acesso a dados direto por EF Core em vez de levantar um microsserviço de API pra um sistema que já é centralizado; mapeado milimetricamente.</dd></div><div><dt>O que mudou</dt><dd>Um lugar só pras automações da empresa, com os workflows documentados em vez de improvisados. Mais de 60 pessoas usam todo dia, e ele nunca me deu problema.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor Server</span><span class="badge">EF Core</span><span class="badge">Oracle</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Etiquetas Protheus</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>As etiquetas de material recebido e de movimentação interna eram escritas à mão. A caneta borrava, a etiqueta apagava e o chão de fábrica perdia o controle do que era o quê.</dd></div><div><dt>A decisão</dt><dd>Puxar a informação direto do ERP e falar com as impressoras Zebra e Elesys pelo .NET, pra que a etiqueta seja consequência do registro, e não uma segunda verdade escrita à mão.</dd></div><div><dt>O que mudou</dt><dd>Etiqueta sai impressa, atualizada, adesiva e legível. Estoque e expedição interna pararam de adivinhar.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Zebra</span><span class="badge">Elesys</span><span class="badge">integração com ERP</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Gerador de assinaturas Microsoft 365</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>As assinaturas de e-mail eram feitas na mão, uma imagem por vez: pesadas, desalinhadas entre si e desatualizadas no instante em que alguém mudava de cargo.</dd></div><div><dt>A decisão</dt><dd>Gerar a partir da fonte da verdade. O Microsoft Graph já sabe os dados de cada usuário, então o .NET desenha a imagem a partir dele.</dd></div><div><dt>O que mudou</dt><dd>100% automatizado, padronizado na empresa inteira, transparente, com boa rasterização, e menos de 20 KB cada.</dd></div></dl><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Microsoft Graph</span><span class="badge">Microsoft 365</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Esteira de entrega no Azure</h3><span class="badge badge--live">infraestrutura</span></div><dl><div><dt>O problema</dt><dd>As aplicações eram publicadas com build em pasta e ClickOnce, presas à infraestrutura local, sem caminho repetível do commit até a produção.</dd></div><div><dt>A decisão</dt><dd>Subir uma aplicação ASP.NET nova no Azure e montar o caminho inteiro direito: grupo de recursos, plano de serviço, Key Vault, rede virtual, NAT gateway com IP de saída fixo, domínio personalizado e GitHub Actions publicando por branch.</dd></div><div><dt>O que mudou</dt><dd>Commit na branch certa virou deploy, de ponta a ponta. Funcionou, e mesmo assim saímos do Azure por performance; o que aprendi ali foi pro ambiente próprio do próximo card.</dd></div></dl><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">ASP.NET</span><span class="badge">Key Vault</span></div></article><article class="card card--interactive work-card"><div class="work-card__head"><h3>Plataforma própria numa DMZ</h3><span class="badge badge--live">em produção</span></div><dl><div><dt>O problema</dt><dd>A aplicação Blazor Server rodava bem no Azure, mas a performance não era boa o bastante pro uso diário, e o ambiente em nuvem foi abandonado.</dd></div><div><dt>A decisão</dt><dd>Montar dentro de casa, do zero: uma VM Linux no Hyper-V com Ubuntu Server, o Coolify gerenciando os containers Docker, e o firewall da empresa reconfigurado com uma rede DMZ interna que aponta pra essa VM e pra mais nada.</dd></div><div><dt>O que mudou</dt><dd>A aplicação roda nos servidores da própria empresa, acessível de fora pelo domínio da empresa, com o tráfego externo confinado à DMZ. E é rápida: performance deixou de ser assunto.</dd></div></dl><div class="row"><span class="badge">Ubuntu Server</span><span class="badge">Hyper-V</span><span class="badge">Coolify</span><span class="badge">Docker</span><span class="badge">Blazor Server</span><span class="badge">Firewall</span><span class="badge">DMZ</span></div></article></div>
 
     <h3 class="side__title" data-t="projects.sideTitle">Side projects</h3>
     <p class="muted" data-t="projects.sideLead">Coisas pequenas que fiz pra mim mesmo, abertas no GitHub.</p>
     <div class="side" data-side><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/friendly-password-generator" target="_blank" rel="noopener"><h4>friendly-password-generator</h4><p>Senha forte que dá pra ditar no telefone. Palavras reais e símbolos no lugar de ruído ilegível, pra senha grande parar de ser algo que se anota num post-it.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Desktop</span></div></a><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/teacher-schoolar-management" target="_blank" rel="noopener"><h4>teacher-schoolar-management</h4><p>Gestão escolar voltada ao professor: acompanha como o comportamento do aluno no período entra no fechamento da nota, devolvendo o fator humano e social pra dentro de um número.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span></div></a><a class="card card--interactive side-card" href="https://github.com/Guilherme-Cassel/family-home-hub" target="_blank" rel="noopener"><h4>family-home-hub</h4><p>Gestão domiciliar pra família: afazeres, estoque da casa, previsão de compras e receitas, com uma boa dose de IA fazendo a parte chata.</p><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">IA</span></div></a></div>
+
+    <!-- O friendly-password-generator pra experimentar aqui mesmo.
+         Comportamento em assets/js/senha.js, baixado sob demanda. -->
+    <div class="senha card" data-senha>
+      <h4 data-t="password.title">Experimenta aqui mesmo</h4>
+      <p class="muted" data-t="password.lead">O friendly-password-generator no seu navegador: palavras de verdade, que dá pra ditar, com símbolos e números no meio.</p>
+      <output class="senha__saida" data-senha-saida aria-live="polite"></output>
+      <div class="row senha__acoes">
+        <button class="btn" type="button" data-senha-gerar><span data-t="password.generate">Gerar</span></button>
+        <button class="btn btn--ghost" type="button" data-senha-copiar disabled><span data-t="password.copy">Copiar</span></button>
+        <label class="senha__palavras">
+          <span data-t="password.words">Palavras</span>
+          <input type="range" min="2" max="5" step="1" value="3" data-senha-palavras>
+          <b data-senha-n>3</b>
+        </label>
+      </div>
+      <p class="muted senha__nota" data-t="password.footnote">Mesmo padrão do original em C#, portado pra JavaScript. O aplicativo sorteia de um dicionário de 320 mil palavras; esta demonstração usa uma lista curta de 253, então é só demonstração. Gerada no seu navegador, não vai pra lugar nenhum.</p>
+    </div>
   </section>
 
   <section class="page" id="stack">
     <p class="eyebrow" data-t="stack.eyebrow">Stack</p>
     <h2 data-t="stack.title">Com o que eu trabalho</h2>
     <p class="lead" data-t="stack.lead">Sem barrinha de porcentagem. Se está nessa lista, é porque eu já entreguei coisa com isso.</p>
-    <div class="stack-groups" data-stack><div class="stack-group"><h3>Núcleo</h3><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor</span><span class="badge">Entity Framework Core</span><span class="badge">Clean Architecture</span></div></div><div class="stack-group"><h3>Dados</h3><div class="row"><span class="badge">PostgreSQL</span><span class="badge">Oracle Database</span><span class="badge">SQL Server</span><span class="badge">Redis</span></div></div><div class="stack-group"><h3>Pra colocar no ar</h3><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">CI/CD</span><span class="badge">Docker</span></div></div><div class="stack-group"><h3>Também no cinto</h3><div class="row"><span class="badge">Microsoft 365</span><span class="badge">Active Directory</span><span class="badge">Microsoft Graph</span><span class="badge">PowerShell</span><span class="badge">Claude Code</span><span class="badge">GitHub Copilot</span></div></div></div>
+    <div class="stack-groups" data-stack><div class="stack-group"><h3>Núcleo</h3><div class="row"><span class="badge">C#</span><span class="badge">.NET</span><span class="badge">Blazor</span><span class="badge">Entity Framework Core</span><span class="badge">Clean Architecture</span></div></div><div class="stack-group"><h3>Dados</h3><div class="row"><span class="badge">PostgreSQL</span><span class="badge">Oracle Database</span><span class="badge">SQL Server</span><span class="badge">Redis</span></div></div><div class="stack-group"><h3>Pra colocar no ar</h3><div class="row"><span class="badge">Azure</span><span class="badge">Azure DevOps</span><span class="badge">GitHub Actions</span><span class="badge">CI/CD</span><span class="badge">Docker</span><span class="badge">Coolify</span><span class="badge">Linux</span></div></div><div class="stack-group"><h3>Redes e segurança</h3><div class="row"><span class="badge">Firewalls</span><span class="badge">VLANs</span><span class="badge">DMZ</span><span class="badge">Switches e roteadores</span><span class="badge">Wi-Fi</span><span class="badge">Telefonia</span><span class="badge">Hyper-V</span></div></div><div class="stack-group"><h3>Também no cinto</h3><div class="row"><span class="badge">Microsoft 365</span><span class="badge">Active Directory</span><span class="badge">Microsoft Graph</span><span class="badge">PowerShell</span><span class="badge">Claude Code</span><span class="badge">GitHub Copilot</span></div></div></div>
   </section>
 
   <section class="page" id="music">
@@ -244,7 +263,7 @@
       <div class="music__text">
         <p class="eyebrow" data-t="music.eyebrow">Fora do expediente</p>
         <h2 data-t="music.title">Oito anos de música</h2>
-        <div data-music-text><p>Entrei na banda municipal porque meus amigos estavam lá, e fiquei pela música: teoria, repertório clássico, arranjo grande. Hoje toco na Banda Municipal de Serafina Corrêa e na orquestra da cidade, e as noites que ficaram na memória foram os festivais de música de Teutônia em 2022 e 2025, arranjos enormes tocados ao lado de centenas de outros jovens músicos.</p><p>Trombone é onde eu realmente tenho maestria. Mas bocal é bocal, então me dá qualquer instrumento de sopro metálico que sai alguma coisa; toco o básico de flauta transversal, estudo violino, e experimento qualquer instrumento que aparecer pela frente.</p><p>Nada aqui faz barulho sem você pedir. O joguinho mais abaixo é a única coisa com som, e tem botão de mudo.</p><p>Sem autoplay, sem som nenhum nesta página. De nada.</p></div>
+        <div data-music-text><p>Entrei na banda municipal porque meus amigos estavam lá, e fiquei pela música: teoria, repertório clássico, arranjo grande. Hoje toco na Banda Municipal de Serafina Corrêa e na orquestra da cidade, e as noites que ficaram na memória foram os festivais de música de Teutônia em 2022 e 2025, arranjos enormes tocados ao lado de centenas de outros jovens músicos.</p><p>Trombone é onde eu realmente tenho maestria. Mas bocal é bocal, então me dá qualquer instrumento de sopro metálico que sai alguma coisa; toco o básico de flauta transversal, estudo violino, e experimento qualquer instrumento que aparecer pela frente.</p><p>Nada aqui faz barulho sem você pedir. O trombone aqui embaixo só toca enquanto você segura, e o joguinho tem botão de mudo.</p><p>Sem autoplay. De nada.</p></div>
       </div>
       <figure class="photo">
         <picture>
@@ -254,6 +273,58 @@
         </picture>
         <figcaption data-t="music.photoCaption">Banda Municipal de Serafina Corrêa</figcaption>
       </figure>
+    </div>
+
+    <!-- O trombone tocável. O comportamento mora em assets/js/trombone.js,
+         que só é baixado quando esta seção chega perto da tela. -->
+    <div class="trombone card" data-trombone>
+      <div class="trombone__topo">
+        <div>
+          <h3 data-t="trombone.title">Vai, toca</h3>
+          <p class="muted" data-t="trombone.lead">Um trombone tenor em si bemol, sintetizado no seu navegador. Sete posições, quatro harmônicos, e o glissando vem de brinde.</p>
+        </div>
+        <p class="trombone__leitura" aria-live="off">
+          <span data-t="trombone.position">Posição</span> <b data-trombone-posicao>1</b>
+          <span class="trombone__nota" data-trombone-nota>F3</span>
+        </p>
+      </div>
+
+      <div class="trombone__vara" data-trombone-vara role="slider" tabindex="0"
+           aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" data-label="trombone.slide" aria-label="Vara do trombone">
+        <svg viewBox="0 0 660 132" aria-hidden="true">
+          <!-- a parte que não se mexe: campana, bocal e os tubos internos -->
+          <g class="trombone__fixo">
+            <path class="trombone__campana" d="M150 34 C110 34 70 30 18 8 L18 68 C70 46 110 42 150 42 Z"/>
+            <path d="M150 38 H392" />
+            <path d="M118 94 H392" />
+            <path class="trombone__bocal" d="M96 86 L118 91 V97 L96 102 Z"/>
+            <path d="M150 38 V20 H250 V38" />
+          </g>
+          <!-- a vara: é este grupo que anda -->
+          <g class="trombone__movel">
+            <path d="M176 38 H420 A28 28 0 0 1 420 94 H176" />
+            <path class="trombone__trava" d="M196 38 V94" />
+            <circle class="trombone__pega" cx="448" cy="66" r="9"/>
+          </g>
+          <!-- as sete posições -->
+          <g class="trombone__marcas">
+            <text x="448" y="126">1</text><text x="476" y="126">2</text><text x="504" y="126">3</text>
+            <text x="532" y="126">4</text><text x="560" y="126">5</text><text x="588" y="126">6</text>
+            <text x="616" y="126">7</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="trombone__base">
+        <div class="trombone__parciais" role="group" data-label="trombone.partials" aria-label="Harmônico">
+          <span class="muted" data-t="trombone.partials">Harmônico</span>
+          <button type="button" class="chip-btn" data-trombone-parcial="0">B♭2</button>
+          <button type="button" class="chip-btn" data-trombone-parcial="1" aria-pressed="true">F3</button>
+          <button type="button" class="chip-btn" data-trombone-parcial="2">B♭3</button>
+          <button type="button" class="chip-btn" data-trombone-parcial="3">D4</button>
+        </div>
+        <p class="muted trombone__dica" data-t="trombone.hint">Segure a vara pra soprar e arraste pra mudar a nota. No teclado: foque nela, segure Espaço e mova com as setas.</p>
+      </div>
     </div>
   </section>
 
@@ -277,6 +348,14 @@
     <span data-t="footer.rights">© 2026 Guilherme Cassel</span> ·
     <a class="link" href="https://github.com/Guilherme-Cassel" target="_blank" rel="noopener" data-t="footer.source">Código no GitHub</a>
   </p>
+  <!-- Um d20 no rodapé. Quem achou, achou. (assets/js/segredos.js) -->
+  <button class="d20" type="button" data-d20 data-label="eggs.roll" aria-label="Rolar um d20">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16 2 28.1 9v14L16 30 3.9 23V9Z"/>
+      <path d="M16 9.5 22.5 20.5h-13Z"/>
+      <path d="M16 2v7.5M3.9 9 16 9.5 28.1 9M9.500 20.5 3.9 23M22.5 20.5 28.1 23M9.5 20.5 16 30l6.5-9.5M3.9 9l5.6 11.5M28.1 9l-5.600 11.5"/>
+    </svg>
+  </button>
 </footer>
 
 <script src="/assets/js/site.js" defer></script>

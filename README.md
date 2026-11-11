@@ -44,6 +44,9 @@ assets/css/tokens.css   as decisões visuais: cor, raio, sombra, tipo, tempo
 assets/css/system.css   base e componentes reutilizáveis
 assets/css/site.css     o que só existe nesta página
 assets/js/site.js       todo o comportamento, comentado de ponta a ponta
+assets/js/trombone.js   o trombone tocável (baixado só perto da seção de música)
+assets/js/senha.js      a demonstração do friendly-password-generator
+assets/js/segredos.js   o d20 do rodapé e o código Konami do modo difícil
 assets/img/             fotos já otimizadas (webp + jpg de reserva)
 design-system/          Cadência: o guia visual vivo, abre no navegador
 .github/workflows/      a esteira que publica no Cloudflare Pages

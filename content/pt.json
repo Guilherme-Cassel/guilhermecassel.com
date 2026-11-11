@@ -99,7 +99,8 @@
     ],
     "overCaught": "Você foi substituído pela IA :(",
     "footnote": "Escrito na mão, em cerca de 200 linhas de JavaScript. Sem engine, sem sprite, e cada som é sintetizado na hora.",
-    "soundToggle": "Ligar ou desligar o som"
+    "soundToggle": "Ligar ou desligar o som",
+    "hard": "DIFÍCIL"
   },
   "experience": {
     "eyebrow": "Experiência",
@@ -153,7 +154,7 @@
   "projects": {
     "eyebrow": "Projetos",
     "title": "Coisas que construí e que as pessoas usam",
-    "lead": "Problema, decisão, resultado. Tudo aqui roda em produção numa indústria de máquinas.",
+    "lead": "Problema, decisão, resultado. Tudo abaixo foi construído pra produção numa indústria de máquinas.",
     "labels": {
       "problem": "O problema",
       "decision": "A decisão",
@@ -206,13 +207,29 @@
         "tag": "infraestrutura",
         "problem": "As aplicações eram publicadas com build em pasta e ClickOnce, presas à infraestrutura local, sem caminho repetível do commit até a produção.",
         "decision": "Subir uma aplicação ASP.NET nova no Azure e montar o caminho inteiro direito: grupo de recursos, plano de serviço, Key Vault, rede virtual, NAT gateway com IP de saída fixo, domínio personalizado e GitHub Actions publicando por branch.",
-        "result": "Commit na branch certa é deploy. Nada mais depende de uma máquina embaixo da mesa de alguém.",
+        "result": "Commit na branch certa virou deploy, de ponta a ponta. Funcionou, e mesmo assim saímos do Azure por performance; o que aprendi ali foi pro ambiente próprio do próximo card.",
         "stack": [
           "Azure",
           "Azure DevOps",
           "GitHub Actions",
           "ASP.NET",
           "Key Vault"
+        ]
+      },
+      {
+        "name": "Plataforma própria numa DMZ",
+        "tag": "em produção",
+        "problem": "A aplicação Blazor Server rodava bem no Azure, mas a performance não era boa o bastante pro uso diário, e o ambiente em nuvem foi abandonado.",
+        "decision": "Montar dentro de casa, do zero: uma VM Linux no Hyper-V com Ubuntu Server, o Coolify gerenciando os containers Docker, e o firewall da empresa reconfigurado com uma rede DMZ interna que aponta pra essa VM e pra mais nada.",
+        "result": "A aplicação roda nos servidores da própria empresa, acessível de fora pelo domínio da empresa, com o tráfego externo confinado à DMZ. E é rápida: performance deixou de ser assunto.",
+        "stack": [
+          "Ubuntu Server",
+          "Hyper-V",
+          "Coolify",
+          "Docker",
+          "Blazor Server",
+          "Firewall",
+          "DMZ"
         ]
       }
     ],
@@ -281,7 +298,21 @@
           "Azure DevOps",
           "GitHub Actions",
           "CI/CD",
-          "Docker"
+          "Docker",
+          "Coolify",
+          "Linux"
+        ]
+      },
+      {
+        "name": "Redes e segurança",
+        "items": [
+          "Firewalls",
+          "VLANs",
+          "DMZ",
+          "Switches e roteadores",
+          "Wi-Fi",
+          "Telefonia",
+          "Hyper-V"
         ]
       },
       {
@@ -303,11 +334,36 @@
     "paragraphs": [
       "Entrei na banda municipal porque meus amigos estavam lá, e fiquei pela música: teoria, repertório clássico, arranjo grande. Hoje toco na Banda Municipal de Serafina Corrêa e na orquestra da cidade, e as noites que ficaram na memória foram os festivais de música de Teutônia em 2022 e 2025, arranjos enormes tocados ao lado de centenas de outros jovens músicos.",
       "Trombone é onde eu realmente tenho maestria. Mas bocal é bocal, então me dá qualquer instrumento de sopro metálico que sai alguma coisa; toco o básico de flauta transversal, estudo violino, e experimento qualquer instrumento que aparecer pela frente.",
-      "Nada aqui faz barulho sem você pedir. O joguinho mais abaixo é a única coisa com som, e tem botão de mudo.",
-      "Sem autoplay, sem som nenhum nesta página. De nada."
+      "Nada aqui faz barulho sem você pedir. O trombone aqui embaixo só toca enquanto você segura, e o joguinho tem botão de mudo.",
+      "Sem autoplay. De nada."
     ],
     "photoAlt": "Guilherme tocando trombone na Banda Municipal, fardado",
     "photoCaption": "Banda Municipal de Serafina Corrêa"
+  },
+  "trombone": {
+    "title": "Vai, toca",
+    "lead": "Um trombone tenor em si bemol, sintetizado no seu navegador. Sete posições, quatro harmônicos, e o glissando vem de brinde.",
+    "position": "Posição",
+    "partials": "Harmônico",
+    "slide": "Vara do trombone",
+    "hint": "Segure a vara pra soprar e arraste pra mudar a nota. No teclado: foque nela, segure Espaço e mova com as setas."
+  },
+  "password": {
+    "title": "Experimenta aqui mesmo",
+    "lead": "O friendly-password-generator no seu navegador: palavras de verdade, que dá pra ditar, com símbolos e números no meio.",
+    "generate": "Gerar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "words": "Palavras",
+    "footnote": "Mesmo padrão do original em C#, portado pra JavaScript. O aplicativo sorteia de um dicionário de 320 mil palavras; esta demonstração usa uma lista curta de 253, então é só demonstração. Gerada no seu navegador, não vai pra lugar nenhum."
+  },
+  "eggs": {
+    "roll": "Rolar um d20",
+    "rollResult": "d20 · {n}. O dado mandou: {section}.",
+    "nat20": "20 natural! Acerto crítico: você ganhou o direito de falar comigo.",
+    "nat1": "1 natural. Falha crítica: você tropeça e cai numa rota que não existe…",
+    "hardOn": "Modo difícil liberado. Boa sorte.",
+    "hardOff": "Modo difícil desligado. Sem julgamento."
   },
   "personal": {
     "photoAlt": "Dois pares de pés lado a lado de pantufas de pelúcia, uma preta e uma branca, num piso de madeira.",

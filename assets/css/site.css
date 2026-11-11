@@ -521,6 +521,138 @@ h2 { margin-block: var(--s-2) var(--s-5); }
   }
 }
 
+/* ---------- Trombone tocável ---------------------------------
+   O desenho é um SVG de linhas grossas: os tubos são traço, não
+   preenchimento. A vara anda pela variável --vara, em unidades do
+   viewBox, que o trombone.js escreve; o movimento em si é daqui. */
+.trombone { margin-top: var(--s-10); padding: var(--s-6); }
+.trombone__topo {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: var(--s-5); flex-wrap: wrap;
+}
+.trombone__topo h3 { margin-bottom: var(--s-1); }
+.trombone__leitura {
+  display: flex; align-items: baseline; gap: var(--s-2);
+  font-family: var(--font-mono); font-size: var(--t-sm); color: var(--text-muted);
+}
+.trombone__leitura b { color: var(--text); }
+.trombone__nota {
+  min-width: 3.2ch; margin-left: var(--s-2);
+  font-size: var(--t-xl); font-weight: 600; color: var(--brand-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.trombone__vara {
+  margin-block: var(--s-5);
+  border-radius: var(--r-md);
+  background: var(--bg-sunken);
+  cursor: grab;
+  touch-action: pan-y;          /* arrastar de lado é da vara; pra cima e pra baixo, da página */
+  user-select: none; -webkit-user-select: none;
+}
+.trombone__vara:active { cursor: grabbing; }
+.trombone__vara svg { display: block; width: 100%; height: auto; }
+.trombone__vara path {
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.trombone__fixo path { stroke: var(--text-subtle); stroke-width: 5; }
+.trombone__fixo .trombone__campana {
+  fill: var(--accent-gold); stroke: var(--accent-gold); stroke-width: 3;
+  transition: filter var(--d-fast) var(--e-out);
+}
+.trombone__fixo .trombone__bocal { fill: var(--text-subtle); stroke-width: 2; }
+.trombone__movel {
+  transform: translateX(calc(var(--vara, 0) * 1px));
+}
+.trombone__movel path { stroke: var(--accent-gold); stroke-width: 9; }
+.trombone__movel .trombone__trava { stroke-width: 4; }
+.trombone__pega { fill: var(--brand); stroke: var(--bg-sunken); stroke-width: 3; }
+.trombone__marcas text {
+  font-family: var(--font-mono); font-size: 13px;
+  fill: var(--text-subtle); text-anchor: middle;
+}
+/* soando: a campana acende */
+.trombone.esta-soando .trombone__campana { filter: brightness(1.25) drop-shadow(0 0 10px var(--accent-gold)); }
+.trombone.esta-soando .trombone__nota { color: var(--accent-gold); }
+
+.trombone__base {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: var(--s-4) var(--s-5); flex-wrap: wrap;
+}
+.trombone__parciais { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; font-size: var(--t-sm); }
+.trombone__parciais .chip-btn { font-family: var(--font-mono); color: var(--text-muted); }
+.trombone__parciais .chip-btn[aria-pressed="true"] {
+  border-color: var(--brand-border); background: var(--brand-subtle); color: var(--brand-text);
+}
+.trombone__dica { font-size: var(--t-sm); max-width: 46ch; }
+
+/* ---------- Demonstração do gerador de senha ------------------ */
+.senha { margin-top: var(--s-5); padding: var(--s-6); }
+.senha h4 { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--brand-text); }
+.senha > p { font-size: var(--t-sm); margin-top: var(--s-2); }
+.senha__saida {
+  display: block; margin-block: var(--s-4);
+  min-height: 3.2em; padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  background: var(--bg-sunken);
+  font-family: var(--font-mono); font-size: var(--t-lg); line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+/* cada pedaço do padrão com a sua cor: dá pra ler de onde vem a força */
+.senha__palavra { color: var(--text); font-weight: 600; }
+.senha__simbolo { color: var(--accent-warm); }
+.senha__numero  { color: var(--brand-text); }
+.senha__acoes { align-items: center; gap: var(--s-3) var(--s-4); }
+.senha__acoes .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.senha__palavras {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-size: var(--t-sm); color: var(--text-muted);
+}
+.senha__palavras input { accent-color: var(--brand); width: 110px; }
+.senha__palavras b { font-family: var(--font-mono); color: var(--text); }
+.senha__nota { font-size: var(--t-xs); margin-top: var(--s-4); max-width: 80ch; }
+
+/* ---------- Segredos: d20, recado e modo difícil --------------- */
+.d20 {
+  margin-top: var(--s-4);
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px; padding: 0;
+  border: 0; border-radius: var(--r-md); background: none;
+  color: var(--text-subtle); cursor: pointer;
+  transition: color var(--d-fast) var(--e-out), transform var(--d-normal) var(--e-spring);
+}
+.d20 svg { width: 26px; height: 26px; }
+.d20:hover { color: var(--brand-text); transform: rotate(18deg); }
+.d20.esta-rolando { animation: d20-gira 520ms linear infinite; color: var(--brand-text); }
+@keyframes d20-gira { to { transform: rotate(360deg); } }
+
+.recado {
+  position: fixed; left: 50%; bottom: var(--s-5); z-index: 40;
+  max-width: min(92vw, 560px);
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--brand-border); border-radius: var(--r-full);
+  background: var(--bg-elevated); color: var(--text);
+  font-family: var(--font-mono); font-size: var(--t-sm); text-align: center;
+  box-shadow: var(--sh-3);
+  opacity: 0; transform: translate(-50%, 16px); pointer-events: none;
+  transition: opacity var(--d-normal) var(--e-out), transform var(--d-normal) var(--e-spring);
+}
+.recado.esta-visivel { opacity: 1; transform: translate(-50%, 0); }
+
+/* 20 natural: o cartão de contato pisca dourado */
+.acerto-critico .contact { animation: acerto 800ms var(--e-out) 3; }
+@keyframes acerto {
+  50% { border-color: var(--accent-gold); box-shadow: 0 0 0 3px var(--accent-gold), var(--sh-3); }
+}
+
+.jogo__modo { display: none; color: var(--accent-warm); font-weight: 600; letter-spacing: var(--tracking-wide); }
+.modo-dificil .jogo__modo { display: inline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .d20.esta-rolando, .acerto-critico .contact { animation: none; }
+  .d20:hover { transform: none; }
+}
+
 /* ---------- Telas pequenas ----------------------------------- */
 @media (max-width: 900px) {
   .about, .music { grid-template-columns: 1fr; }

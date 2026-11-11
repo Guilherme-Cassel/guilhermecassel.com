@@ -99,7 +99,8 @@
     ],
     "overCaught": "You were replaced by AI :(",
     "footnote": "Written from scratch in about 200 lines of JavaScript. No engine, no sprites, and every sound is synthesised on the spot.",
-    "soundToggle": "Sound on or off"
+    "soundToggle": "Sound on or off",
+    "hard": "HARD"
   },
   "experience": {
     "eyebrow": "Experience",
@@ -153,7 +154,7 @@
   "projects": {
     "eyebrow": "Work",
     "title": "Things I built that people use",
-    "lead": "Problem, decision, result. Everything below runs in production at an industrial machinery manufacturer.",
+    "lead": "Problem, decision, result. Everything below was built for production at an industrial machinery manufacturer.",
     "labels": {
       "problem": "The problem",
       "decision": "The call I made",
@@ -206,13 +207,29 @@
         "tag": "infrastructure",
         "problem": "Applications were published by building to a folder and ClickOnce, tied to local infrastructure, with no repeatable path from commit to production.",
         "decision": "Put a new ASP.NET app on Azure and build the whole path properly: resource group, app service plan, Key Vault, virtual network, NAT gateway with a fixed outbound IP, custom domain, and GitHub Actions deploying per branch.",
-        "result": "A commit to the right branch is a deploy. Nothing depends on a machine under someone's desk anymore.",
+        "result": "A commit to the right branch became a deploy, end to end. It worked, and we still left Azure over performance; what I learned there went into the self-hosted setup in the next card.",
         "stack": [
           "Azure",
           "Azure DevOps",
           "GitHub Actions",
           "ASP.NET",
           "Key Vault"
+        ]
+      },
+      {
+        "name": "Self-hosted platform in a DMZ",
+        "tag": "in production",
+        "problem": "The Blazor Server app ran fine on Azure, but the performance was not good enough for daily use, and the cloud setup was dropped.",
+        "decision": "Build it in-house from zero: a Linux VM on Hyper-V with Ubuntu Server, Coolify managing the Docker containers, and the company firewall reconfigured with an internal DMZ network that points at that VM and nothing else.",
+        "result": "The app runs on the company's own servers, reachable from outside on the company domain, with external traffic confined to the DMZ. And it is fast: performance stopped being a topic.",
+        "stack": [
+          "Ubuntu Server",
+          "Hyper-V",
+          "Coolify",
+          "Docker",
+          "Blazor Server",
+          "Firewall",
+          "DMZ"
         ]
       }
     ],
@@ -281,7 +298,21 @@
           "Azure DevOps",
           "GitHub Actions",
           "CI/CD",
-          "Docker"
+          "Docker",
+          "Coolify",
+          "Linux"
+        ]
+      },
+      {
+        "name": "Networks & security",
+        "items": [
+          "Firewalls",
+          "VLANs",
+          "DMZ",
+          "Switches & routers",
+          "Wi-Fi",
+          "Telephony",
+          "Hyper-V"
         ]
       },
       {
@@ -303,11 +334,36 @@
     "paragraphs": [
       "I joined the town's municipal band because my friends were there, and stayed because of the music: theory, classical repertoire, big arrangements. Today I play with the Banda Municipal de Serafina Corrêa and the city's orchestra, and the nights that stuck were the Teutônia music festivals in 2022 and 2025, huge arrangements played alongside hundreds of other young musicians.",
       "Trombone is the one I actually have mastery in. But a mouthpiece is a mouthpiece, so hand me any brass instrument and something comes out of it; I play basic transverse flute, I'm studying violin, and I'll try whatever instrument happens to be within reach.",
-      "Nothing here makes a sound unless you ask it to. The game below is the only thing with audio, and it has a mute button.",
-      "No autoplay, no sound on this page. You're welcome."
+      "Nothing here makes a sound unless you ask it to. The trombone below only plays while you hold it, and the game has a mute button.",
+      "No autoplay. You're welcome."
     ],
     "photoAlt": "Guilherme playing trombone with the Banda Municipal, in uniform",
     "photoCaption": "Banda Municipal de Serafina Corrêa"
+  },
+  "trombone": {
+    "title": "Go on, play it",
+    "lead": "A tenor trombone in B flat, synthesised in your browser. Seven positions, four harmonics, and the glissando comes free.",
+    "position": "Position",
+    "partials": "Harmonic",
+    "slide": "Trombone slide",
+    "hint": "Hold the slide to blow, drag to change the note. On a keyboard: focus it, hold Space and move with the arrow keys."
+  },
+  "password": {
+    "title": "Try it right here",
+    "lead": "friendly-password-generator in your browser: real words you can say out loud, with symbols and digits in between.",
+    "generate": "Generate",
+    "copy": "Copy",
+    "copied": "Copied",
+    "words": "Words",
+    "footnote": "Same pattern as the C# original, ported to JavaScript. The app draws from a 320,000-word Brazilian Portuguese dictionary; this demo uses a short list of 253, so treat it as a demo. Generated in your browser and sent nowhere."
+  },
+  "eggs": {
+    "roll": "Roll a d20",
+    "rollResult": "d20 · {n}. The dice say: {section}.",
+    "nat20": "Natural 20! Critical hit: you have earned the right to talk to me.",
+    "nat1": "Natural 1. Critical fail: you trip and fall into a route that doesn't exist…",
+    "hardOn": "Hard mode unlocked. Good luck.",
+    "hardOff": "Hard mode off. No judgement."
   },
   "personal": {
     "photoAlt": "Two pairs of feet side by side in plush slippers, one black and one white, on a wooden floor.",
